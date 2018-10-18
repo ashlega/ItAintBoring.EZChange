@@ -48,10 +48,8 @@
             this.tbConnectionString = new System.Windows.Forms.TextBox();
             this.tpSolutions = new System.Windows.Forms.TabPage();
             this.tcSolution = new System.Windows.Forms.TabControl();
-            this.tpEntityDeleteActions = new System.Windows.Forms.TabPage();
-            this.tpAttributeDeleteAction = new System.Windows.Forms.TabPage();
-            this.tpDataAction = new System.Windows.Forms.TabPage();
-            this.tpWorkflowAction = new System.Windows.Forms.TabPage();
+            this.tpPreImportActions = new System.Windows.Forms.TabPage();
+            this.tpPostImportActions = new System.Windows.Forms.TabPage();
             this.btnDeleteSolution = new System.Windows.Forms.Button();
             this.btnAddSolution = new System.Windows.Forms.Button();
             this.lbSolutions = new System.Windows.Forms.ListBox();
@@ -247,55 +245,33 @@
             this.tcSolution.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tcSolution.Controls.Add(this.tpEntityDeleteActions);
-            this.tcSolution.Controls.Add(this.tpAttributeDeleteAction);
-            this.tcSolution.Controls.Add(this.tpDataAction);
-            this.tcSolution.Controls.Add(this.tpWorkflowAction);
+            this.tcSolution.Controls.Add(this.tpPreImportActions);
+            this.tcSolution.Controls.Add(this.tpPostImportActions);
             this.tcSolution.Location = new System.Drawing.Point(255, 3);
             this.tcSolution.Name = "tcSolution";
             this.tcSolution.SelectedIndex = 0;
             this.tcSolution.Size = new System.Drawing.Size(682, 322);
             this.tcSolution.TabIndex = 3;
             // 
-            // tpEntityDeleteActions
+            // tpPreImportActions
             // 
-            this.tpEntityDeleteActions.Location = new System.Drawing.Point(4, 25);
-            this.tpEntityDeleteActions.Name = "tpEntityDeleteActions";
-            this.tpEntityDeleteActions.Padding = new System.Windows.Forms.Padding(3);
-            this.tpEntityDeleteActions.Size = new System.Drawing.Size(674, 293);
-            this.tpEntityDeleteActions.TabIndex = 0;
-            this.tpEntityDeleteActions.Text = "Entity Delete";
-            this.tpEntityDeleteActions.UseVisualStyleBackColor = true;
+            this.tpPreImportActions.Location = new System.Drawing.Point(4, 25);
+            this.tpPreImportActions.Name = "tpPreImportActions";
+            this.tpPreImportActions.Padding = new System.Windows.Forms.Padding(3);
+            this.tpPreImportActions.Size = new System.Drawing.Size(674, 293);
+            this.tpPreImportActions.TabIndex = 0;
+            this.tpPreImportActions.Text = "Pre Import Actions";
+            this.tpPreImportActions.UseVisualStyleBackColor = true;
             // 
-            // tpAttributeDeleteAction
+            // tpPostImportActions
             // 
-            this.tpAttributeDeleteAction.Location = new System.Drawing.Point(4, 25);
-            this.tpAttributeDeleteAction.Name = "tpAttributeDeleteAction";
-            this.tpAttributeDeleteAction.Padding = new System.Windows.Forms.Padding(3);
-            this.tpAttributeDeleteAction.Size = new System.Drawing.Size(674, 293);
-            this.tpAttributeDeleteAction.TabIndex = 1;
-            this.tpAttributeDeleteAction.Text = "Attribute Delete";
-            this.tpAttributeDeleteAction.UseVisualStyleBackColor = true;
-            // 
-            // tpDataAction
-            // 
-            this.tpDataAction.Location = new System.Drawing.Point(4, 25);
-            this.tpDataAction.Name = "tpDataAction";
-            this.tpDataAction.Padding = new System.Windows.Forms.Padding(3);
-            this.tpDataAction.Size = new System.Drawing.Size(674, 293);
-            this.tpDataAction.TabIndex = 2;
-            this.tpDataAction.Text = "Data";
-            this.tpDataAction.UseVisualStyleBackColor = true;
-            // 
-            // tpWorkflowAction
-            // 
-            this.tpWorkflowAction.Location = new System.Drawing.Point(4, 25);
-            this.tpWorkflowAction.Name = "tpWorkflowAction";
-            this.tpWorkflowAction.Padding = new System.Windows.Forms.Padding(3);
-            this.tpWorkflowAction.Size = new System.Drawing.Size(674, 293);
-            this.tpWorkflowAction.TabIndex = 3;
-            this.tpWorkflowAction.Text = "Workflows";
-            this.tpWorkflowAction.UseVisualStyleBackColor = true;
+            this.tpPostImportActions.Location = new System.Drawing.Point(4, 25);
+            this.tpPostImportActions.Name = "tpPostImportActions";
+            this.tpPostImportActions.Padding = new System.Windows.Forms.Padding(3);
+            this.tpPostImportActions.Size = new System.Drawing.Size(674, 293);
+            this.tpPostImportActions.TabIndex = 1;
+            this.tpPostImportActions.Text = "Post Import Actions";
+            this.tpPostImportActions.UseVisualStyleBackColor = true;
             // 
             // btnDeleteSolution
             // 
@@ -376,10 +352,8 @@
         private System.Windows.Forms.TabPage tpLogo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TabControl tcSolution;
-        private System.Windows.Forms.TabPage tpEntityDeleteActions;
-        private System.Windows.Forms.TabPage tpAttributeDeleteAction;
-        private System.Windows.Forms.TabPage tpDataAction;
-        private System.Windows.Forms.TabPage tpWorkflowAction;
+        private System.Windows.Forms.TabPage tpPreImportActions;
+        private System.Windows.Forms.TabPage tpPostImportActions;
         private System.Windows.Forms.Button btnDeleteSolution;
         private System.Windows.Forms.Button btnAddSolution;
         private System.Windows.Forms.ListBox lbSolutions;

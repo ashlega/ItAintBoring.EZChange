@@ -10,8 +10,7 @@ namespace ItAintBoring.EZChange.Common.Packaging
     {
         public string Name { get; set; }
 
-        public List<AttributeDeleteAction> AttributeActions;
-        public List<EntityDeleteAction> EntityActions;
-        public List<DataAction> DataActions;
+        public List<IAction> PreImportActions;
+        public List<IAction> PostImportActions;
     }
 }

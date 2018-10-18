@@ -32,6 +32,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,12 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Packaging\AttributeDeleteAction.cs" />
     <Compile Include="Packaging\ChangePackage.cs" />
-    <Compile Include="Packaging\DataAction.cs" />
-    <Compile Include="Packaging\EntityDeleteAction.cs" />
+    <Compile Include="IAction.cs" />
     <Compile Include="Packaging\Solution.cs" />
-    <Compile Include="Packaging\WorkflowAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Storage\IPackageStorage.cs" />
   </ItemGroup>
