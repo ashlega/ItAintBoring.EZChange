@@ -272,7 +272,7 @@
             this.tpAttributeDeleteAction.Location = new System.Drawing.Point(4, 25);
             this.tpAttributeDeleteAction.Name = "tpAttributeDeleteAction";
             this.tpAttributeDeleteAction.Padding = new System.Windows.Forms.Padding(3);
-            this.tpAttributeDeleteAction.Size = new System.Drawing.Size(657, 237);
+            this.tpAttributeDeleteAction.Size = new System.Drawing.Size(674, 293);
             this.tpAttributeDeleteAction.TabIndex = 1;
             this.tpAttributeDeleteAction.Text = "Attribute Delete";
             this.tpAttributeDeleteAction.UseVisualStyleBackColor = true;
@@ -282,7 +282,7 @@
             this.tpDataAction.Location = new System.Drawing.Point(4, 25);
             this.tpDataAction.Name = "tpDataAction";
             this.tpDataAction.Padding = new System.Windows.Forms.Padding(3);
-            this.tpDataAction.Size = new System.Drawing.Size(657, 237);
+            this.tpDataAction.Size = new System.Drawing.Size(674, 293);
             this.tpDataAction.TabIndex = 2;
             this.tpDataAction.Text = "Data";
             this.tpDataAction.UseVisualStyleBackColor = true;
@@ -292,7 +292,7 @@
             this.tpWorkflowAction.Location = new System.Drawing.Point(4, 25);
             this.tpWorkflowAction.Name = "tpWorkflowAction";
             this.tpWorkflowAction.Padding = new System.Windows.Forms.Padding(3);
-            this.tpWorkflowAction.Size = new System.Drawing.Size(657, 237);
+            this.tpWorkflowAction.Size = new System.Drawing.Size(674, 293);
             this.tpWorkflowAction.TabIndex = 3;
             this.tpWorkflowAction.Text = "Workflows";
             this.tpWorkflowAction.UseVisualStyleBackColor = true;
@@ -327,6 +327,7 @@
             this.lbSolutions.Name = "lbSolutions";
             this.lbSolutions.Size = new System.Drawing.Size(243, 276);
             this.lbSolutions.TabIndex = 4;
+            this.lbSolutions.SelectedIndexChanged += new System.EventHandler(this.lbSolutions_SelectedIndexChanged);
             // 
             // MainForm
             // 

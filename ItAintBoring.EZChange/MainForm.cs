@@ -46,7 +46,7 @@ namespace ItAintBoring.EZChange
 
         public void ReSetUI()
         {
-            return;
+           
             if (Package == null)
             {
                 tcPackage.TabPages.Remove(tpSolutions);
@@ -59,10 +59,10 @@ namespace ItAintBoring.EZChange
                 tcPackage.TabPages.Remove(tpSolutions);
                 tcPackage.TabPages.Remove(tpSource);
                 tcPackage.TabPages.Remove(tpLogo);
-                tcPackage.TabPages.Add(tpSolutions);
                 tcPackage.TabPages.Add(tpSource);
-
+                tcPackage.TabPages.Add(tpSolutions);
             }
+            btnDeleteSolution.Enabled = lbSolutions.SelectedIndex > -1;
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
@@ -139,6 +139,11 @@ namespace ItAintBoring.EZChange
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void lbSolutions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ReSetUI();
         }
     }
 }
