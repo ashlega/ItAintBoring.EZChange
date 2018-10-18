@@ -53,6 +53,12 @@
             this.btnDeleteSolution = new System.Windows.Forms.Button();
             this.btnAddSolution = new System.Windows.Forms.Button();
             this.lbSolutions = new System.Windows.Forms.ListBox();
+            this.lbPreActions = new System.Windows.Forms.ListBox();
+            this.btnAddPreAction = new System.Windows.Forms.Button();
+            this.btnRemovePreAction = new System.Windows.Forms.Button();
+            this.lbPostActions = new System.Windows.Forms.ListBox();
+            this.btnRemovePostAction = new System.Windows.Forms.Button();
+            this.btnAddPostAction = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tcPackage.SuspendLayout();
             this.tpLogo.SuspendLayout();
@@ -60,6 +66,8 @@
             this.pnlSource.SuspendLayout();
             this.tpSolutions.SuspendLayout();
             this.tcSolution.SuspendLayout();
+            this.tpPreImportActions.SuspendLayout();
+            this.tpPostImportActions.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -255,6 +263,9 @@
             // 
             // tpPreImportActions
             // 
+            this.tpPreImportActions.Controls.Add(this.btnRemovePreAction);
+            this.tpPreImportActions.Controls.Add(this.btnAddPreAction);
+            this.tpPreImportActions.Controls.Add(this.lbPreActions);
             this.tpPreImportActions.Location = new System.Drawing.Point(4, 25);
             this.tpPreImportActions.Name = "tpPreImportActions";
             this.tpPreImportActions.Padding = new System.Windows.Forms.Padding(3);
@@ -265,6 +276,9 @@
             // 
             // tpPostImportActions
             // 
+            this.tpPostImportActions.Controls.Add(this.btnRemovePostAction);
+            this.tpPostImportActions.Controls.Add(this.btnAddPostAction);
+            this.tpPostImportActions.Controls.Add(this.lbPostActions);
             this.tpPostImportActions.Location = new System.Drawing.Point(4, 25);
             this.tpPostImportActions.Name = "tpPostImportActions";
             this.tpPostImportActions.Padding = new System.Windows.Forms.Padding(3);
@@ -305,6 +319,72 @@
             this.lbSolutions.TabIndex = 4;
             this.lbSolutions.SelectedIndexChanged += new System.EventHandler(this.lbSolutions_SelectedIndexChanged);
             // 
+            // lbPreActions
+            // 
+            this.lbPreActions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbPreActions.FormattingEnabled = true;
+            this.lbPreActions.ItemHeight = 16;
+            this.lbPreActions.Location = new System.Drawing.Point(1, 2);
+            this.lbPreActions.Name = "lbPreActions";
+            this.lbPreActions.Size = new System.Drawing.Size(671, 244);
+            this.lbPreActions.TabIndex = 0;
+            // 
+            // btnAddPreAction
+            // 
+            this.btnAddPreAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAddPreAction.Location = new System.Drawing.Point(512, 256);
+            this.btnAddPreAction.Name = "btnAddPreAction";
+            this.btnAddPreAction.Size = new System.Drawing.Size(75, 30);
+            this.btnAddPreAction.TabIndex = 6;
+            this.btnAddPreAction.Text = "Add";
+            this.btnAddPreAction.UseVisualStyleBackColor = true;
+            this.btnAddPreAction.Click += new System.EventHandler(this.btnAddPreAction_Click);
+            // 
+            // btnRemovePreAction
+            // 
+            this.btnRemovePreAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRemovePreAction.Location = new System.Drawing.Point(593, 256);
+            this.btnRemovePreAction.Name = "btnRemovePreAction";
+            this.btnRemovePreAction.Size = new System.Drawing.Size(75, 30);
+            this.btnRemovePreAction.TabIndex = 7;
+            this.btnRemovePreAction.Text = "Remove";
+            this.btnRemovePreAction.UseVisualStyleBackColor = true;
+            // 
+            // lbPostActions
+            // 
+            this.lbPostActions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbPostActions.FormattingEnabled = true;
+            this.lbPostActions.ItemHeight = 16;
+            this.lbPostActions.Location = new System.Drawing.Point(1, 2);
+            this.lbPostActions.Name = "lbPostActions";
+            this.lbPostActions.Size = new System.Drawing.Size(671, 244);
+            this.lbPostActions.TabIndex = 1;
+            // 
+            // btnRemovePostAction
+            // 
+            this.btnRemovePostAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRemovePostAction.Location = new System.Drawing.Point(593, 256);
+            this.btnRemovePostAction.Name = "btnRemovePostAction";
+            this.btnRemovePostAction.Size = new System.Drawing.Size(75, 30);
+            this.btnRemovePostAction.TabIndex = 9;
+            this.btnRemovePostAction.Text = "Remove";
+            this.btnRemovePostAction.UseVisualStyleBackColor = true;
+            // 
+            // btnAddPostAction
+            // 
+            this.btnAddPostAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAddPostAction.Location = new System.Drawing.Point(512, 256);
+            this.btnAddPostAction.Name = "btnAddPostAction";
+            this.btnAddPostAction.Size = new System.Drawing.Size(75, 30);
+            this.btnAddPostAction.TabIndex = 8;
+            this.btnAddPostAction.Text = "Add";
+            this.btnAddPostAction.UseVisualStyleBackColor = true;
+            this.btnAddPostAction.Click += new System.EventHandler(this.btnAddPostAction_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -325,6 +405,8 @@
             this.pnlSource.PerformLayout();
             this.tpSolutions.ResumeLayout(false);
             this.tcSolution.ResumeLayout(false);
+            this.tpPreImportActions.ResumeLayout(false);
+            this.tpPostImportActions.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -357,6 +439,12 @@
         private System.Windows.Forms.Button btnDeleteSolution;
         private System.Windows.Forms.Button btnAddSolution;
         private System.Windows.Forms.ListBox lbSolutions;
+        private System.Windows.Forms.Button btnRemovePreAction;
+        private System.Windows.Forms.Button btnAddPreAction;
+        private System.Windows.Forms.ListBox lbPreActions;
+        private System.Windows.Forms.Button btnRemovePostAction;
+        private System.Windows.Forms.Button btnAddPostAction;
+        private System.Windows.Forms.ListBox lbPostActions;
     }
 }
 

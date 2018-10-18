@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,12 +47,23 @@
     <Compile Include="Actions\WorkflowAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Storage\FileStorage.cs" />
+    <Compile Include="UI\XMLEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\XMLEditor.Designer.cs">
+      <DependentUpon>XMLEditor.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ItAintBoring.EZChange.Common\ItAintBoring.EZChange.Common.csproj">
       <Project>{3733d16d-2a1c-4296-823f-98c617ff4d86}</Project>
       <Name>ItAintBoring.EZChange.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI\XMLEditor.resx">
+      <DependentUpon>XMLEditor.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

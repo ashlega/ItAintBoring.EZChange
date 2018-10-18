@@ -1,24 +1,23 @@
-﻿using ItAintBoring.EZChange.Common.Storage;
+﻿using ItAintBoring.EZChange.Common;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
-using System.Reflection;
-
 
 namespace ItAintBoring.EZChange.Core
 {
-    public class StorageFactory
+    class ActionFactory
     {
-        static List<IPackageStorage> storageList = null;
+        static List<IAction> actionList = null;
 
-        static public List<IPackageStorage> GetStorageList()
+        static public List<IAction> GetActionList()
         {
-            if (storageList == null)
+            if (actionList == null)
             {
-                storageList = new List<IPackageStorage>();
+                actionList = new List<IAction>();
 
                 string[] subFolders = { "Core", "Extensions" };
 
@@ -33,9 +32,9 @@ namespace ItAintBoring.EZChange.Core
                             var DLL = Assembly.LoadFile(file);
                             foreach (Type type in DLL.GetExportedTypes())
                             {
-                                if (typeof(IPackageStorage).IsAssignableFrom(type))
+                                if (typeof(IAction).IsAssignableFrom(type))
                                 {
-                                    storageList.Add((IPackageStorage)Activator.CreateInstance(type));
+                                    actionList.Add((IAction)Activator.CreateInstance(type));
                                 }
                             }
                         }
@@ -44,13 +43,13 @@ namespace ItAintBoring.EZChange.Core
                 }
             }
 
-            
-            return storageList;
+
+            return actionList;
         }
 
-        static public IPackageStorage CreateStorage(IPackageStorage storageDescription)
+        static public IAction CreateAction(IAction actionDesecription)
         {
-            return storageDescription;
+            return (IAction)Activator.CreateInstance(actionDesecription.GetType());
         }
     }
 }

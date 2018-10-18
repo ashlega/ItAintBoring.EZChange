@@ -1,6 +1,8 @@
-﻿using ItAintBoring.EZChange.Common.Packaging;
+﻿using ItAintBoring.EZChange.Common;
+using ItAintBoring.EZChange.Common.Packaging;
 using ItAintBoring.EZChange.Common.Storage;
 using ItAintBoring.EZChange.Core;
+using ItAintBoring.EZChange.Core.Actions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,6 +34,17 @@ namespace ItAintBoring.EZChange
                     ReSetUI();
                 }
 
+            }
+        }
+
+        public Solution SelectedSolution {
+            get
+            {
+                if (lbSolutions.SelectedItem != null)
+                {
+                    return (Solution)lbSolutions.SelectedItem;
+                }
+                else return null;
             }
         }
 
@@ -144,6 +157,39 @@ namespace ItAintBoring.EZChange
         private void lbSolutions_SelectedIndexChanged(object sender, EventArgs e)
         {
             ReSetUI();
+        }
+
+        private void NewAction(bool preAction)
+        {
+            ActionSelector selector = new ActionSelector();
+            if (selector.ShowDialog() == DialogResult.OK && selector.SelectedAction != null)
+            {
+
+                IAction da = ActionFactory.CreateAction(selector.SelectedAction);
+                ActionControl ac = new ActionControl();
+
+                ac.Setup(da);
+
+                if (ac.ShowDialog() == DialogResult.OK)
+                {
+                    ac.UpdateAction(da);
+                    if (SelectedSolution != null)
+                    {
+                        if(preAction) SelectedSolution.PreImportActions.Add(da);
+                        else SelectedSolution.PostImportActions.Add(da);
+                    }
+                }
+            }
+        }
+
+        private void btnAddPreAction_Click(object sender, EventArgs e)
+        {
+            NewAction(true);
+        }
+
+        private void btnAddPostAction_Click(object sender, EventArgs e)
+        {
+            NewAction(false);
         }
     }
 }

@@ -45,6 +45,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ActionControl.Designer.cs">
+      <DependentUpon>ActionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ActionSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ActionSelector.Designer.cs">
+      <DependentUpon>ActionSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\ActionFactory.cs" />
     <Compile Include="Core\StorageFactory.cs" />
     <Compile Include="StorageProviderSelector.cs">
       <SubType>Form</SubType>
@@ -60,6 +73,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ActionControl.resx">
+      <DependentUpon>ActionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ActionSelector.resx">
+      <DependentUpon>ActionSelector.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="StorageProviderSelector.resx">
       <DependentUpon>StorageProviderSelector.cs</DependentUpon>
     </EmbeddedResource>
@@ -93,6 +112,10 @@
     <ProjectReference Include="..\ItAintBoring.EZChange.Common\ItAintBoring.EZChange.Common.csproj">
       <Project>{3733d16d-2a1c-4296-823f-98c617ff4d86}</Project>
       <Name>ItAintBoring.EZChange.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ItAintBoring.EZChange.Core\ItAintBoring.EZChange.Core.csproj">
+      <Project>{07A30B5A-8867-4661-A1FB-DE3878099E37}</Project>
+      <Name>ItAintBoring.EZChange.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -5,17 +5,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ItAintBoring.EZChange.Common;
+using ItAintBoring.EZChange.Core.UI;
 
 namespace ItAintBoring.EZChange.Core.Actions
 {
-    class WorkflowAction : IAction
+    public class WorkflowAction : IAction
     {
+        public override string ToString()
+        {
+            return Name;
+        }
+        public string Title { get; set; }
         public string XML { get; set; }
-        public string Name { get { return "Run Workflow"; } }
+        public string Name { get { return "Workflow Action"; } }
 
         public string Description { get { return "Run Workflow"; } }
 
-        public UserControl UIControl => throw new NotImplementedException();
+        private UserControl uiControl = new XMLEditor();
+        public UserControl UIControl { get { return uiControl; } }
 
         public void ApplyUIUpdates()
         {
@@ -26,6 +33,6 @@ namespace ItAintBoring.EZChange.Core.Actions
         {
             throw new NotImplementedException();
         }
-    {
+    
     }
 }
