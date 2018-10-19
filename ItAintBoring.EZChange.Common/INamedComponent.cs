@@ -7,11 +7,15 @@ using System.Windows.Forms;
 
 namespace ItAintBoring.EZChange.Common
 {
-    public interface IAction
+    public interface INamedComponent
     {
-                
-        void DoAction();
-        List<Type> SupportedSolutionTypes { get; }
+        string Name { get; set; }
 
+        
+
+        
+
+        UserControl UIControl { get; }
+        void ApplyUIUpdates();
     }
 }

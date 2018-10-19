@@ -45,17 +45,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionControl.cs">
+    <Compile Include="ComponentControl.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ActionControl.Designer.cs">
-      <DependentUpon>ActionControl.cs</DependentUpon>
+    <Compile Include="ComponentControl.Designer.cs">
+      <DependentUpon>ComponentControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ActionSelector.cs">
+    <Compile Include="ItemSelector.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ActionSelector.Designer.cs">
-      <DependentUpon>ActionSelector.cs</DependentUpon>
+    <Compile Include="ItemSelector.Designer.cs">
+      <DependentUpon>ItemSelector.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\PackageFactory.cs" />
     <Compile Include="Core\SolutionFactory.cs" />
@@ -75,11 +75,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ActionControl.resx">
-      <DependentUpon>ActionControl.cs</DependentUpon>
+    <EmbeddedResource Include="ComponentControl.resx">
+      <DependentUpon>ComponentControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ActionSelector.resx">
-      <DependentUpon>ActionSelector.cs</DependentUpon>
+    <EmbeddedResource Include="ItemSelector.resx">
+      <DependentUpon>ItemSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StorageProviderSelector.resx">
       <DependentUpon>StorageProviderSelector.cs</DependentUpon>

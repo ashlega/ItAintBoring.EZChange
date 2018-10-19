@@ -3,15 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ItAintBoring.EZChange.Common
 {
-    public interface IAction
+    public interface IVersionedComponent
     {
-                
-        void DoAction();
-        List<Type> SupportedSolutionTypes { get; }
-
+        string Version { get; set; }
     }
 }

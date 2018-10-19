@@ -1,6 +1,6 @@
 ﻿namespace ItAintBoring.EZChange
 {
-    partial class ActionSelector
+    partial class ItemSelector
     {
         /// <summary>
         /// Required designer variable.
@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbActions = new System.Windows.Forms.ListBox();
+            this.lbItems = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // lbActions
+            // lbItems
             // 
-            this.lbActions.FormattingEnabled = true;
-            this.lbActions.ItemHeight = 16;
-            this.lbActions.Location = new System.Drawing.Point(2, 5);
-            this.lbActions.Name = "lbActions";
-            this.lbActions.Size = new System.Drawing.Size(316, 228);
-            this.lbActions.TabIndex = 0;
-            this.lbActions.SelectedIndexChanged += new System.EventHandler(this.lbActions_SelectedIndexChanged);
-            this.lbActions.DoubleClick += new System.EventHandler(this.lbActions_DoubleClick);
+            this.lbItems.FormattingEnabled = true;
+            this.lbItems.ItemHeight = 16;
+            this.lbItems.Location = new System.Drawing.Point(2, 5);
+            this.lbItems.Name = "lbItems";
+            this.lbItems.Size = new System.Drawing.Size(316, 228);
+            this.lbItems.TabIndex = 0;
+            this.lbItems.SelectedIndexChanged += new System.EventHandler(this.lbActions_SelectedIndexChanged);
+            this.lbItems.DoubleClick += new System.EventHandler(this.lbActions_DoubleClick);
             // 
             // button1
             // 
@@ -66,24 +66,25 @@
             this.btnOk.Text = "OK";
             this.btnOk.UseVisualStyleBackColor = true;
             // 
-            // ActionSelector
+            // ItemSelector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(320, 275);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.lbActions);
-            this.Name = "ActionSelector";
+            this.Controls.Add(this.lbItems);
+            this.Name = "ItemSelector";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Choose the Action";
+            this.Shown += new System.EventHandler(this.ItemSelector_Shown);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ListBox lbActions;
+        private System.Windows.Forms.ListBox lbItems;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnOk;
     }

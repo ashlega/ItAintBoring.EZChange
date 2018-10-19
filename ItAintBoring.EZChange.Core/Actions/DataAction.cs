@@ -10,9 +10,13 @@ using System.Windows.Forms;
 
 namespace ItAintBoring.EZChange.Core.Actions
 {
-    public class DataAction : IAction
+    public class DataAction : BaseComponent, IAction, INamedComponent
     {
 
+        public override string Id { get { return "Data Action"; } }
+        public override string Description { get { return "Data Action"; } }
+
+        public string Name { get; set; }
 
         public List<Type> supportedSolutionTypes = null;
         public List<Type> SupportedSolutionTypes { get { return supportedSolutionTypes; } }
@@ -23,16 +27,13 @@ namespace ItAintBoring.EZChange.Core.Actions
             supportedSolutionTypes.Add(typeof(DynamicsSolution));
         }
 
-        public override string ToString()
-        {
-            return Name;
-        }
+        
         public string Title { get; set; }
 
         public string XML { get; set; }
-        public string Name { get { return "Data Action"; } }
+        
 
-        public string Description { get { return "Data Action"; } }
+        
 
         private UserControl uiControl = new XMLEditor();
         public UserControl UIControl { get {

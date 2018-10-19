@@ -32,8 +32,24 @@ namespace ItAintBoring.EZChange
                 if (package != value)
                 {
                     package = value;
+                    if (Package == null)
+                    {
+                        tcPackage.TabPages.Remove(tpSolutions);
+                        tcPackage.TabPages.Remove(tpSource);
+                        tcPackage.TabPages.Remove(tpLogo);
+                        tcPackage.TabPages.Add(tpLogo);
+                    }
+                    else
+                    {
+                        tcPackage.TabPages.Remove(tpSolutions);
+                        tcPackage.TabPages.Remove(tpSource);
+                        tcPackage.TabPages.Remove(tpLogo);
+                        tcPackage.TabPages.Add(tpSource);
+                        tcPackage.TabPages.Add(tpSolutions);
+                    }
                     ReSetUI();
                 }
+                
 
             }
         }
@@ -49,6 +65,8 @@ namespace ItAintBoring.EZChange
             }
         }
 
+        public object ProjectFactory { get; private set; }
+
         public MainForm()
         {
             InitializeComponent();
@@ -60,22 +78,10 @@ namespace ItAintBoring.EZChange
 
         public void ReSetUI()
         {
-           
-            if (Package == null)
-            {
-                tcPackage.TabPages.Remove(tpSolutions);
-                tcPackage.TabPages.Remove(tpSource);
-                tcPackage.TabPages.Remove(tpLogo);
-                tcPackage.TabPages.Add(tpLogo);
-            }
-            else
-            {
-                tcPackage.TabPages.Remove(tpSolutions);
-                tcPackage.TabPages.Remove(tpSource);
-                tcPackage.TabPages.Remove(tpLogo);
-                tcPackage.TabPages.Add(tpSource);
-                tcPackage.TabPages.Add(tpSolutions);
-            }
+            btnAddPostAction.Enabled = lbSolutions.SelectedItem != null;
+            btnAddPreAction.Enabled = lbSolutions.SelectedItem != null;
+            btnRemovePreAction.Enabled = lbPreActions.SelectedItem != null;
+            btnRemovePostAction.Enabled = lbPostActions.SelectedItem != null;
             btnDeleteSolution.Enabled = lbSolutions.SelectedIndex > -1;
         }
 
@@ -127,19 +133,41 @@ namespace ItAintBoring.EZChange
             storageProvider.SavePackageAs(Package);
         }
 
-        private void tbNew_Click(object sender, EventArgs e)
+        private void NewPackage()
         {
             if (SaveIfRequired())
             {
-                var pkg = new DynamicsChangePackage()
+                ItemSelector selector = new ItemSelector();
+                selector.Initialize(PackageFactory.GetPackageList().ToList<object>(), "Package Type");
+                if (selector.ShowIfMultiple() == DialogResult.OK && selector.SelectedItem != null)
                 {
-                    Name = "New Change Package",
-                    PackageLocation = "NewPackage.ecp",
-                    Description = "",
-                    HasUnsavedChanges = false
-                };
-                Package = pkg;
+
+                    IChangePackage pkg = PackageFactory.CreatePackage((IChangePackage)selector.SelectedItem);
+                    pkg.HasUnsavedChanges = false;
+                    pkg.PackageLocation = "NewPackage.ecp";
+                    ComponentControl ac = new ComponentControl();
+
+                    if (pkg is INamedComponent)
+                    {
+                        ((INamedComponent)pkg).Name = "New Change Package";
+                        ac.Setup((INamedComponent)pkg, "Package Properties");
+
+                        if (ac.ShowDialog() == DialogResult.OK)
+                        {
+                            ac.UpdateComponent((INamedComponent)pkg);
+                        }
+                        Package = pkg;
+                    }
+                    else ShowError("This action does not support INamedComponent interface");
+                }
             }
+            
+        }
+
+        private void tbNew_Click(object sender, EventArgs e)
+        {
+            NewPackage();
+            
         }
 
         private void tbExit_Click(object sender, EventArgs e)
@@ -162,27 +190,36 @@ namespace ItAintBoring.EZChange
 
         private void NewAction(bool preAction)
         {
-            ActionSelector selector = new ActionSelector();
-            if (selector.ShowDialog() == DialogResult.OK && selector.SelectedAction != null)
+            ItemSelector selector = new ItemSelector();
+            selector.Initialize(ActionFactory.GetActionList(SelectedSolution).ToList<object>(), "Action Type");
+            if (selector.ShowIfMultiple() == DialogResult.OK && selector.SelectedItem != null)
             {
+                IAction da = ActionFactory.CreateAction((IAction)selector.SelectedItem);
+                ComponentControl ac = new ComponentControl();
 
-                IAction da = ActionFactory.CreateAction(selector.SelectedAction);
-                ActionControl ac = new ActionControl();
-
-                ac.Setup(da);
-
-                if (ac.ShowDialog() == DialogResult.OK)
+                if (da is INamedComponent)
                 {
-                    ac.UpdateAction(da);
-                    if (SelectedSolution != null)
+                    ac.Setup((INamedComponent)da, "Action Properties");
+
+                    if (ac.ShowDialog() == DialogResult.OK)
                     {
-                        if(preAction) SelectedSolution.PreImportActions.Add(da);
-                        else SelectedSolution.PostImportActions.Add(da);
+                        ac.UpdateComponent((INamedComponent)da);
+                        if (SelectedSolution != null)
+                        {
+                            if (preAction) SelectedSolution.PreImportActions.Add(da);
+                            else SelectedSolution.PostImportActions.Add(da);
+                        }
                     }
                 }
+                else ShowError("This action does not support INamedComponent interface");
             }
         }
 
+
+        public void ShowError(string message)
+        {
+            MessageBox.Show(message, Text);
+        }
         private void btnAddPreAction_Click(object sender, EventArgs e)
         {
             NewAction(true);
@@ -191,6 +228,34 @@ namespace ItAintBoring.EZChange
         private void btnAddPostAction_Click(object sender, EventArgs e)
         {
             NewAction(false);
+        }
+
+        private void NewSolution()
+        {
+            ItemSelector selector = new ItemSelector();
+            selector.Initialize(SolutionFactory.GetSolutionList(Package).ToList<object>(), "Solution Type");
+            if (selector.ShowIfMultiple() == DialogResult.OK && selector.SelectedItem != null)
+            {
+                ISolution sln = SolutionFactory.CreateSolution((ISolution)selector.SelectedItem);
+                if (sln is INamedComponent)
+                {
+                    ComponentControl ac = new ComponentControl();
+                    ac.Setup((INamedComponent)sln, "Solution Properties");
+
+                    if (ac.ShowDialog() == DialogResult.OK)
+                    {
+                        ac.UpdateComponent((INamedComponent)sln);
+                        lbSolutions.Items.Add(sln);
+                        lbSolutions.SelectedIndex = lbSolutions.Items.Count - 1;
+                    }
+                }
+                else ShowError("This solution does not support INamedComponent interface");
+            }
+        }
+
+        private void btnAddSolution_Click(object sender, EventArgs e)
+        {
+            NewSolution();
         }
     }
 }

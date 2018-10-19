@@ -10,8 +10,14 @@ using System.Windows.Forms;
 
 namespace ItAintBoring.EZChange.Core.Packaging
 {
-    public class DynamicsSolution: ISolution
+    public class DynamicsSolution: BaseComponent, ISolution, INamedComponent
     {
+        public override string Id { get { return "Dynamics Solution"; } }
+        public override string Description { get { return "Dynamics Solution"; } }
+
+        public string Name { get; set; }
+
+
         public List<Type> supportedPackageTypes = null;
         public List<Type> SupportedPackageTypes { get { return supportedPackageTypes; } }
 
@@ -21,22 +27,21 @@ namespace ItAintBoring.EZChange.Core.Packaging
             supportedPackageTypes.Add(typeof(DynamicsChangePackage));
         }
 
-        public string Name { get; set; }
+        public UserControl UIControl { get { return null; } }
+
+        public void ApplyUIUpdates()
+        {
+
+        }
+
 
         public List<IAction> PreImportActions { get; set; }
         public List<IAction> PostImportActions { get; set; }
 
-        private UserControl uiControl = new SingleLineEditor();
-        public UserControl UIControl { get {
-                ((SingleLineEditor)uiControl).SolutionName = Name;
-                return uiControl;
-            } }
+        
+        
 
-
-        public void ApplyUIUpdates()
-        {
-            Name = ((SingleLineEditor)uiControl).SolutionName;
-        }
+        
 
 
     }

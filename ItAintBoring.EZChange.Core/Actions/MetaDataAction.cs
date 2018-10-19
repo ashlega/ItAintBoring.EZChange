@@ -10,8 +10,14 @@ using System.Windows.Forms;
 
 namespace ItAintBoring.EZChange.Core.Actions
 {
-    public class MetaDataAction : IAction
+    public class MetaDataAction : BaseComponent, IAction, INamedComponent
     {
+
+        public override string Id { get { return "MetaData Action"; } }
+        public override string Description { get { return "MetaData Action"; } }
+
+        public string Name { get; set; }
+
         public List<Type> supportedSolutionTypes = null;
         public List<Type> SupportedSolutionTypes { get { return supportedSolutionTypes; } }
 
@@ -21,16 +27,10 @@ namespace ItAintBoring.EZChange.Core.Actions
             supportedSolutionTypes.Add(typeof(DynamicsSolution));
         }
 
-        public override string ToString()
-        {
-            return Name;
-        }
+       
         public string Title { get; set; }
         public string XML { get; set; }
-        public string Name { get { return "MetaData Action"; } }
-
-        public string Description { get { return "MetaData Action"; } }
-
+        
         private UserControl uiControl = new XMLEditor();
         public UserControl UIControl { get {
                 ((XMLEditor)uiControl).XML = XML;

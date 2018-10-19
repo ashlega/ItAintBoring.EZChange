@@ -1,4 +1,5 @@
 ﻿using ItAintBoring.EZChange.Common;
+using ItAintBoring.EZChange.Common.Packaging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -45,6 +46,20 @@ namespace ItAintBoring.EZChange.Core
 
 
             return actionList;
+        }
+
+        static public List<IAction> GetActionList(ISolution sln)
+        {
+            if (actionList == null)
+            {
+                GetActionList();
+            }
+            List<IAction> result = new List<IAction>();
+            foreach (var x in actionList)
+            {
+                if (x.SupportedSolutionTypes.IndexOf(sln.GetType()) > -1) result.Add(x);
+            }
+            return result;
         }
 
         static public IAction CreateAction(IAction actionDesecription)

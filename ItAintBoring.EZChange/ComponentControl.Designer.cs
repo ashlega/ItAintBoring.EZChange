@@ -1,6 +1,6 @@
 ﻿namespace ItAintBoring.EZChange
 {
-    partial class ActionControl
+    partial class ComponentControl
     {
         /// <summary>
         /// Required designer variable.
@@ -72,9 +72,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(2, 4);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 17);
+            this.label1.Size = new System.Drawing.Size(45, 17);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Action Name";
+            this.label1.Text = "Name";
             // 
             // tbName
             // 
@@ -85,7 +85,7 @@
             this.tbName.Size = new System.Drawing.Size(791, 22);
             this.tbName.TabIndex = 4;
             // 
-            // ActionControl
+            // ComponentControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -97,7 +97,7 @@
             this.Controls.Add(this.pnlControl);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "ActionControl";
+            this.Name = "ComponentControl";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ActionControl";
             this.ResumeLayout(false);
