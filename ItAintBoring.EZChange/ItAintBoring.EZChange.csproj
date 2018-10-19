@@ -57,6 +57,8 @@
     <Compile Include="ActionSelector.Designer.cs">
       <DependentUpon>ActionSelector.cs</DependentUpon>
     </Compile>
+    <Compile Include="Core\PackageFactory.cs" />
+    <Compile Include="Core\SolutionFactory.cs" />
     <Compile Include="Core\ActionFactory.cs" />
     <Compile Include="Core\StorageFactory.cs" />
     <Compile Include="StorageProviderSelector.cs">

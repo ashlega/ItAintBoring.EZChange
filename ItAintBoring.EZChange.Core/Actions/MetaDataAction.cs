@@ -1,4 +1,5 @@
 ﻿using ItAintBoring.EZChange.Common;
+using ItAintBoring.EZChange.Core.Packaging;
 using ItAintBoring.EZChange.Core.UI;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,15 @@ namespace ItAintBoring.EZChange.Core.Actions
 {
     public class MetaDataAction : IAction
     {
+        public List<Type> supportedSolutionTypes = null;
+        public List<Type> SupportedSolutionTypes { get { return supportedSolutionTypes; } }
+
+        public MetaDataAction()
+        {
+            supportedSolutionTypes = new List<Type>();
+            supportedSolutionTypes.Add(typeof(DynamicsSolution));
+        }
+
         public override string ToString()
         {
             return Name;
@@ -22,11 +32,14 @@ namespace ItAintBoring.EZChange.Core.Actions
         public string Description { get { return "MetaData Action"; } }
 
         private UserControl uiControl = new XMLEditor();
-        public UserControl UIControl { get { return uiControl; } }
+        public UserControl UIControl { get {
+                ((XMLEditor)uiControl).XML = XML;
+                return uiControl;
+            } }
 
         public void ApplyUIUpdates()
         {
-            throw new NotImplementedException();
+            XML = ((XMLEditor)uiControl).XML;
         }
 
         public void DoAction()

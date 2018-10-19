@@ -10,22 +10,27 @@ using System.Windows.Forms;
 
 namespace ItAintBoring.EZChange.Core.UI
 {
-    public partial class XMLEditor : UserControl
+    public partial class SingleLineEditor : UserControl
     {
-        public XMLEditor()
+        public SingleLineEditor()
         {
             InitializeComponent();
         }
 
-        public string XML
+        public SingleLineEditor(string label)
+        {
+            SolutionName = label;
+        }
+
+        public string SolutionName
         {
             get
             {
-                return tbXml.Text;
+                return lbName.Text;
             }
             set
             {
-                tbXml.Text = value;
+                lbName.Text = value;
             }
         }
     }

@@ -13,8 +13,8 @@ namespace ItAintBoring.EZChange.Common.Storage
         string Description { get; }
         string Version { get; }
 
-        bool SavePackageAs(ChangePackage package);
-        bool SavePackage(ChangePackage package);
-        ChangePackage LoadPackage();
+        bool SavePackageAs(IChangePackage package);
+        bool SavePackage(IChangePackage package);
+        IChangePackage LoadPackage();
     }
 }

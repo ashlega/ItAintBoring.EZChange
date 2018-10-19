@@ -1,4 +1,5 @@
 ﻿using ItAintBoring.EZChange.Common;
+using ItAintBoring.EZChange.Core.Packaging;
 using ItAintBoring.EZChange.Core.UI;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,17 @@ namespace ItAintBoring.EZChange.Core.Actions
 {
     public class DataAction : IAction
     {
+
+
+        public List<Type> supportedSolutionTypes = null;
+        public List<Type> SupportedSolutionTypes { get { return supportedSolutionTypes; } }
+
+        public DataAction()
+        {
+            supportedSolutionTypes = new List<Type>();
+            supportedSolutionTypes.Add(typeof(DynamicsSolution));
+        }
+
         public override string ToString()
         {
             return Name;
@@ -23,7 +35,10 @@ namespace ItAintBoring.EZChange.Core.Actions
         public string Description { get { return "Data Action"; } }
 
         private UserControl uiControl = new XMLEditor();
-        public UserControl UIControl { get { return uiControl; } }
+        public UserControl UIControl { get {
+                ((XMLEditor)uiControl).XML = XML;
+                return uiControl;
+            } }
 
         public void ApplyUIUpdates()
         {
@@ -32,7 +47,7 @@ namespace ItAintBoring.EZChange.Core.Actions
 
         public void DoAction()
         {
-            throw new NotImplementedException();
+            XML = ((XMLEditor)uiControl).XML;
         }
     }
 }

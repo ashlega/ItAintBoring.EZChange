@@ -1,6 +1,7 @@
 ﻿using ItAintBoring.EZChange.Common;
 using ItAintBoring.EZChange.Common.Packaging;
 using ItAintBoring.EZChange.Common.Storage;
+using ItAintBoring.EZChange.Core.Packaging;
 using ItAintBoring.EZChange.Core;
 using ItAintBoring.EZChange.Core.Actions;
 using System;
@@ -19,8 +20,8 @@ namespace ItAintBoring.EZChange
     {
         public IPackageStorage storageProvider = null;
 
-        private ChangePackage package = null;
-        public ChangePackage Package
+        private IChangePackage package = null;
+        public IChangePackage Package
         {
             get
             {
@@ -37,12 +38,12 @@ namespace ItAintBoring.EZChange
             }
         }
 
-        public Solution SelectedSolution {
+        public ISolution SelectedSolution {
             get
             {
                 if (lbSolutions.SelectedItem != null)
                 {
-                    return (Solution)lbSolutions.SelectedItem;
+                    return (ISolution)lbSolutions.SelectedItem;
                 }
                 else return null;
             }
@@ -130,7 +131,7 @@ namespace ItAintBoring.EZChange
         {
             if (SaveIfRequired())
             {
-                var pkg = new ChangePackage()
+                var pkg = new DynamicsChangePackage()
                 {
                     Name = "New Change Package",
                     PackageLocation = "NewPackage.ecp",

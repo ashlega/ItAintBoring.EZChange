@@ -17,6 +17,7 @@ namespace ItAintBoring.EZChange.Common
 
         void ApplyUIUpdates();
         void DoAction();
-        
+        List<Type> SupportedSolutionTypes { get; }
+
     }
 }

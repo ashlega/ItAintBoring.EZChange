@@ -1,5 +1,6 @@
 ﻿using ItAintBoring.EZChange.Common.Packaging;
 using ItAintBoring.EZChange.Common.Storage;
+using ItAintBoring.EZChange.Core.Packaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,9 @@ namespace ItAintBoring.EZChange.Core.Storage
 
         public string Version { get { return "1.0.0.0"; } }
 
-        public ChangePackage LoadPackage()
+        public IChangePackage LoadPackage()
         {
-            ChangePackage result = null;
+            DynamicsChangePackage result = null;
             using (var fd = new System.Windows.Forms.OpenFileDialog())
             {
                 fd.DefaultExt = "ecp";
@@ -26,7 +27,7 @@ namespace ItAintBoring.EZChange.Core.Storage
                 fd.FilterIndex = 1;
                 if(fd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    result = new ChangePackage();
+                    result = new DynamicsChangePackage();
                     result.HasUnsavedChanges = false;
                     result.PackageLocation = fd.FileName;
                 }
@@ -34,7 +35,7 @@ namespace ItAintBoring.EZChange.Core.Storage
             return result;
         }
 
-        public bool SavePackageAs(ChangePackage package)
+        public bool SavePackageAs(IChangePackage package)
         {
             if (package == null) return true;
             using (var fd = new System.Windows.Forms.SaveFileDialog())
@@ -53,7 +54,7 @@ namespace ItAintBoring.EZChange.Core.Storage
 
         }
 
-        public bool SavePackage(ChangePackage package)
+        public bool SavePackage(IChangePackage package)
         {
             if (package == null) return true;
             return true;
