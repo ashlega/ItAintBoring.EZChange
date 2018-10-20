@@ -18,16 +18,18 @@ namespace ItAintBoring.EZChange
             InitializeComponent();
         }
 
-        public void Setup(INamedComponent component, string title)
+        public void Setup(BaseComponent component, string title)
         {
             Text = title;
             UseControl(component.UIControl);
             tbName.Text = component.Name;
+            tbName.Focus();
         }
 
-        public void UpdateComponent(INamedComponent component)
+        public void UpdateComponent(BaseComponent component)
         {
             component.Name = tbName.Text;
+            component.ApplyUIUpdates();
         }
 
         public void UseControl(UserControl control)
@@ -47,6 +49,16 @@ namespace ItAintBoring.EZChange
                 control.Width = pnlControl.Width;
                 control.Height = pnlControl.Height;
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ComponentControl_Shown(object sender, EventArgs e)
+        {
+
         }
     }
 }

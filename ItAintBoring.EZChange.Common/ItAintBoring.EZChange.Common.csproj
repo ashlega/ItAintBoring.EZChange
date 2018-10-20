@@ -43,11 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseComponent.cs" />
-    <Compile Include="INamedComponent.cs" />
-    <Compile Include="IVersionedComponent.cs" />
-    <Compile Include="Packaging\IChangePackage.cs" />
-    <Compile Include="IAction.cs" />
-    <Compile Include="Packaging\ISolution.cs" />
+    <Compile Include="Packaging\BaseChangePackage.cs" />
+    <Compile Include="BaseAction.cs" />
+    <Compile Include="Packaging\BaseSolution.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Storage\IPackageStorage.cs" />
   </ItemGroup>

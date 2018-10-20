@@ -12,13 +12,13 @@ namespace ItAintBoring.EZChange.Core
 {
     class ActionFactory
     {
-        static List<IAction> actionList = null;
+        static List<BaseAction> actionList = null;
 
-        static public List<IAction> GetActionList()
+        static public List<BaseAction> GetActionList()
         {
             if (actionList == null)
             {
-                actionList = new List<IAction>();
+                actionList = new List<BaseAction>();
 
                 string[] subFolders = { "Core", "Extensions" };
 
@@ -33,9 +33,9 @@ namespace ItAintBoring.EZChange.Core
                             var DLL = Assembly.LoadFile(file);
                             foreach (Type type in DLL.GetExportedTypes())
                             {
-                                if (typeof(IAction).IsAssignableFrom(type))
+                                if (typeof(BaseAction).IsAssignableFrom(type))
                                 {
-                                    actionList.Add((IAction)Activator.CreateInstance(type));
+                                    actionList.Add((BaseAction)Activator.CreateInstance(type));
                                 }
                             }
                         }
@@ -48,13 +48,13 @@ namespace ItAintBoring.EZChange.Core
             return actionList;
         }
 
-        static public List<IAction> GetActionList(ISolution sln)
+        static public List<BaseAction> GetActionList(BaseSolution sln)
         {
             if (actionList == null)
             {
                 GetActionList();
             }
-            List<IAction> result = new List<IAction>();
+            List<BaseAction> result = new List<BaseAction>();
             foreach (var x in actionList)
             {
                 if (x.SupportedSolutionTypes.IndexOf(sln.GetType()) > -1) result.Add(x);
@@ -62,9 +62,11 @@ namespace ItAintBoring.EZChange.Core
             return result;
         }
 
-        static public IAction CreateAction(IAction actionDesecription)
+        static public BaseAction CreateAction(BaseAction actionDesecription)
         {
-            return (IAction)Activator.CreateInstance(actionDesecription.GetType());
+            BaseAction result = (BaseAction)Activator.CreateInstance(actionDesecription.GetType());
+            result.Name = actionDesecription.Id;
+            return result;
         }
     }
 }

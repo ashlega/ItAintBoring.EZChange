@@ -283,6 +283,7 @@
             this.btnRemovePreAction.TabIndex = 7;
             this.btnRemovePreAction.Text = "Remove";
             this.btnRemovePreAction.UseVisualStyleBackColor = true;
+            this.btnRemovePreAction.Click += new System.EventHandler(this.btnRemovePreAction_Click);
             // 
             // btnAddPreAction
             // 
@@ -306,6 +307,8 @@
             this.lbPreActions.Name = "lbPreActions";
             this.lbPreActions.Size = new System.Drawing.Size(671, 244);
             this.lbPreActions.TabIndex = 0;
+            this.lbPreActions.SelectedIndexChanged += new System.EventHandler(this.lbPreActions_SelectedIndexChanged);
+            this.lbPreActions.DoubleClick += new System.EventHandler(this.lbPreActions_DoubleClick);
             // 
             // tpPostImportActions
             // 
@@ -329,6 +332,7 @@
             this.btnRemovePostAction.TabIndex = 9;
             this.btnRemovePostAction.Text = "Remove";
             this.btnRemovePostAction.UseVisualStyleBackColor = true;
+            this.btnRemovePostAction.Click += new System.EventHandler(this.btnRemovePostAction_Click);
             // 
             // btnAddPostAction
             // 
@@ -352,6 +356,8 @@
             this.lbPostActions.Name = "lbPostActions";
             this.lbPostActions.Size = new System.Drawing.Size(671, 244);
             this.lbPostActions.TabIndex = 1;
+            this.lbPostActions.SelectedIndexChanged += new System.EventHandler(this.lbPostActions_SelectedIndexChanged);
+            this.lbPostActions.DoubleClick += new System.EventHandler(this.lbPostActions_DoubleClick);
             // 
             // btnDeleteSolution
             // 
@@ -362,6 +368,7 @@
             this.btnDeleteSolution.TabIndex = 6;
             this.btnDeleteSolution.Text = "Remove";
             this.btnDeleteSolution.UseVisualStyleBackColor = true;
+            this.btnDeleteSolution.Click += new System.EventHandler(this.btnDeleteSolution_Click);
             // 
             // btnAddSolution
             // 
@@ -385,6 +392,7 @@
             this.lbSolutions.Size = new System.Drawing.Size(243, 276);
             this.lbSolutions.TabIndex = 4;
             this.lbSolutions.SelectedIndexChanged += new System.EventHandler(this.lbSolutions_SelectedIndexChanged);
+            this.lbSolutions.DoubleClick += new System.EventHandler(this.lbSolutions_DoubleClick);
             // 
             // MainForm
             // 

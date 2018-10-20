@@ -10,15 +10,16 @@ using ItAintBoring.EZChange.Core.UI;
 
 namespace ItAintBoring.EZChange.Core.Actions
 {
-    public class WorkflowAction : BaseComponent, IAction, INamedComponent
+    public class WorkflowAction : BaseAction
     {
+        public override string Version { get { return "1.0"; } }
         public override string Id { get { return "Workflow Action"; } }
         public override string Description { get { return "Workflow Action"; } }
 
-        public string Name { get; set; }
+        public override string Name { get; set; }
 
         public List<Type> supportedSolutionTypes = null;
-        public List<Type> SupportedSolutionTypes { get { return supportedSolutionTypes; } }
+        public override List<Type> SupportedSolutionTypes { get { return supportedSolutionTypes; } }
 
         public WorkflowAction()
         {
@@ -28,21 +29,26 @@ namespace ItAintBoring.EZChange.Core.Actions
 
         
         public string Title { get; set; }
-        public string XML { get; set; }
-       
 
-        private UserControl uiControl = new XMLEditor();
-        public UserControl UIControl { get {
-                ((XMLEditor)uiControl).XML = XML;
-                return uiControl;
-            } }
 
-        public void ApplyUIUpdates()
+        public override void ApplyUIUpdates()
         {
             XML = ((XMLEditor)uiControl).XML;
         }
 
-        public void DoAction()
+        private UserControl uiControl = new XMLEditor();
+        public override UserControl UIControl
+        {
+            get
+            {
+                ((XMLEditor)uiControl).XML = XML;
+                return uiControl;
+            }
+        }
+
+
+
+        public override void DoAction()
         {
             throw new NotImplementedException();
         }

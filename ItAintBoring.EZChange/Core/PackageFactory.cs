@@ -12,13 +12,13 @@ namespace ItAintBoring.EZChange.Core
 {
     public class PackageFactory
     {
-        static List<IChangePackage> packageList = null;
+        static List<BaseChangePackage> packageList = null;
 
-        static public List<IChangePackage> GetPackageList()
+        static public List<BaseChangePackage> GetPackageList()
         {
             if (packageList == null)
             {
-                packageList = new List<IChangePackage>();
+                packageList = new List<BaseChangePackage>();
 
                 string[] subFolders = { "Core", "Extensions" };
 
@@ -33,9 +33,9 @@ namespace ItAintBoring.EZChange.Core
                             var DLL = Assembly.LoadFile(file);
                             foreach (Type type in DLL.GetExportedTypes())
                             {
-                                if (typeof(IChangePackage).IsAssignableFrom(type))
+                                if (typeof(BaseChangePackage).IsAssignableFrom(type))
                                 {
-                                    packageList.Add((IChangePackage)Activator.CreateInstance(type));
+                                    packageList.Add((BaseChangePackage)Activator.CreateInstance(type));
                                 }
                             }
                         }
@@ -48,9 +48,9 @@ namespace ItAintBoring.EZChange.Core
             return packageList;
         }
 
-        static public IChangePackage CreatePackage(IChangePackage packageDesecription)
+        static public BaseChangePackage CreatePackage(BaseChangePackage packageDesecription)
         {
-            return (IChangePackage)Activator.CreateInstance(packageDesecription.GetType());
+            return (BaseChangePackage)Activator.CreateInstance(packageDesecription.GetType());
         }
     }
 }

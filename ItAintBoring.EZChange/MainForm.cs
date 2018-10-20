@@ -20,8 +20,8 @@ namespace ItAintBoring.EZChange
     {
         public IPackageStorage storageProvider = null;
 
-        private IChangePackage package = null;
-        public IChangePackage Package
+        private BaseChangePackage package = null;
+        public BaseChangePackage Package
         {
             get
             {
@@ -32,21 +32,9 @@ namespace ItAintBoring.EZChange
                 if (package != value)
                 {
                     package = value;
-                    if (Package == null)
-                    {
-                        tcPackage.TabPages.Remove(tpSolutions);
-                        tcPackage.TabPages.Remove(tpSource);
-                        tcPackage.TabPages.Remove(tpLogo);
-                        tcPackage.TabPages.Add(tpLogo);
-                    }
-                    else
-                    {
-                        tcPackage.TabPages.Remove(tpSolutions);
-                        tcPackage.TabPages.Remove(tpSource);
-                        tcPackage.TabPages.Remove(tpLogo);
-                        tcPackage.TabPages.Add(tpSource);
-                        tcPackage.TabPages.Add(tpSolutions);
-                    }
+                    
+                    ResetSolutions();
+                    ResetTabs();
                     ReSetUI();
                 }
                 
@@ -54,12 +42,43 @@ namespace ItAintBoring.EZChange
             }
         }
 
-        public ISolution SelectedSolution {
+        public void ResetActions()
+        {
+            lbPreActions.Items.Clear();
+            lbPostActions.Items.Clear();
+
+            foreach (var act in SelectedSolution.PreImportActions)
+            {
+                lbPreActions.Items.Add(act);
+            }
+            foreach (var act in SelectedSolution.PostImportActions)
+            {
+                lbPostActions.Items.Add(act);
+            }
+        }
+
+        public void ResetSolutions()
+        {
+            if (Package == null) return;
+            lbSolutions.Items.Clear();
+            foreach (var s in Package.Solutions)
+            {
+                lbSolutions.Items.Add(s);
+                
+            }
+            if (lbSolutions.Items.Count > 0)
+            {
+                lbSolutions.SelectedIndex = 0;
+                ResetActions();
+            }
+        }
+
+        public BaseSolution SelectedSolution {
             get
             {
                 if (lbSolutions.SelectedItem != null)
                 {
-                    return (ISolution)lbSolutions.SelectedItem;
+                    return (BaseSolution)lbSolutions.SelectedItem;
                 }
                 else return null;
             }
@@ -73,7 +92,26 @@ namespace ItAintBoring.EZChange
 
             var storageList = StorageFactory.GetStorageList();
             storageProvider = storageList[0];
-            ReSetUI();
+            ResetTabs();
+        }
+
+        public void ResetTabs()
+        {
+            if (Package == null)
+            {
+                tcPackage.TabPages.Remove(tpSolutions);
+                tcPackage.TabPages.Remove(tpSource);
+                tcPackage.TabPages.Remove(tpLogo);
+                tcPackage.TabPages.Add(tpLogo);
+            }
+            else
+            {
+                tcPackage.TabPages.Remove(tpSolutions);
+                tcPackage.TabPages.Remove(tpSource);
+                tcPackage.TabPages.Remove(tpLogo);
+                tcPackage.TabPages.Add(tpSource);
+                tcPackage.TabPages.Add(tpSolutions);
+            }
         }
 
         public void ReSetUI()
@@ -142,23 +180,19 @@ namespace ItAintBoring.EZChange
                 if (selector.ShowIfMultiple() == DialogResult.OK && selector.SelectedItem != null)
                 {
 
-                    IChangePackage pkg = PackageFactory.CreatePackage((IChangePackage)selector.SelectedItem);
+                    BaseChangePackage pkg = PackageFactory.CreatePackage((BaseChangePackage)selector.SelectedItem);
                     pkg.HasUnsavedChanges = false;
                     pkg.PackageLocation = "NewPackage.ecp";
                     ComponentControl ac = new ComponentControl();
 
-                    if (pkg is INamedComponent)
-                    {
-                        ((INamedComponent)pkg).Name = "New Change Package";
-                        ac.Setup((INamedComponent)pkg, "Package Properties");
+                    pkg.Name = "New Change Package";
+                    ac.Setup(pkg, "Package Properties");
 
-                        if (ac.ShowDialog() == DialogResult.OK)
-                        {
-                            ac.UpdateComponent((INamedComponent)pkg);
-                        }
-                        Package = pkg;
+                    if (ac.ShowDialog() == DialogResult.OK)
+                    {
+                        ac.UpdateComponent(pkg);
                     }
-                    else ShowError("This action does not support INamedComponent interface");
+                    Package = pkg;
                 }
             }
             
@@ -194,24 +228,30 @@ namespace ItAintBoring.EZChange
             selector.Initialize(ActionFactory.GetActionList(SelectedSolution).ToList<object>(), "Action Type");
             if (selector.ShowIfMultiple() == DialogResult.OK && selector.SelectedItem != null)
             {
-                IAction da = ActionFactory.CreateAction((IAction)selector.SelectedItem);
+                BaseAction da = ActionFactory.CreateAction((BaseAction)selector.SelectedItem);
                 ComponentControl ac = new ComponentControl();
 
-                if (da is INamedComponent)
-                {
-                    ac.Setup((INamedComponent)da, "Action Properties");
+                ac.Setup(da, "Action Properties");
 
-                    if (ac.ShowDialog() == DialogResult.OK)
+                if (ac.ShowDialog() == DialogResult.OK)
+                {
+                    ac.UpdateComponent(da);
+                    if (SelectedSolution != null)
                     {
-                        ac.UpdateComponent((INamedComponent)da);
-                        if (SelectedSolution != null)
+                        if (preAction)
                         {
-                            if (preAction) SelectedSolution.PreImportActions.Add(da);
-                            else SelectedSolution.PostImportActions.Add(da);
+                            SelectedSolution.PreImportActions.Add(da);
+                            lbPreActions.Items.Add(da);
+                            Package.HasUnsavedChanges = true;
+                        }
+                        else
+                        {
+                            SelectedSolution.PostImportActions.Add(da);
+                            lbPostActions.Items.Add(da);
+                            Package.HasUnsavedChanges = true;
                         }
                     }
                 }
-                else ShowError("This action does not support INamedComponent interface");
             }
         }
 
@@ -236,26 +276,106 @@ namespace ItAintBoring.EZChange
             selector.Initialize(SolutionFactory.GetSolutionList(Package).ToList<object>(), "Solution Type");
             if (selector.ShowIfMultiple() == DialogResult.OK && selector.SelectedItem != null)
             {
-                ISolution sln = SolutionFactory.CreateSolution((ISolution)selector.SelectedItem);
-                if (sln is INamedComponent)
-                {
-                    ComponentControl ac = new ComponentControl();
-                    ac.Setup((INamedComponent)sln, "Solution Properties");
+                BaseSolution sln = SolutionFactory.CreateSolution((BaseSolution)selector.SelectedItem);
 
-                    if (ac.ShowDialog() == DialogResult.OK)
-                    {
-                        ac.UpdateComponent((INamedComponent)sln);
-                        lbSolutions.Items.Add(sln);
-                        lbSolutions.SelectedIndex = lbSolutions.Items.Count - 1;
-                    }
+                ComponentControl ac = new ComponentControl();
+                ac.Setup(sln, "Solution Properties");
+
+                if (ac.ShowDialog() == DialogResult.OK)
+                {
+                    ac.UpdateComponent(sln);
+                    Package.HasUnsavedChanges = true;
+                    lbSolutions.Items.Add(sln);
+                    lbSolutions.SelectedIndex = lbSolutions.Items.Count - 1;
+                    ResetActions();
                 }
-                else ShowError("This solution does not support INamedComponent interface");
             }
         }
 
         private void btnAddSolution_Click(object sender, EventArgs e)
         {
             NewSolution();
+        }
+
+        private void btnRemovePreAction_Click(object sender, EventArgs e)
+        {
+            SelectedSolution.PreImportActions.Remove((BaseAction)lbPreActions.SelectedItem);
+            lbPreActions.Items.Remove(lbPreActions.SelectedItem);
+            Package.HasUnsavedChanges = true;
+            ReSetUI();
+        }
+
+        private void btnRemovePostAction_Click(object sender, EventArgs e)
+        {
+            SelectedSolution.PostImportActions.Remove((BaseAction)lbPostActions.SelectedItem);
+            lbPostActions.Items.Remove(lbPostActions.SelectedItem);
+            Package.HasUnsavedChanges = true;
+            ReSetUI();
+        }
+
+        private void btnDeleteSolution_Click(object sender, EventArgs e)
+        {
+            Package.Solutions.Remove(SelectedSolution);
+            lbSolutions.Items.Remove(SelectedSolution);
+            lbPostActions.Items.Clear();
+            lbPreActions.Items.Clear();
+            Package.HasUnsavedChanges = true;
+            ReSetUI();
+        }
+
+        private void lbPostActions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ReSetUI();
+        }
+
+        private void lbPreActions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ReSetUI();
+        }
+
+        private void EditSolution()
+        {
+            ComponentControl ac = new ComponentControl();
+            ac.Setup(SelectedSolution, "Solution Properties");
+
+            if (ac.ShowDialog() == DialogResult.OK)
+            {
+                ac.UpdateComponent(SelectedSolution);
+                Package.HasUnsavedChanges = true;
+            }
+        }
+
+        private void EditAction(BaseAction action)
+        {
+            ComponentControl ac = new ComponentControl();
+            ac.Setup(action, "Action Properties");
+
+            if (ac.ShowDialog() == DialogResult.OK)
+            {
+                ac.UpdateComponent(action);
+                Package.HasUnsavedChanges = true;
+            }
+        }
+
+        private void lbSolutions_DoubleClick(object sender, EventArgs e)
+        {
+            if (lbSolutions.SelectedItem == null) return;
+            EditSolution();
+            lbSolutions.Items[lbSolutions.SelectedIndex] = lbSolutions.Items[lbSolutions.SelectedIndex];
+        }
+
+        private void lbPreActions_DoubleClick(object sender, EventArgs e)
+        {
+            if (lbPreActions.SelectedItem == null) return;
+            EditAction((BaseAction)lbPreActions.SelectedItem);
+            lbPreActions.Items[lbPreActions.SelectedIndex] = lbPreActions.Items[lbPreActions.SelectedIndex];
+        }
+
+        private void lbPostActions_DoubleClick(object sender, EventArgs e)
+        {
+            if (lbPostActions.SelectedItem == null) return;
+            EditAction((BaseAction)lbPostActions.SelectedItem);
+            lbPostActions.Items[lbPostActions.SelectedIndex] = lbPostActions.Items[lbPostActions.SelectedIndex];
         }
     }
 }

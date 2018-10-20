@@ -109,7 +109,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="ToDo.txt" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ItAintBoring.EZChange.Common\ItAintBoring.EZChange.Common.csproj">
       <Project>{3733d16d-2a1c-4296-823f-98c617ff4d86}</Project>

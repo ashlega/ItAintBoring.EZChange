@@ -17,7 +17,7 @@ namespace ItAintBoring.EZChange.Core.Storage
 
         public string Version { get { return "1.0.0.0"; } }
 
-        public IChangePackage LoadPackage()
+        public BaseChangePackage LoadPackage()
         {
             DynamicsChangePackage result = null;
             using (var fd = new System.Windows.Forms.OpenFileDialog())
@@ -35,7 +35,7 @@ namespace ItAintBoring.EZChange.Core.Storage
             return result;
         }
 
-        public bool SavePackageAs(IChangePackage package)
+        public bool SavePackageAs(BaseChangePackage package)
         {
             if (package == null) return true;
             using (var fd = new System.Windows.Forms.SaveFileDialog())
@@ -54,7 +54,7 @@ namespace ItAintBoring.EZChange.Core.Storage
 
         }
 
-        public bool SavePackage(IChangePackage package)
+        public bool SavePackage(BaseChangePackage package)
         {
             if (package == null) return true;
             return true;

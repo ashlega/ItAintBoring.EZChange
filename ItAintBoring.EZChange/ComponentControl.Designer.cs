@@ -42,14 +42,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlControl.Location = new System.Drawing.Point(2, 53);
             this.pnlControl.Name = "pnlControl";
-            this.pnlControl.Size = new System.Drawing.Size(796, 355);
+            this.pnlControl.Size = new System.Drawing.Size(620, 355);
             this.pnlControl.TabIndex = 0;
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(713, 415);
+            this.btnCancel.Location = new System.Drawing.Point(541, 415);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 29);
             this.btnCancel.TabIndex = 1;
@@ -60,12 +60,13 @@
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button1.Location = new System.Drawing.Point(632, 415);
+            this.button1.Location = new System.Drawing.Point(460, 415);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 29);
             this.button1.TabIndex = 2;
             this.button1.Text = "OK";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -82,14 +83,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbName.Location = new System.Drawing.Point(5, 25);
             this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(791, 22);
+            this.tbName.Size = new System.Drawing.Size(617, 22);
             this.tbName.TabIndex = 4;
             // 
             // ComponentControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(628, 450);
             this.Controls.Add(this.tbName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
@@ -100,6 +101,7 @@
             this.Name = "ComponentControl";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ActionControl";
+            this.Shown += new System.EventHandler(this.ComponentControl_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

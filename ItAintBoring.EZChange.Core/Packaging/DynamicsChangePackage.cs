@@ -9,25 +9,21 @@ using System.Windows.Forms;
 
 namespace ItAintBoring.EZChange.Core.Packaging
 {
-    public class DynamicsChangePackage: BaseComponent, IChangePackage, INamedComponent
+    public class DynamicsChangePackage: BaseChangePackage
     {
+        public override string Version { get { return "1.0"; } }
         public override string Id { get { return "Dynamics Package"; } }
         public override string Description { get { return "Dynamics Package"; } }
 
-        public string PackageLocation { get; set; } //Storage specific
-
-        public string Name { get; set; }
+        public override string Name { get; set; }
         
-        public string Version { get; set; }
         public string ConnectionString { get; set; }
 
-        public List<ISolution> Solutions { get; set; }
+        public override bool HasUnsavedChanges {get;set;}
 
-        public bool HasUnsavedChanges {get;set;}
+        public override UserControl UIControl { get { return null; } }
 
-        public UserControl UIControl { get { return null; } }
-
-        public void ApplyUIUpdates()
+        public override void ApplyUIUpdates()
         {
             
         }

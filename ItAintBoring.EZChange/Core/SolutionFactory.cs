@@ -12,13 +12,13 @@ namespace ItAintBoring.EZChange.Core
 {
     public class SolutionFactory
     {
-        static List<ISolution> solutionList = null;
+        static List<BaseSolution> solutionList = null;
 
-        static public List<ISolution> GetSolutionList()
+        static public List<BaseSolution> GetSolutionList()
         {
             if (solutionList == null)
             {
-                solutionList = new List<ISolution>();
+                solutionList = new List<BaseSolution>();
 
                 string[] subFolders = { "Core", "Extensions" };
 
@@ -33,9 +33,9 @@ namespace ItAintBoring.EZChange.Core
                             var DLL = Assembly.LoadFile(file);
                             foreach (Type type in DLL.GetExportedTypes())
                             {
-                                if (typeof(ISolution).IsAssignableFrom(type))
+                                if (typeof(BaseSolution).IsAssignableFrom(type))
                                 {
-                                    solutionList.Add((ISolution)Activator.CreateInstance(type));
+                                    solutionList.Add((BaseSolution)Activator.CreateInstance(type));
                                 }
                             }
                         }
@@ -49,13 +49,13 @@ namespace ItAintBoring.EZChange.Core
         }
 
 
-        static public List<ISolution> GetSolutionList(IChangePackage pkg)
+        static public List<BaseSolution> GetSolutionList(BaseChangePackage pkg)
         {
             if (solutionList == null)
             {
                 GetSolutionList();
             }
-            List<ISolution> result = new List<ISolution>();
+            List<BaseSolution> result = new List<BaseSolution>();
             foreach (var x in solutionList)
             {
                 if (x.SupportedPackageTypes.IndexOf(pkg.GetType()) > -1) result.Add(x);
@@ -63,9 +63,11 @@ namespace ItAintBoring.EZChange.Core
             return result;
         }
 
-        static public ISolution CreateSolution(ISolution solutionDesecription)
+        static public BaseSolution CreateSolution(BaseSolution solutionDescription)
         {
-            return (ISolution)Activator.CreateInstance(solutionDesecription.GetType());
+            BaseSolution result = (BaseSolution)Activator.CreateInstance(solutionDescription.GetType());
+            result.Name = solutionDescription.Id;
+            return result;
         }
     }
 }
