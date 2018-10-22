@@ -24,7 +24,18 @@ namespace ItAintBoring.EZChange.Common.Packaging
         abstract public List<Type> SupportedPackageTypes { get; }
 
         public abstract void PrepareSolution(BaseComponent package);
-        
+
+        public virtual void SaveActionData(BaseAction action, string data)
+        {
+
+        }
+
+        public virtual string LoadActionData(BaseAction action, string fileName)
+        {
+            return null;
+        }
+        public abstract void DeploySolution(BaseComponent package);
+
 
     }
 }

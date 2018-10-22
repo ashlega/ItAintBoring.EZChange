@@ -24,21 +24,30 @@ namespace ItAintBoring.EZChange.Core.Storage
 
         public object PackageFactory { get; private set; }
 
-        public BaseChangePackage LoadPackage()
+        public BaseChangePackage LoadPackage(string location = null)
         {
             BaseChangePackage result = null;
-            using (var fd = new System.Windows.Forms.OpenFileDialog())
+            if (location == null)
             {
-                fd.DefaultExt = "ecp";
-                fd.Filter = "EZChange Files (*.ecp)|*.ecp|All files (*.*)|*.*";
-                fd.FilterIndex = 1;
-                if(fd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                using (var fd = new System.Windows.Forms.OpenFileDialog())
                 {
-                    XmlSerializer ser = new XmlSerializer(typeof(BaseChangePackage), KnownTypes.ToArray());
-                    TextReader reader = new StreamReader(fd.FileName);
-                    result = (BaseChangePackage)ser.Deserialize(reader);
-                    reader.Close();
+                    fd.DefaultExt = "ecp";
+                    fd.Filter = "EZChange Files (*.ecp)|*.ecp|All files (*.*)|*.*";
+                    fd.FilterIndex = 1;
+                    if (fd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        location = fd.FileName;
+                    }
+                    else return result;
                 }
+            }
+            if(location != null)
+            {
+                XmlSerializer ser = new XmlSerializer(typeof(BaseChangePackage), KnownTypes.ToArray());
+                TextReader reader = new StreamReader(location);
+                result = (BaseChangePackage)ser.Deserialize(reader);
+                result.PackageLocation = location;
+                reader.Close();
             }
             return result;
         }
@@ -68,12 +77,12 @@ namespace ItAintBoring.EZChange.Core.Storage
             KnownTypes.AddRange(knownTypes);
         }
 
-        public bool SavePackage(BaseChangePackage package)
+        public bool SavePackage(BaseChangePackage package, string location = null)
         {
             if (package == null) return true;
             
             XmlSerializer ser = new XmlSerializer(typeof(BaseChangePackage), KnownTypes.ToArray());
-            TextWriter writer = new StreamWriter(package.PackageLocation);
+            TextWriter writer = new StreamWriter(location == null ? package.PackageLocation : location);
             ser.Serialize(writer, package);
             writer.Close();
             package.HasUnsavedChanges = false;

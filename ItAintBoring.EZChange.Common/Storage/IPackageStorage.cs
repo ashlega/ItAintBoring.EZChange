@@ -14,8 +14,8 @@ namespace ItAintBoring.EZChange.Common.Storage
         string Version { get; }
 
         bool SavePackageAs(BaseChangePackage package);
-        bool SavePackage(BaseChangePackage package);
-        BaseChangePackage LoadPackage();
+        bool SavePackage(BaseChangePackage package, string location = null);
+        BaseChangePackage LoadPackage(string location = null);
         void AddKnownTypes(List<Type> knownTypes);
     }
 }

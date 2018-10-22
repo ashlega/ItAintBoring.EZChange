@@ -117,10 +117,6 @@
       <Project>{3733d16d-2a1c-4296-823f-98c617ff4d86}</Project>
       <Name>ItAintBoring.EZChange.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ItAintBoring.EZChange.Core\ItAintBoring.EZChange.Core.csproj">
-      <Project>{07A30B5A-8867-4661-A1FB-DE3878099E37}</Project>
-      <Name>ItAintBoring.EZChange.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

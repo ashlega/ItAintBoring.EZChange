@@ -1,30 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <BaseChangePackage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="DynamicsChangePackage">
+  <ComponentId>487b15da-84f3-454a-bdd8-6981299489be</ComponentId>
   <Name>New Change Package</Name>
-  <PackageLocation>NewPackage.ecp</PackageLocation>
+  <PackageLocation>C:\git\ashlega\ItAintBoring.EZChange\Output\NewPackage.ecp</PackageLocation>
   <Solutions>
     <BaseSolution xsi:type="DynamicsSolution">
-      <Name>TestAS</Name>
+      <ComponentId>148ac868-296e-489a-9b3e-679ef1e2378e</ComponentId>
+      <Name>TestNewEntity</Name>
       <PreImportActions>
         <BaseAction xsi:type="DataAction">
+          <ComponentId>f85c4500-e6a2-416c-b5ed-0c008d626d2b</ComponentId>
           <Name>Data Action</Name>
           <XML>123123tre</XML>
         </BaseAction>
         <BaseAction xsi:type="WorkflowAction">
+          <ComponentId>58928d0e-f6e2-4c08-855a-c59d649bf435</ComponentId>
           <Name>Workflow Action123</Name>
           <XML />
         </BaseAction>
       </PreImportActions>
       <PostImportActions>
         <BaseAction xsi:type="WorkflowAction">
+          <ComponentId>ca6fb7b8-f95d-4aa8-8d0f-b51cdf8dcb3c</ComponentId>
           <Name>Workflow Action</Name>
           <XML>asfdfdsa</XML>
         </BaseAction>
         <BaseAction xsi:type="MetaDataAction">
+          <ComponentId>c63254a9-6506-4dd9-b7cb-8733b1b62dc5</ComponentId>
           <Name>MetaData Action3232</Name>
           <XML>eerwerew</XML>
         </BaseAction>
         <BaseAction xsi:type="DataAction">
+          <ComponentId>6e64f4d5-68bd-4f23-a5da-2316804773d3</ComponentId>
           <Name>Data Action323232</Name>
           <XML />
         </BaseAction>
@@ -32,6 +39,6 @@
     </BaseSolution>
   </Solutions>
   <HasUnsavedChanges>true</HasUnsavedChanges>
-  <ConnectionString>&lt;add name="TreeCatr" connectionString="AuthType=Office365;Username=info@treecatsoftware.com; Password=Canada123_;Url=https://treecatsoftware.crm3.dynamics.com"/&gt; </ConnectionString>
-  <DestinationConnectionString>&lt;add name="TreeCatr" connectionString="AuthType=Office365;Username=info@treecatsoftware.com; Password=Canada123_;Url=https://treecatsoftware.crm3.dynamics.com"/&gt; </DestinationConnectionString>
+  <ConnectionString>AuthType=Office365;Username=info@treecatsoftware.com; Password=Canada234_;Url=https://treecatsoftware.crm3.dynamics.com</ConnectionString>
+  <DestinationConnectionString>AuthType=Office365;Username=info@treecatsoftware.com; Password=Canada234_;Url=https://treecatsoftware.crm3.dynamics.com</DestinationConnectionString>
 </BaseChangePackage>

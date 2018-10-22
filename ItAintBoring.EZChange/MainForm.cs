@@ -1,9 +1,7 @@
 ﻿using ItAintBoring.EZChange.Common;
 using ItAintBoring.EZChange.Common.Packaging;
 using ItAintBoring.EZChange.Common.Storage;
-using ItAintBoring.EZChange.Core.Packaging;
 using ItAintBoring.EZChange.Core;
-using ItAintBoring.EZChange.Core.Actions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -282,6 +280,12 @@ namespace ItAintBoring.EZChange
         {
             MessageBox.Show(message, Text);
         }
+
+        public void ShowMessage(string message)
+        {
+            MessageBox.Show(message, Text);
+        }
+
         private void btnAddPreAction_Click(object sender, EventArgs e)
         {
             NewAction(true);
@@ -576,6 +580,61 @@ namespace ItAintBoring.EZChange
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = !SaveIfRequired();
+        }
+
+        private bool BuildPackage()
+        {
+            try
+            {
+                Package.Build(storageProvider);
+            }
+            catch (Exception ex)
+            {
+                ShowError(ex.Message);
+                return false;
+            }
+            return true;
+        }
+        private void tbPreparePackage_Click(object sender, EventArgs e)
+        {
+
+            if(BuildPackage())
+            {
+                ShowMessage("Success");
+            }
+
+        }
+
+        public bool RunPackage()
+        {
+            try
+            {
+                string[] files = System.IO.Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + Package.GetDataFolder(), "*ecp");
+                if (files.Length > 0)
+                {
+                    BaseChangePackage bcp = storageProvider.LoadPackage(files[0]);
+                    bcp.PackageLocation = files[0];
+                    bcp.Run();
+                }
+                else
+                {
+                    throw new Exception("This project has not been built yet");
+                }
+            }
+            catch(Exception ex)
+            {
+                ShowError(ex.Message);
+                return false;
+            }
+            return true;
+        }
+
+        private void tbRunPackage_Click(object sender, EventArgs e)
+        {
+            if(RunPackage())
+            {
+                ShowMessage("Success");
+            }
         }
     }
 }
