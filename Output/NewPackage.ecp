@@ -32,6 +32,6 @@
     </BaseSolution>
   </Solutions>
   <HasUnsavedChanges>true</HasUnsavedChanges>
-  <ConnectionString>&lt;add name="TreeCatr" connectionString="AuthType=Office365;Username=info@treecatsoftware.com; Password=Canada123_;Url=https://treecatsoftware.crm3.dynamics.com"/&gt; </ConnectionString>
-  <DestinationConnectionString>&lt;add name="TreeCatr" connectionString="AuthType=Office365;Username=info@treecatsoftware.com; Password=Canada123_;Url=https://treecatsoftware.crm3.dynamics.com"/&gt; </DestinationConnectionString>
+  <ConnectionString>&lt;add name="TreeCatr" connectionString="AuthType=Office365;Username=info@treecatsoftware.com; Password=;Url=https://treecatsoftware.crm3.dynamics.com"/&gt; </ConnectionString>
+  <DestinationConnectionString>&lt;add name="TreeCatr" connectionString="AuthType=Office365;Username=info@treecatsoftware.com; Password=;Url=https://treecatsoftware.crm3.dynamics.com"/&gt; </DestinationConnectionString>
 </BaseChangePackage>
