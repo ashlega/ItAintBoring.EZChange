@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BaseChangePackage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="DynamicsChangePackage">
+  <Name>New Change Package</Name>
+  <PackageLocation>NewPackage.ecp</PackageLocation>
+  <Solutions>
+    <BaseSolution xsi:type="DynamicsSolution">
+      <Name>TestAS</Name>
+      <PreImportActions>
+        <BaseAction xsi:type="DataAction">
+          <Name>Data Action</Name>
+          <XML>123123tre</XML>
+        </BaseAction>
+        <BaseAction xsi:type="WorkflowAction">
+          <Name>Workflow Action123</Name>
+          <XML />
+        </BaseAction>
+      </PreImportActions>
+      <PostImportActions>
+        <BaseAction xsi:type="WorkflowAction">
+          <Name>Workflow Action</Name>
+          <XML>asfdfdsa</XML>
+        </BaseAction>
+        <BaseAction xsi:type="MetaDataAction">
+          <Name>MetaData Action3232</Name>
+          <XML>eerwerew</XML>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <Name>Data Action323232</Name>
+          <XML />
+        </BaseAction>
+      </PostImportActions>
+    </BaseSolution>
+  </Solutions>
+  <HasUnsavedChanges>true</HasUnsavedChanges>
+  <ConnectionString>&lt;add name="TreeCatr" connectionString="AuthType=Office365;Username=info@treecatsoftware.com; Password=Canada123_;Url=https://treecatsoftware.crm3.dynamics.com"/&gt; </ConnectionString>
+  <DestinationConnectionString>&lt;add name="TreeCatr" connectionString="AuthType=Office365;Username=info@treecatsoftware.com; Password=Canada123_;Url=https://treecatsoftware.crm3.dynamics.com"/&gt; </DestinationConnectionString>
+</BaseChangePackage>

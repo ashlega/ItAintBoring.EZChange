@@ -30,9 +30,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Crm.Sdk.Proxy, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CrmSdk.CoreAssemblies.9.0.2.5\lib\net452\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xrm.Sdk, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CrmSdk.CoreAssemblies.9.0.2.5\lib\net452\Microsoft.Xrm.Sdk.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,11 +63,17 @@
     <Compile Include="Packaging\DynamicsSolution.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Storage\FileStorage.cs" />
-    <Compile Include="UI\SingleLineEditor.cs">
+    <Compile Include="UI\SimpleEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\SingleLineEditor.Designer.cs">
-      <DependentUpon>SingleLineEditor.cs</DependentUpon>
+    <Compile Include="UI\SimpleEditor.Designer.cs">
+      <DependentUpon>SimpleEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\TwoConnections.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\TwoConnections.Designer.cs">
+      <DependentUpon>TwoConnections.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\XMLEditor.cs">
       <SubType>UserControl</SubType>
@@ -69,12 +89,21 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="UI\SingleLineEditor.resx">
-      <DependentUpon>SingleLineEditor.cs</DependentUpon>
+    <EmbeddedResource Include="UI\SimpleEditor.resx">
+      <DependentUpon>SimpleEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\TwoConnections.resx">
+      <DependentUpon>TwoConnections.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\XMLEditor.resx">
       <DependentUpon>XMLEditor.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Dynamics\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

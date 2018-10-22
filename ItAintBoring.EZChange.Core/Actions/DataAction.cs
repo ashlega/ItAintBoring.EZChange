@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace ItAintBoring.EZChange.Core.Actions
 {
@@ -20,10 +21,11 @@ namespace ItAintBoring.EZChange.Core.Actions
 
         public override string Name { get; set; }
 
-        public List<Type> supportedSolutionTypes = null;
+        private List<Type> supportedSolutionTypes = null;
+        [XmlIgnore]
         public override List<Type> SupportedSolutionTypes { get { return supportedSolutionTypes; } }
 
-        public DataAction()
+        public DataAction(): base()
         {
             supportedSolutionTypes = new List<Type>();
             supportedSolutionTypes.Add(typeof(DynamicsSolution));
@@ -40,6 +42,7 @@ namespace ItAintBoring.EZChange.Core.Actions
         }
 
         private UserControl uiControl = new XMLEditor();
+        [XmlIgnore]
         public override UserControl UIControl
         {
             get

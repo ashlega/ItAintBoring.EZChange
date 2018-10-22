@@ -33,6 +33,8 @@ namespace ItAintBoring.EZChange
                 {
                     package = value;
                     
+                    tbPackageName.Text = package.Name;
+                    ShowPackageControl();
                     ResetSolutions();
                     ResetTabs();
                     ReSetUI();
@@ -44,6 +46,7 @@ namespace ItAintBoring.EZChange
 
         public void ResetActions()
         {
+            if (SelectedSolution == null) return;
             lbPreActions.Items.Clear();
             lbPostActions.Items.Clear();
 
@@ -92,6 +95,22 @@ namespace ItAintBoring.EZChange
 
             var storageList = StorageFactory.GetStorageList();
             storageProvider = storageList[0];
+            List<Type> types = new List<Type>();
+            foreach(var obj in PackageFactory.GetPackageList())
+            {
+                types.Add(obj.GetType());
+            }
+            foreach (var obj in SolutionFactory.GetSolutionList())
+            {
+                types.Add(obj.GetType());
+            }
+            foreach (var obj in ActionFactory.GetActionList())
+            {
+                types.Add(obj.GetType());
+            }
+
+            storageProvider.AddKnownTypes(types);
+
             ResetTabs();
         }
 
@@ -155,6 +174,7 @@ namespace ItAintBoring.EZChange
         private void tbSaveProject_Click(object sender, EventArgs e)
         {
             storageProvider.SavePackage(Package);
+
             
         }
 
@@ -191,8 +211,9 @@ namespace ItAintBoring.EZChange
                     if (ac.ShowDialog() == DialogResult.OK)
                     {
                         ac.UpdateComponent(pkg);
+                        Package = pkg;
                     }
-                    Package = pkg;
+                    
                 }
             }
             
@@ -220,6 +241,7 @@ namespace ItAintBoring.EZChange
         private void lbSolutions_SelectedIndexChanged(object sender, EventArgs e)
         {
             ReSetUI();
+            ResetActions();
         }
 
         private void NewAction(bool preAction)
@@ -231,7 +253,7 @@ namespace ItAintBoring.EZChange
                 BaseAction da = ActionFactory.CreateAction((BaseAction)selector.SelectedItem);
                 ComponentControl ac = new ComponentControl();
 
-                ac.Setup(da, "Action Properties");
+                ac.Setup(da, da.Id + " - Properties");
 
                 if (ac.ShowDialog() == DialogResult.OK)
                 {
@@ -285,6 +307,7 @@ namespace ItAintBoring.EZChange
                 {
                     ac.UpdateComponent(sln);
                     Package.HasUnsavedChanges = true;
+                    Package.Solutions.Add(sln);
                     lbSolutions.Items.Add(sln);
                     lbSolutions.SelectedIndex = lbSolutions.Items.Count - 1;
                     ResetActions();
@@ -348,7 +371,7 @@ namespace ItAintBoring.EZChange
         private void EditAction(BaseAction action)
         {
             ComponentControl ac = new ComponentControl();
-            ac.Setup(action, "Action Properties");
+            ac.Setup(action, action.Id + " - Properties");
 
             if (ac.ShowDialog() == DialogResult.OK)
             {
@@ -376,6 +399,183 @@ namespace ItAintBoring.EZChange
             if (lbPostActions.SelectedItem == null) return;
             EditAction((BaseAction)lbPostActions.SelectedItem);
             lbPostActions.Items[lbPostActions.SelectedIndex] = lbPostActions.Items[lbPostActions.SelectedIndex];
+        }
+
+        private void tbPackageName_TextChanged(object sender, EventArgs e)
+        {
+            package.Name = tbPackageName.Text;
+            package.HasUnsavedChanges = true;
+        }
+
+        public void ShowPackageControl()
+        {
+            if (Package == null && Package.UIControl == null)
+            {
+                pnlPackageControl.Controls.Clear();
+            }
+            else
+            {
+                pnlPackageControl.Controls.Clear();
+                pnlPackageControl.Controls.Add(Package.UIControl);
+                Package.UIControl.Top = 0;
+                Package.UIControl.Left = 1;
+                Package.UIControl.Width = pnlPackageControl.Width-3;
+                Package.UIControl.Height = pnlPackageControl.Height - 3;
+                Package.UIControl.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
+
+            }
+        }
+
+
+        private object dragItem = null;
+
+        private void lbSolutions_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left && lbSolutions.SelectedItem != null && e.Clicks == 1)
+            {
+                Task.Delay(700).ContinueWith(
+                t =>
+                {
+                    if (Control.MouseButtons == MouseButtons.Left)
+                    {
+                        dragItem = lbSolutions.SelectedItem;
+                        lbSolutions.DoDragDrop(lbSolutions.SelectedItem, DragDropEffects.Move);
+                    }
+                }, TaskScheduler.FromCurrentSynchronizationContext()
+                );
+               
+            }
+        }
+
+        private void lbSolutions_DragOver(object sender, DragEventArgs e)
+        {
+            if (dragItem is BaseSolution)
+            {
+                e.Effect = DragDropEffects.Move;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void lbSolutions_DragDrop(object sender, DragEventArgs e)
+        {
+            Point point = lbSolutions.PointToClient(new Point(e.X, e.Y));
+            int index = lbSolutions.IndexFromPoint(point);
+            if (index < 0) index = lbSolutions.Items.Count - 1;
+            lbSolutions.Items.Remove(dragItem);
+            lbSolutions.Items.Insert(index, dragItem);
+            Package.Solutions.Clear();
+            foreach(var item in lbSolutions.Items)
+            {
+                Package.Solutions.Add((BaseSolution)item);
+            }
+            lbSolutions.SelectedIndex = index;
+            Package.HasUnsavedChanges = true;
+        }
+
+        private void lbPreActions_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left && lbPreActions.SelectedItem != null && e.Clicks == 1)
+            {
+                Task.Delay(700).ContinueWith(
+                t =>
+                {
+                    if (Control.MouseButtons == MouseButtons.Left)
+                    {
+                        dragItem = lbPreActions.SelectedItem;
+                        lbPreActions.DoDragDrop(lbPreActions.SelectedItem, DragDropEffects.Move);
+                    }
+                }, TaskScheduler.FromCurrentSynchronizationContext()
+                );
+
+            }
+
+            
+        }
+
+        private void lbPreActions_DragOver(object sender, DragEventArgs e)
+        {
+            if (lbPreActions.Items.IndexOf(dragItem) > -1)
+            {
+                e.Effect = DragDropEffects.Move;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void lbPreActions_DragDrop(object sender, DragEventArgs e)
+        {
+            Point point = lbPreActions.PointToClient(new Point(e.X, e.Y));
+            int index = lbPreActions.IndexFromPoint(point);
+            if (index < 0) index = lbPreActions.Items.Count - 1;
+            lbPreActions.Items.Remove(dragItem);
+            lbPreActions.Items.Insert(index, dragItem);
+            SelectedSolution.PreImportActions.Clear();
+            foreach (var item in lbPreActions.Items)
+            {
+                SelectedSolution.PreImportActions.Add((BaseAction)item);
+            }
+            lbPreActions.SelectedIndex = index;
+            Package.HasUnsavedChanges = true;
+        }
+
+        private void lbPostActions_MouseDown(object sender, MouseEventArgs e)
+        {
+
+            if (e.Button == MouseButtons.Left && lbPostActions.SelectedItem != null && e.Clicks == 1)
+            {
+                Task.Delay(700).ContinueWith(
+                t =>
+                {
+                    if (Control.MouseButtons == MouseButtons.Left)
+                    {
+                        dragItem = lbPostActions.SelectedItem;
+                        lbPostActions.DoDragDrop(lbPostActions.SelectedItem, DragDropEffects.Move);
+                    }
+                }, TaskScheduler.FromCurrentSynchronizationContext()
+                );
+
+            }
+
+
+            
+        }
+
+        private void lbPostActions_DragOver(object sender, DragEventArgs e)
+        {
+            if(lbPostActions.Items.IndexOf(dragItem) > -1)
+            {
+                e.Effect = DragDropEffects.Move;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void lbPostActions_DragDrop(object sender, DragEventArgs e)
+        {
+            Point point = lbPostActions.PointToClient(new Point(e.X, e.Y));
+            int index = lbPostActions.IndexFromPoint(point);
+            if (index < 0) index = lbPostActions.Items.Count - 1;
+            lbPostActions.Items.Remove(dragItem);
+            lbPostActions.Items.Insert(index, dragItem);
+            SelectedSolution.PostImportActions.Clear();
+            foreach (var item in lbPostActions.Items)
+            {
+                SelectedSolution.PostImportActions.Add((BaseAction)item);
+            }
+            lbPostActions.SelectedIndex = index;
+            Package.HasUnsavedChanges = true;
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = !SaveIfRequired();
         }
     }
 }

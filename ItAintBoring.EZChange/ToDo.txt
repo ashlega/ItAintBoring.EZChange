@@ -1,7 +1,4 @@
-﻿Serialize
-Deserialize
-Move components up/down (solutions, actions)
-Package Name
+﻿Move components up/down (solutions, actions)
 Run package (how to define the connection?)
 Add XML schema validation
 Add visual editing (to replace XML)

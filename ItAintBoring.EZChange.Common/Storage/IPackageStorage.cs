@@ -16,5 +16,6 @@ namespace ItAintBoring.EZChange.Common.Storage
         bool SavePackageAs(BaseChangePackage package);
         bool SavePackage(BaseChangePackage package);
         BaseChangePackage LoadPackage();
+        void AddKnownTypes(List<Type> knownTypes);
     }
 }

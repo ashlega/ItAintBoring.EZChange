@@ -14,7 +14,7 @@ namespace ItAintBoring.EZChange.Common.Packaging
 
         abstract public bool HasUnsavedChanges {get;set;}
 
-        public BaseChangePackage()
+        public BaseChangePackage(): base()
         {
             Solutions = new List<BaseSolution>();
         }

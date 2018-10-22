@@ -1,6 +1,6 @@
 ﻿namespace ItAintBoring.EZChange.Core.UI
 {
-    partial class SingleLineEditor
+    partial class SimpleEditor
     {
         /// <summary> 
         /// Required designer variable.
@@ -34,13 +34,15 @@
             // 
             // tbText
             // 
-            this.tbText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.tbText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbText.Location = new System.Drawing.Point(3, 26);
             this.tbText.Multiline = true;
             this.tbText.Name = "tbText";
             this.tbText.Size = new System.Drawing.Size(417, 36);
             this.tbText.TabIndex = 0;
+            this.tbText.TextChanged += new System.EventHandler(this.tbText_TextChanged);
             // 
             // lbName
             // 
@@ -51,13 +53,13 @@
             this.lbName.TabIndex = 1;
             this.lbName.Text = "Name";
             // 
-            // SingleLineEditor
+            // SimpleEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lbName);
             this.Controls.Add(this.tbText);
-            this.Name = "SingleLineEditor";
+            this.Name = "SimpleEditor";
             this.Size = new System.Drawing.Size(423, 66);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -50,6 +50,7 @@ namespace ItAintBoring.EZChange.Core
 
         static public IPackageStorage CreateStorage(IPackageStorage storageDescription)
         {
+
             return storageDescription;
         }
     }

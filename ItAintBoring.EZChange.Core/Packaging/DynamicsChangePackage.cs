@@ -1,11 +1,13 @@
 ﻿using ItAintBoring.EZChange.Common;
 using ItAintBoring.EZChange.Common.Packaging;
+using ItAintBoring.EZChange.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace ItAintBoring.EZChange.Core.Packaging
 {
@@ -19,13 +21,32 @@ namespace ItAintBoring.EZChange.Core.Packaging
         
         public string ConnectionString { get; set; }
 
-        public override bool HasUnsavedChanges {get;set;}
+        public string DestinationConnectionString { get; set; }
 
-        public override UserControl UIControl { get { return null; } }
+        public override bool HasUnsavedChanges {get;set;}
 
         public override void ApplyUIUpdates()
         {
-            
+            if (((TwoConnections)uiControl).SourceConnection == ConnectionString &&
+                ((TwoConnections)uiControl).DestinationConnection == DestinationConnectionString) return;
+            ConnectionString = ((TwoConnections)uiControl).SourceConnection;
+            DestinationConnectionString = ((TwoConnections)uiControl).DestinationConnection;
+            HasUnsavedChanges = true;
+        }
+
+        private UserControl uiControl = null;
+        [XmlIgnore]
+        public override UserControl UIControl
+        {
+            get
+            {
+                if(uiControl == null) uiControl = new TwoConnections(this);
+
+                ((TwoConnections)uiControl).SourceConnection = ConnectionString;
+                ((TwoConnections)uiControl).DestinationConnection = DestinationConnectionString;
+
+                return uiControl;
+            }
         }
     }
 }
