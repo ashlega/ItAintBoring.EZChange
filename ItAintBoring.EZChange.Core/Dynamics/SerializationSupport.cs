@@ -63,10 +63,16 @@ namespace ItAintBoring.EZChange.Core.Dynamics
 
     }
 
+    [DataContract(Name = "Attribute")]
     public class SerializableEntityAttribute
     {
+        [DataMember]
         public string Key { get; set; }
+
+        //[DataMember(Name="Type")]
         public string TypeName { get; set; }
+
+        [DataMember]
         public string Value { get; set; }
 
         public SerializableEntityAttribute()
@@ -133,12 +139,14 @@ namespace ItAintBoring.EZChange.Core.Dynamics
             }
         }
 
-        public KeyValuePair<string, object> ConvertToAttribute()
+        public KeyValuePair<string, object> ConvertToAttribute(IOrganizationService service, string entityName)
         {
             if (Value == null) return new KeyValuePair<string, object>(Key, null);
 
             Object attributeValue = null;
 
+            TypeName = ReferenceResolution.GetAttributeCodeTypeName(service, entityName, Key).ToLower();
+            if (TypeName == null) throw new Exception("Cannot find type name for " + entityName + ":" + Key);
             if (TypeName.Contains("guid"))
             {
                 attributeValue = Guid.Parse(Value.ToString());
@@ -190,10 +198,18 @@ namespace ItAintBoring.EZChange.Core.Dynamics
             return a;
         }
     }
+
+
+    [DataContract(Name = "Entity")]
     public class SerializableEntity
     {
+        [DataMember]
         public string LogicalName { get; set; }
+
+        [DataMember]
         public Guid Id { get; set; }
+
+        [DataMember]
         public List<SerializableEntityAttribute> Attributes { get; set; }
 
         public SerializableEntity()

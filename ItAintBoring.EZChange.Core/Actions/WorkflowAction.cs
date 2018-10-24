@@ -20,6 +20,11 @@ namespace ItAintBoring.EZChange.Core.Actions
         public override string Version { get { return "1.0"; } }
         public override string Id { get { return "Workflow Action"; } }
         public override string Description { get { return "Workflow Action"; } }
+        
+        public string WorkflowId { get; set; }
+        public string FetchXml { get; set; }
+
+        
 
         public override string Name { get; set; }
 
@@ -34,21 +39,20 @@ namespace ItAintBoring.EZChange.Core.Actions
         }
 
         
-        public string Title { get; set; }
-
-
         public override void ApplyUIUpdates()
         {
-            XML = ((XMLEditor)uiControl).XML;
+            WorkflowId = ((WorkflowActionEditor)uiControl).WorkflowId;
+            FetchXml = ((WorkflowActionEditor)uiControl).FetchXml;
         }
 
-        private UserControl uiControl = new XMLEditor();
+        private UserControl uiControl = new WorkflowActionEditor();
         [XmlIgnore]
         public override UserControl UIControl
         {
             get
             {
-                ((XMLEditor)uiControl).XML = XML;
+                ((WorkflowActionEditor)uiControl).WorkflowId = WorkflowId;
+                ((WorkflowActionEditor)uiControl).FetchXml = FetchXml;
                 return uiControl;
             }
         }
@@ -58,28 +62,19 @@ namespace ItAintBoring.EZChange.Core.Actions
         public override void DoAction(BaseSolution solution)
         {
             DynamicsSolution ds = (DynamicsSolution)solution;
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(XML);
-            var actions = doc.GetElementsByTagName("action");
-            foreach (XmlNode a in actions)
+            if (!String.IsNullOrEmpty(FetchXml) && !String.IsNullOrEmpty(WorkflowId))
             {
-                switch (a.Attributes["type"].Value)
+                var results = ds.Service.Service.RetrieveMultiple(new FetchExpression(FetchXml));
+
+                foreach (var r in results.Entities)
                 {
-                    case "run":
-                        string fetchXml = a.InnerText;
-                        var results = ds.Service.Service.RetrieveMultiple(new FetchExpression(fetchXml));
-                        foreach(var r in results.Entities)
-                        {
-                            ExecuteWorkflowRequest ewr = new ExecuteWorkflowRequest();
-                            ewr.EntityId = r.Id;
-                            ewr.WorkflowId = Guid.Parse(a.Attributes["workflowid"].Value);
-                            ds.Service.Service.Execute(ewr);
-                        }
-                        break;
+                    ExecuteWorkflowRequest ewr = new ExecuteWorkflowRequest();
+                    ewr.EntityId = r.Id;
+                    ewr.WorkflowId = Guid.Parse(WorkflowId);
+                    ds.Service.Service.Execute(ewr);
                 }
             }
         }
-    
     }
 }
 

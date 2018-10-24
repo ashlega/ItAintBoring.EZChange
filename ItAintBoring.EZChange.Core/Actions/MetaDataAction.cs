@@ -33,9 +33,8 @@ namespace ItAintBoring.EZChange.Core.Actions
             supportedSolutionTypes.Add(typeof(DynamicsSolution));
         }
 
-       
-        public string Title { get; set; }
-
+        public string XML { get; set; }
+  
         public override void ApplyUIUpdates()
         {
             XML = ((XMLEditor)uiControl).XML;

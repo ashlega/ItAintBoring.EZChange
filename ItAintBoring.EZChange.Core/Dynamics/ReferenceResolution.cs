@@ -14,6 +14,7 @@ namespace ItAintBoring.EZChange.Core.Dynamics
     public class ReferenceResolution
     {
         static Hashtable metadataHash = new Hashtable();
+        static Hashtable attributeMetadataHash = new Hashtable();
 
         public static EntityMetadata GetMetadata(IOrganizationService service, string logicalName)
         {
@@ -29,6 +30,78 @@ namespace ItAintBoring.EZChange.Core.Dynamics
                 metadataHash[keyName] = response.EntityMetadata;
             }
             return (EntityMetadata)metadataHash[keyName];
+        }
+
+        public static AttributeMetadata GetAttributeMetadata(IOrganizationService service, string entityLogicalName, string attributeLogicalName)
+        {
+            string keyName = entityLogicalName + "_" + attributeLogicalName;
+            if (!attributeMetadataHash.Contains(keyName))
+            {
+                RetrieveAttributeRequest request = new RetrieveAttributeRequest
+                {
+                    EntityLogicalName = entityLogicalName,
+                    LogicalName = attributeLogicalName
+                };
+                RetrieveAttributeResponse response = (RetrieveAttributeResponse)service.Execute(request);
+                attributeMetadataHash[keyName] = response.AttributeMetadata;
+            }
+            return (AttributeMetadata)attributeMetadataHash[keyName];
+        }
+
+        public static string GetAttributeCodeTypeName(IOrganizationService service, string entityLogicalName, string attributeLogicalName)
+        {
+            var am = GetAttributeMetadata(service, entityLogicalName, attributeLogicalName);
+            if (am == null) return null;
+            switch (am.AttributeType.ToString())
+            {
+                case "Status": //Status
+                    return (typeof(Microsoft.Xrm.Sdk.OptionSetValue)).Name;
+                case "Picklist": //Picklist
+                    return (typeof(Microsoft.Xrm.Sdk.OptionSetValue)).Name;
+                case "State": //State
+                    return (typeof(Microsoft.Xrm.Sdk.OptionSetValue)).Name;
+                case "Decimal": //Decimal
+                    return (typeof(Double)).Name;
+                case "Enum": //Enum
+                    break;
+                case "Memo": //Memo
+                    return (typeof(String)).Name;
+                case "Money": //Money
+                    return (typeof(Microsoft.Xrm.Sdk.Money)).Name;
+                case "Lookup":
+                    return (typeof(Microsoft.Xrm.Sdk.EntityReference)).Name;
+                case "Integer":
+                    return (typeof(int)).Name;
+                case "Owner":
+                    return (typeof(Guid)).Name;
+                    
+                case "DateTime": //DateTime
+                    return (typeof(DateTime)).Name;
+                    
+                case "Boolean": //Boolean
+                    
+                case "String": //String
+                    return (typeof(String)).Name;
+                    
+                case "Double": //Double
+                    return (typeof(Microsoft.Xrm.Sdk.OptionSetValue)).Name;
+                case "EntityName": //Entity Name
+                    break;
+                case "Image": //Image, it will return image name.
+                    break;
+                case "BigInt":
+                    break;
+                case "ManagedProperty":
+                    break;
+                case "Uniqueidentifier":
+                    return (typeof(Guid)).Name; ;
+                case "Virtual":
+                    break;
+                default:
+                    //TODO: Write Err Exception
+                    break;
+            }
+            return null;
         }
 
         public static bool RecordExists(IOrganizationService service, EntityReference er)

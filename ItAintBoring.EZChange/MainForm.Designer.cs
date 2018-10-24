@@ -289,7 +289,7 @@
             this.tpPreImportActions.Padding = new System.Windows.Forms.Padding(3);
             this.tpPreImportActions.Size = new System.Drawing.Size(674, 293);
             this.tpPreImportActions.TabIndex = 0;
-            this.tpPreImportActions.Text = "Pre Import Actions";
+            this.tpPreImportActions.Text = "Build Actions";
             this.tpPreImportActions.UseVisualStyleBackColor = true;
             // 
             // btnRemovePreAction
@@ -342,7 +342,7 @@
             this.tpPostImportActions.Padding = new System.Windows.Forms.Padding(3);
             this.tpPostImportActions.Size = new System.Drawing.Size(674, 293);
             this.tpPostImportActions.TabIndex = 1;
-            this.tpPostImportActions.Text = "Post Import Actions";
+            this.tpPostImportActions.Text = "Run Actions";
             this.tpPostImportActions.UseVisualStyleBackColor = true;
             // 
             // btnRemovePostAction

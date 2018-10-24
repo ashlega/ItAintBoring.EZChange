@@ -59,7 +59,7 @@ namespace ItAintBoring.EZChange.Core.Packaging
             if (solutionFolder == null) return null;
             string path = System.IO.Path.Combine(solutionFolder, "actions");
             System.IO.Directory.CreateDirectory(path);
-            return System.IO.Path.Combine(path, fileName != null ? fileName : action.ComponentId + ".txt");
+            return System.IO.Path.Combine(path, fileName != null ? fileName : action.Name+ ".txt");
         }
         public override void SaveActionData(BaseAction action, string data)
         {
@@ -78,6 +78,11 @@ namespace ItAintBoring.EZChange.Core.Packaging
             {
                 return sr.ReadToEnd();
             }
+        }
+
+        public override string GetDataFolder()
+        {
+            return Name;
         }
 
         public override void PrepareSolution(BaseComponent package)
@@ -110,10 +115,7 @@ namespace ItAintBoring.EZChange.Core.Packaging
             string[] files = System.IO.Directory.GetFiles(solutionFolder, "*zip");
             if (files.Length > 0)
             {
-                
-
-                //service.ImportSolution(files[0]);
-
+                service.ImportSolution(files[0]);
                 foreach (var action in PostImportActions)
                 {
                     action.DoAction(this);

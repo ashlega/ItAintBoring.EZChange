@@ -11,7 +11,7 @@ namespace ItAintBoring.EZChange.Common
 {
     public abstract class  BaseAction: BaseComponent
     {
-        public string XML { get; set; }
+       // public virtual string XML { get; set; }
 
         abstract public void DoAction(BaseSolution solution);
 

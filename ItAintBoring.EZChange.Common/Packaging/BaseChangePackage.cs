@@ -40,7 +40,8 @@ namespace ItAintBoring.EZChange.Common.Packaging
                 System.IO.Directory.CreateDirectory(GetDataFolder());
                 System.IO.Directory.Delete(GetDataFolder(), true);
                 System.IO.Directory.CreateDirectory(GetDataFolder());
-                storage.SavePackage(this, System.IO.Path.Combine(GetDataFolder(), System.IO.Path.GetFileName(this.PackageLocation)));
+                System.Threading.Thread.Sleep(500);//The files don't disappear right away it seems
+                storage.SavePackage(this, System.IO.Path.Combine(GetDataFolder(), Name + ".ecp"));
                 foreach (var s in Solutions)
                 {
                     s.PrepareSolution(this);

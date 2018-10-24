@@ -63,7 +63,7 @@ namespace ItAintBoring.EZChange.Core.Dynamics
             return result;
         }
 
-        public static List<Entity> GetRegularEntityList(List<SerializableEntity> entities)
+        public static List<Entity> GetRegularEntityList(IOrganizationService service, List<SerializableEntity> entities)
         {
             if (entities == null) return null;
 
@@ -76,7 +76,7 @@ namespace ItAintBoring.EZChange.Core.Dynamics
 
                 foreach (var sa in e.Attributes)
                 {
-                    var a = sa.ConvertToAttribute();
+                    var a = sa.ConvertToAttribute(service, ent.LogicalName);
                     ent.Attributes[a.Key] = a.Value;
                 }
                 result.Add(ent);
@@ -90,7 +90,7 @@ namespace ItAintBoring.EZChange.Core.Dynamics
             var serializableList = GetSerializableList(entities);
 
 
-            var lateBoundSerializer = new DataContractSerializer(typeof(List<SerializableEntity>));
+            var lateBoundSerializer = new DataContractJsonSerializer(typeof(List<SerializableEntity>));
             using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
             {
                 lateBoundSerializer.WriteObject(ms, serializableList);
@@ -99,20 +99,20 @@ namespace ItAintBoring.EZChange.Core.Dynamics
                 ms.Position = 0;
                 System.IO.StreamReader sr = new System.IO.StreamReader(ms);
                 result = sr.ReadToEnd();
-
+                
                 //result = CompressString(result);
             }
             return result;
         }
 
-        public static List<Entity> DeSerializeEntityList(string data)
+        public static List<Entity> DeSerializeEntityList(IOrganizationService service, string data)
         {
             if (data == null) return null;
             //data = DecompressString(data);
             List<SerializableEntity> result = null;
             using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
             {
-                var lateBoundSerializer = new DataContractSerializer(typeof(List<SerializableEntity>));
+                var lateBoundSerializer = new DataContractJsonSerializer(typeof(List<SerializableEntity>));
                 System.IO.StreamWriter sw = new System.IO.StreamWriter(ms);
                 sw.Write(data);
                 sw.Flush();
@@ -120,7 +120,7 @@ namespace ItAintBoring.EZChange.Core.Dynamics
                 result = (List<SerializableEntity>)lateBoundSerializer.ReadObject(ms);
             }
 
-            return GetRegularEntityList(result);
+            return GetRegularEntityList(service, result);
         }
 
         public static DataSetResource ResourceFromString(string data)
