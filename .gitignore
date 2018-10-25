@@ -5,8 +5,8 @@
 
 
 *.ecp
-packages/
-output/
+[Pp]ackages/
+[Oo]utput/
 
 # User-specific files
 *.suo

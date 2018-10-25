@@ -1,34 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <BaseChangePackage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="DynamicsChangePackage">
+  <ComponentId>4c279517-67a6-411f-80f8-0691b522b3ed</ComponentId>
   <Name>New Change Package</Name>
-  <PackageLocation>NewPackage.ecp</PackageLocation>
+  <PackageLocation>C:\Work\Projects\ItAintBoring.EZChange\Output\NewPackage.ecp</PackageLocation>
   <Solutions>
     <BaseSolution xsi:type="DynamicsSolution">
+      <ComponentId>5d8e1336-5273-4263-9faf-f4da2308d035</ComponentId>
       <Name>TestAS</Name>
-      <PreImportActions>
-        <BaseAction xsi:type="DataAction">
-          <Name>Data Action</Name>
-          <XML>123123tre</XML>
-        </BaseAction>
-        <BaseAction xsi:type="WorkflowAction">
-          <Name>Workflow Action123</Name>
-          <XML />
-        </BaseAction>
-      </PreImportActions>
-      <PostImportActions>
-        <BaseAction xsi:type="WorkflowAction">
-          <Name>Workflow Action</Name>
-          <XML>asfdfdsa</XML>
-        </BaseAction>
-        <BaseAction xsi:type="MetaDataAction">
-          <Name>MetaData Action3232</Name>
-          <XML>eerwerew</XML>
-        </BaseAction>
-        <BaseAction xsi:type="DataAction">
-          <Name>Data Action323232</Name>
-          <XML />
-        </BaseAction>
-      </PostImportActions>
+      <BuildActions />
+      <DeployActions />
     </BaseSolution>
   </Solutions>
   <HasUnsavedChanges>true</HasUnsavedChanges>
