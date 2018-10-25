@@ -5,8 +5,8 @@
 
 
 *.ecp
-[Pp]ackages/
-[Oo]utput/
+#[Pp]ackages/
+#[Oo]utput/
 
 # User-specific files
 *.suo
