@@ -21,6 +21,8 @@ namespace ItAintBoring.EZChange.Core.Packaging
 
         public override string Name { get; set; }
 
+        public string ExternalFileName { get; set; }
+
 
         private List<Type> supportedPackageTypes = null;
         [XmlIgnore]
@@ -42,14 +44,23 @@ namespace ItAintBoring.EZChange.Core.Packaging
             supportedPackageTypes.Add(typeof(DynamicsChangePackage));
         }
 
+        private UserControl uiControl = null;
         [XmlIgnore]
-        public override UserControl UIControl { get { return null; } }
+        public override UserControl UIControl
+        {
+            get
+            {
+                if (uiControl == null) uiControl = new SimpleEditor("External File Name", false, this);
+                               
+                ((SimpleEditor)uiControl).SimpleText = ExternalFileName;
 
+                return uiControl;
+            }
+        }
 
-        
         public override void ApplyUIUpdates()
         {
-            
+            ExternalFileName = ((SimpleEditor)uiControl).SimpleText;
         }
 
         private string solutionFolder = null;
@@ -57,7 +68,7 @@ namespace ItAintBoring.EZChange.Core.Packaging
         private string GetActionFileName(BaseAction action, string fileName)
         {
             if (solutionFolder == null) return null;
-            string path = System.IO.Path.Combine(solutionFolder, "actions");
+            string path = System.IO.Path.Combine(solutionFolder, "buildactions");
             System.IO.Directory.CreateDirectory(path);
             return System.IO.Path.Combine(path, fileName != null ? fileName : action.Name+ ".txt");
         }
@@ -95,16 +106,30 @@ namespace ItAintBoring.EZChange.Core.Packaging
 
             solutionFolder = package.GetDataFolder() + "\\Solutions\\" + GetDataFolder();
 
-            foreach (var action in PreImportActions)
+            foreach (var action in BuildActions)
             {
                 action.DoAction(this);
             }
-            service.ExportSolution(Name, solutionFolder, false);
+            if(!String.IsNullOrEmpty(ExternalFileName))
+            {
+                System.IO.Directory.CreateDirectory(solutionFolder);
+                System.IO.File.Copy(ExternalFileName, System.IO.Path.Combine(solutionFolder, System.IO.Path.GetFileName(ExternalFileName)));
+            }
+            else service.ExportSolution(Name, solutionFolder, false);
+        }
+
+        public void ImportSolution()
+        {
+            string[] files = System.IO.Directory.GetFiles(solutionFolder, "*zip");
+            if (files.Length > 0)
+            {
+                service.ImportSolution(files[0]);
+            }
         }
 
         public override void DeploySolution(BaseComponent package)
         {
-            
+
             if (service == null)
             {
                 service = new DynamicsService(((DynamicsChangePackage)package).DestinationConnectionString);
@@ -112,16 +137,12 @@ namespace ItAintBoring.EZChange.Core.Packaging
             else service.ConnectionString = ((DynamicsChangePackage)package).DestinationConnectionString;
             solutionFolder = package.GetDataFolder() + "\\Solutions\\" + GetDataFolder();
 
-            string[] files = System.IO.Directory.GetFiles(solutionFolder, "*zip");
-            if (files.Length > 0)
+            foreach (var action in DeployActions)
             {
-                service.ImportSolution(files[0]);
-                foreach (var action in PostImportActions)
-                {
-                    action.DoAction(this);
-                }
+                action.DoAction(this);
             }
-            
+
+
         }
     }
 }

@@ -36,8 +36,9 @@
             this.tbSaveAsProject = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.tbExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.preparePackageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tbPreparePackage = new System.Windows.Forms.ToolStripMenuItem();
+            this.tbRunPackage = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tcPackage = new System.Windows.Forms.TabControl();
             this.tpLogo = new System.Windows.Forms.TabPage();
@@ -60,9 +61,6 @@
             this.btnDeleteSolution = new System.Windows.Forms.Button();
             this.btnAddSolution = new System.Windows.Forms.Button();
             this.lbSolutions = new System.Windows.Forms.ListBox();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tbPreparePackage = new System.Windows.Forms.ToolStripMenuItem();
-            this.tbRunPackage = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tcPackage.SuspendLayout();
             this.tpLogo.SuspendLayout();
@@ -80,7 +78,6 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1,
             this.toolStripMenuItem3,
-            this.settingsToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -105,62 +102,72 @@
             // tbNew
             // 
             this.tbNew.Name = "tbNew";
-            this.tbNew.Size = new System.Drawing.Size(216, 26);
+            this.tbNew.Size = new System.Drawing.Size(135, 26);
             this.tbNew.Text = "New";
             this.tbNew.Click += new System.EventHandler(this.tbNew_Click);
             // 
             // tbOpenProject
             // 
             this.tbOpenProject.Name = "tbOpenProject";
-            this.tbOpenProject.Size = new System.Drawing.Size(216, 26);
+            this.tbOpenProject.Size = new System.Drawing.Size(135, 26);
             this.tbOpenProject.Text = "Open";
             this.tbOpenProject.Click += new System.EventHandler(this.tbOpenProject_Click);
             // 
             // tbSaveProject
             // 
             this.tbSaveProject.Name = "tbSaveProject";
-            this.tbSaveProject.Size = new System.Drawing.Size(216, 26);
+            this.tbSaveProject.Size = new System.Drawing.Size(135, 26);
             this.tbSaveProject.Text = "Save";
             this.tbSaveProject.Click += new System.EventHandler(this.tbSaveProject_Click);
             // 
             // tbSaveAsProject
             // 
             this.tbSaveAsProject.Name = "tbSaveAsProject";
-            this.tbSaveAsProject.Size = new System.Drawing.Size(216, 26);
+            this.tbSaveAsProject.Size = new System.Drawing.Size(135, 26);
             this.tbSaveAsProject.Text = "Save As";
             this.tbSaveAsProject.Click += new System.EventHandler(this.tbSaveAsProject_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(213, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(132, 6);
             // 
             // tbExit
             // 
             this.tbExit.Name = "tbExit";
-            this.tbExit.Size = new System.Drawing.Size(216, 26);
+            this.tbExit.Size = new System.Drawing.Size(135, 26);
             this.tbExit.Text = "Exit";
             this.tbExit.Click += new System.EventHandler(this.tbExit_Click);
             // 
-            // settingsToolStripMenuItem
+            // toolStripMenuItem3
             // 
-            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.preparePackageToolStripMenuItem});
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(74, 24);
-            this.settingsToolStripMenuItem.Text = "Settings";
+            this.toolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tbPreparePackage,
+            this.tbRunPackage});
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(55, 24);
+            this.toolStripMenuItem3.Text = "Build";
             // 
-            // preparePackageToolStripMenuItem
+            // tbPreparePackage
             // 
-            this.preparePackageToolStripMenuItem.Name = "preparePackageToolStripMenuItem";
-            this.preparePackageToolStripMenuItem.Size = new System.Drawing.Size(247, 26);
-            this.preparePackageToolStripMenuItem.Text = "Source Control Providers";
+            this.tbPreparePackage.Name = "tbPreparePackage";
+            this.tbPreparePackage.Size = new System.Drawing.Size(216, 26);
+            this.tbPreparePackage.Text = "Build";
+            this.tbPreparePackage.Click += new System.EventHandler(this.tbPreparePackage_Click);
+            // 
+            // tbRunPackage
+            // 
+            this.tbRunPackage.Name = "tbRunPackage";
+            this.tbRunPackage.Size = new System.Drawing.Size(216, 26);
+            this.tbRunPackage.Text = "Run";
+            this.tbRunPackage.Click += new System.EventHandler(this.tbRunPackage_Click);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(62, 24);
             this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // tcPackage
             // 
@@ -191,13 +198,12 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(196, 152);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(24, 50);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(566, 18);
+            this.label2.Size = new System.Drawing.Size(599, 25);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Use EZ Change to create deployment packages for Power Platform / Dynamics 365. \r\n" +
-    "";
+            this.label2.Text = "Use EZ Change to create deployment packages for  Dynamics 365. \r\n";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // tpSource
@@ -226,6 +232,8 @@
             // 
             // tbPackageName
             // 
+            this.tbPackageName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbPackageName.Location = new System.Drawing.Point(7, 28);
             this.tbPackageName.Name = "tbPackageName";
             this.tbPackageName.Size = new System.Drawing.Size(922, 22);
@@ -294,7 +302,7 @@
             // 
             // btnRemovePreAction
             // 
-            this.btnRemovePreAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRemovePreAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemovePreAction.Location = new System.Drawing.Point(593, 256);
             this.btnRemovePreAction.Name = "btnRemovePreAction";
             this.btnRemovePreAction.Size = new System.Drawing.Size(75, 30);
@@ -305,7 +313,7 @@
             // 
             // btnAddPreAction
             // 
-            this.btnAddPreAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAddPreAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddPreAction.Location = new System.Drawing.Point(512, 256);
             this.btnAddPreAction.Name = "btnAddPreAction";
             this.btnAddPreAction.Size = new System.Drawing.Size(75, 30);
@@ -347,7 +355,7 @@
             // 
             // btnRemovePostAction
             // 
-            this.btnRemovePostAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRemovePostAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemovePostAction.Location = new System.Drawing.Point(593, 256);
             this.btnRemovePostAction.Name = "btnRemovePostAction";
             this.btnRemovePostAction.Size = new System.Drawing.Size(75, 30);
@@ -358,7 +366,7 @@
             // 
             // btnAddPostAction
             // 
-            this.btnAddPostAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAddPostAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddPostAction.Location = new System.Drawing.Point(512, 256);
             this.btnAddPostAction.Name = "btnAddPostAction";
             this.btnAddPostAction.Size = new System.Drawing.Size(75, 30);
@@ -424,29 +432,6 @@
             this.lbSolutions.DoubleClick += new System.EventHandler(this.lbSolutions_DoubleClick);
             this.lbSolutions.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lbSolutions_MouseDown);
             // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tbPreparePackage,
-            this.tbRunPackage});
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(55, 24);
-            this.toolStripMenuItem3.Text = "Build";
-            // 
-            // tbPreparePackage
-            // 
-            this.tbPreparePackage.Name = "tbPreparePackage";
-            this.tbPreparePackage.Size = new System.Drawing.Size(216, 26);
-            this.tbPreparePackage.Text = "Prepare";
-            this.tbPreparePackage.Click += new System.EventHandler(this.tbPreparePackage_Click);
-            // 
-            // tbRunPackage
-            // 
-            this.tbRunPackage.Name = "tbRunPackage";
-            this.tbRunPackage.Size = new System.Drawing.Size(216, 26);
-            this.tbRunPackage.Text = "Run (No Build)";
-            this.tbRunPackage.Click += new System.EventHandler(this.tbRunPackage_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -484,8 +469,6 @@
         private System.Windows.Forms.ToolStripMenuItem tbSaveAsProject;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem tbExit;
-        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem preparePackageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tbNew;
         private System.Windows.Forms.TabControl tcPackage;

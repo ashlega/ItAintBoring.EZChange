@@ -48,11 +48,11 @@ namespace ItAintBoring.EZChange
             lbPreActions.Items.Clear();
             lbPostActions.Items.Clear();
 
-            foreach (var act in SelectedSolution.PreImportActions)
+            foreach (var act in SelectedSolution.BuildActions)
             {
                 lbPreActions.Items.Add(act);
             }
-            foreach (var act in SelectedSolution.PostImportActions)
+            foreach (var act in SelectedSolution.DeployActions)
             {
                 lbPostActions.Items.Add(act);
             }
@@ -89,6 +89,8 @@ namespace ItAintBoring.EZChange
 
         public MainForm()
         {
+
+            Font = SystemFonts.MessageBoxFont;
             InitializeComponent();
 
             var storageList = StorageFactory.GetStorageList();
@@ -260,13 +262,13 @@ namespace ItAintBoring.EZChange
                     {
                         if (preAction)
                         {
-                            SelectedSolution.PreImportActions.Add(da);
+                            SelectedSolution.BuildActions.Add(da);
                             lbPreActions.Items.Add(da);
                             Package.HasUnsavedChanges = true;
                         }
                         else
                         {
-                            SelectedSolution.PostImportActions.Add(da);
+                            SelectedSolution.DeployActions.Add(da);
                             lbPostActions.Items.Add(da);
                             Package.HasUnsavedChanges = true;
                         }
@@ -326,7 +328,7 @@ namespace ItAintBoring.EZChange
 
         private void btnRemovePreAction_Click(object sender, EventArgs e)
         {
-            SelectedSolution.PreImportActions.Remove((BaseAction)lbPreActions.SelectedItem);
+            SelectedSolution.BuildActions.Remove((BaseAction)lbPreActions.SelectedItem);
             lbPreActions.Items.Remove(lbPreActions.SelectedItem);
             Package.HasUnsavedChanges = true;
             ReSetUI();
@@ -334,7 +336,7 @@ namespace ItAintBoring.EZChange
 
         private void btnRemovePostAction_Click(object sender, EventArgs e)
         {
-            SelectedSolution.PostImportActions.Remove((BaseAction)lbPostActions.SelectedItem);
+            SelectedSolution.DeployActions.Remove((BaseAction)lbPostActions.SelectedItem);
             lbPostActions.Items.Remove(lbPostActions.SelectedItem);
             Package.HasUnsavedChanges = true;
             ReSetUI();
@@ -518,10 +520,10 @@ namespace ItAintBoring.EZChange
             if (index < 0) index = lbPreActions.Items.Count - 1;
             lbPreActions.Items.Remove(dragItem);
             lbPreActions.Items.Insert(index, dragItem);
-            SelectedSolution.PreImportActions.Clear();
+            SelectedSolution.BuildActions.Clear();
             foreach (var item in lbPreActions.Items)
             {
-                SelectedSolution.PreImportActions.Add((BaseAction)item);
+                SelectedSolution.DeployActions.Add((BaseAction)item);
             }
             lbPreActions.SelectedIndex = index;
             Package.HasUnsavedChanges = true;
@@ -568,10 +570,10 @@ namespace ItAintBoring.EZChange
             if (index < 0) index = lbPostActions.Items.Count - 1;
             lbPostActions.Items.Remove(dragItem);
             lbPostActions.Items.Insert(index, dragItem);
-            SelectedSolution.PostImportActions.Clear();
+            SelectedSolution.DeployActions.Clear();
             foreach (var item in lbPostActions.Items)
             {
-                SelectedSolution.PostImportActions.Add((BaseAction)item);
+                SelectedSolution.DeployActions.Add((BaseAction)item);
             }
             lbPostActions.SelectedIndex = index;
             Package.HasUnsavedChanges = true;
@@ -635,6 +637,17 @@ namespace ItAintBoring.EZChange
             {
                 ShowMessage("Success");
             }
+        }
+
+        private void preparePackageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            About abt = new About();
+            abt.ShowDialog();
         }
     }
 }

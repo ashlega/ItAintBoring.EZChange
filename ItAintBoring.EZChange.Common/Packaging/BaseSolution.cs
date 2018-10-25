@@ -9,14 +9,14 @@ namespace ItAintBoring.EZChange.Common.Packaging
 {
     public abstract class BaseSolution: BaseComponent
     {
-        public List<BaseAction> PreImportActions { get; set; }
-        public List<BaseAction> PostImportActions { get; set; }
+        public List<BaseAction> BuildActions { get; set; }
+        public List<BaseAction> DeployActions { get; set; }
 
         public BaseSolution(): base()
         {
-            
-            PreImportActions = new List<BaseAction>();
-            PostImportActions = new List<BaseAction>();
+
+            BuildActions = new List<BaseAction>();
+            DeployActions = new List<BaseAction>();
 
         }
 

@@ -6,6 +6,7 @@
 
 *.ecp
 packages/
+output/
 
 # User-specific files
 *.suo

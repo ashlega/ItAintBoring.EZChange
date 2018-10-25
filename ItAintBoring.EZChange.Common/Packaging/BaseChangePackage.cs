@@ -23,7 +23,7 @@ namespace ItAintBoring.EZChange.Common.Packaging
 
         public override string GetDataFolder()
         {
-            return "Packages\\"+ComponentId.ToString();
+            return System.IO.Path.GetFullPath(PackageLocation);
         }
 
         public virtual void Run()
@@ -37,15 +37,15 @@ namespace ItAintBoring.EZChange.Common.Packaging
         public virtual void Build(IPackageStorage storage)
         {
                 
-                System.IO.Directory.CreateDirectory(GetDataFolder());
-                System.IO.Directory.Delete(GetDataFolder(), true);
-                System.IO.Directory.CreateDirectory(GetDataFolder());
-                System.Threading.Thread.Sleep(500);//The files don't disappear right away it seems
-                storage.SavePackage(this, System.IO.Path.Combine(GetDataFolder(), Name + ".ecp"));
-                foreach (var s in Solutions)
-                {
-                    s.PrepareSolution(this);
-                }
+            System.IO.Directory.CreateDirectory(GetDataFolder());
+            System.IO.Directory.Delete(GetDataFolder(), true);
+            System.IO.Directory.CreateDirectory(GetDataFolder());
+            System.Threading.Thread.Sleep(500);//The files don't disappear right away it seems
+            storage.SavePackage(this);//, System.IO.Path.Combine(GetDataFolder(), Name + ".ecp"));
+            foreach (var s in Solutions)
+            {
+                s.PrepareSolution(this);
+            }
             
         }
 
