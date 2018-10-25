@@ -25,8 +25,12 @@ namespace ItAintBoring.EZChange.Core.Packaging
 
         public override bool HasUnsavedChanges {get;set;}
 
+
+        private bool ignoreUpdates = false;
         public override void ApplyUIUpdates()
         {
+            if (ignoreUpdates) return;
+
             if (((TwoConnections)uiControl).SourceConnection == ConnectionString &&
                 ((TwoConnections)uiControl).DestinationConnection == DestinationConnectionString) return;
             ConnectionString = ((TwoConnections)uiControl).SourceConnection;
@@ -42,11 +46,24 @@ namespace ItAintBoring.EZChange.Core.Packaging
             {
                 if(uiControl == null) uiControl = new TwoConnections(this);
 
-                ((TwoConnections)uiControl).SourceConnection = ConnectionString;
-                ((TwoConnections)uiControl).DestinationConnection = DestinationConnectionString;
+                ignoreUpdates = true;
+                try
+                {
+                    ((TwoConnections)uiControl).SourceConnection = ConnectionString;
+                    ((TwoConnections)uiControl).DestinationConnection = DestinationConnectionString;
+                }
+                finally
+                {
+                    ignoreUpdates = false;
+                }
 
                 return uiControl;
             }
+        }
+
+        public override string GetDataFolder()
+        {
+            return "Packages\\" + this.Name.ToString();
         }
     }
 }

@@ -60,6 +60,9 @@
             this.btnDeleteSolution = new System.Windows.Forms.Button();
             this.btnAddSolution = new System.Windows.Forms.Button();
             this.lbSolutions = new System.Windows.Forms.ListBox();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tbPreparePackage = new System.Windows.Forms.ToolStripMenuItem();
+            this.tbRunPackage = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tcPackage.SuspendLayout();
             this.tpLogo.SuspendLayout();
@@ -76,6 +79,7 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1,
+            this.toolStripMenuItem3,
             this.settingsToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -101,40 +105,40 @@
             // tbNew
             // 
             this.tbNew.Name = "tbNew";
-            this.tbNew.Size = new System.Drawing.Size(135, 26);
+            this.tbNew.Size = new System.Drawing.Size(216, 26);
             this.tbNew.Text = "New";
             this.tbNew.Click += new System.EventHandler(this.tbNew_Click);
             // 
             // tbOpenProject
             // 
             this.tbOpenProject.Name = "tbOpenProject";
-            this.tbOpenProject.Size = new System.Drawing.Size(135, 26);
+            this.tbOpenProject.Size = new System.Drawing.Size(216, 26);
             this.tbOpenProject.Text = "Open";
             this.tbOpenProject.Click += new System.EventHandler(this.tbOpenProject_Click);
             // 
             // tbSaveProject
             // 
             this.tbSaveProject.Name = "tbSaveProject";
-            this.tbSaveProject.Size = new System.Drawing.Size(135, 26);
+            this.tbSaveProject.Size = new System.Drawing.Size(216, 26);
             this.tbSaveProject.Text = "Save";
             this.tbSaveProject.Click += new System.EventHandler(this.tbSaveProject_Click);
             // 
             // tbSaveAsProject
             // 
             this.tbSaveAsProject.Name = "tbSaveAsProject";
-            this.tbSaveAsProject.Size = new System.Drawing.Size(135, 26);
+            this.tbSaveAsProject.Size = new System.Drawing.Size(216, 26);
             this.tbSaveAsProject.Text = "Save As";
             this.tbSaveAsProject.Click += new System.EventHandler(this.tbSaveAsProject_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(132, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(213, 6);
             // 
             // tbExit
             // 
             this.tbExit.Name = "tbExit";
-            this.tbExit.Size = new System.Drawing.Size(135, 26);
+            this.tbExit.Size = new System.Drawing.Size(216, 26);
             this.tbExit.Text = "Exit";
             this.tbExit.Click += new System.EventHandler(this.tbExit_Click);
             // 
@@ -285,7 +289,7 @@
             this.tpPreImportActions.Padding = new System.Windows.Forms.Padding(3);
             this.tpPreImportActions.Size = new System.Drawing.Size(674, 293);
             this.tpPreImportActions.TabIndex = 0;
-            this.tpPreImportActions.Text = "Pre Import Actions";
+            this.tpPreImportActions.Text = "Build Actions";
             this.tpPreImportActions.UseVisualStyleBackColor = true;
             // 
             // btnRemovePreAction
@@ -338,7 +342,7 @@
             this.tpPostImportActions.Padding = new System.Windows.Forms.Padding(3);
             this.tpPostImportActions.Size = new System.Drawing.Size(674, 293);
             this.tpPostImportActions.TabIndex = 1;
-            this.tpPostImportActions.Text = "Post Import Actions";
+            this.tpPostImportActions.Text = "Run Actions";
             this.tpPostImportActions.UseVisualStyleBackColor = true;
             // 
             // btnRemovePostAction
@@ -420,6 +424,29 @@
             this.lbSolutions.DoubleClick += new System.EventHandler(this.lbSolutions_DoubleClick);
             this.lbSolutions.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lbSolutions_MouseDown);
             // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tbPreparePackage,
+            this.tbRunPackage});
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(55, 24);
+            this.toolStripMenuItem3.Text = "Build";
+            // 
+            // tbPreparePackage
+            // 
+            this.tbPreparePackage.Name = "tbPreparePackage";
+            this.tbPreparePackage.Size = new System.Drawing.Size(216, 26);
+            this.tbPreparePackage.Text = "Prepare";
+            this.tbPreparePackage.Click += new System.EventHandler(this.tbPreparePackage_Click);
+            // 
+            // tbRunPackage
+            // 
+            this.tbRunPackage.Name = "tbRunPackage";
+            this.tbRunPackage.Size = new System.Drawing.Size(216, 26);
+            this.tbRunPackage.Text = "Run (No Build)";
+            this.tbRunPackage.Click += new System.EventHandler(this.tbRunPackage_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -482,6 +509,9 @@
         private System.Windows.Forms.TextBox tbPackageName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel pnlPackageControl;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem tbPreparePackage;
+        private System.Windows.Forms.ToolStripMenuItem tbRunPackage;
     }
 }
 

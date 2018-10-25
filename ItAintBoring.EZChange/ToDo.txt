@@ -1,4 +1,8 @@
-﻿Move components up/down (solutions, actions)
+﻿Add file solution links (no export)
+Maintaining the master package ?
+Add visual editing (to replace XML)
+
+
+
 Run package (how to define the connection?)
 Add XML schema validation
-Add visual editing (to replace XML)

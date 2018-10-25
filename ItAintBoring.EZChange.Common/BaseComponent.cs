@@ -34,5 +34,27 @@ namespace ItAintBoring.EZChange.Common
             else if (Id != null) return Id;
             else return base.ToString();
         }
+
+        public virtual string GetDataFolder()
+        {
+            return ComponentId.ToString();
+        }
+
+        public string EscapeXml(string s)
+        {
+            if (string.IsNullOrEmpty(s)) return s;
+            return s.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;");
+        }
+
+        public string UnescapeXML(string s)
+        {
+            if (string.IsNullOrEmpty(s)) return s;
+            s = s.Replace("&apos;", "'");
+            s = s.Replace("&quot;", "\"");
+            s = s.Replace("&gt;", ">");
+            s = s.Replace("&lt;", "<");
+            s = s.Replace("&amp;", "&");
+            return s;
+        }
     }
 }
