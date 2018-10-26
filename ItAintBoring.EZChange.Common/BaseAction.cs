@@ -18,7 +18,15 @@ namespace ItAintBoring.EZChange.Common
         [XmlIgnore]
         abstract public List<Type> SupportedSolutionTypes { get; }
 
-        
+        public void ActionStarted()
+        {
+            LogInfo("Starting action: " + this.Name);
+        }
+
+        public void ActionCompleted()
+        {
+            LogInfo("Action completed: " + this.Name);
+        }
 
     }
 }

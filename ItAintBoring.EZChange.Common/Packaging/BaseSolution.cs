@@ -36,6 +36,14 @@ namespace ItAintBoring.EZChange.Common.Packaging
         }
         public abstract void DeploySolution(BaseComponent package);
 
+        public void ProcessingStarted()
+        {
+            LogInfo("Solution: " + this.Name);
+        }
 
+        public void ProcessingCompleted()
+        {
+            //No need to log
+        }
     }
 }

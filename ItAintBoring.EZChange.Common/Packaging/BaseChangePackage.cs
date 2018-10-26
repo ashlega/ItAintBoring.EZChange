@@ -5,20 +5,45 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace ItAintBoring.EZChange.Common.Packaging
 {
     public abstract class BaseChangePackage : BaseComponent
     {
         
+
         public string PackageLocation { get; set; } //Storage specific
         public List<BaseSolution> Solutions { get; set; }
 
-        abstract public bool HasUnsavedChanges {get;set;}
+        private List<Variable> variables = null;
+        public virtual List<Variable> Variables
+        {
+            get
+            {
+                if(variables == null) variables = new List<Variable>();
+                return variables;
+            }
+        }
+
+        private bool hasUnsavedChanges = false;
+        [XmlIgnore]
+        virtual public bool HasUnsavedChanges
+        {
+            get
+            {
+                return hasUnsavedChanges;
+            }
+            set
+            {
+                hasUnsavedChanges = value;
+            }
+        }
 
         public BaseChangePackage(): base()
         {
             Solutions = new List<BaseSolution>();
+            HasUnsavedChanges = false;
         }
 
         public override string GetDataFolder()

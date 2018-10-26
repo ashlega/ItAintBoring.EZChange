@@ -60,12 +60,16 @@ namespace ItAintBoring.EZChange.Core.Actions
 
         public override void DoAction(BaseSolution solution)
         {
+            ActionStarted();
+
             DynamicsSolution ds = (DynamicsSolution)solution;
             
             var results = ds.Service.Service.RetrieveMultiple(new FetchExpression(UnescapeXML(XML)));
             var list = results.Entities.ToList();
             var json = ItAintBoring.EZChange.Core.Dynamics.Common.SerializeEntityList(list);
             ds.SaveActionData(this, json);
+
+            ActionCompleted();
         }
     }
 }

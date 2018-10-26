@@ -16,6 +16,9 @@ namespace ItAintBoring.EZChange
 {
     public partial class MainForm : Form
     {
+
+        
+
         public IPackageStorage storageProvider = null;
 
         private BaseChangePackage package = null;
@@ -29,13 +32,17 @@ namespace ItAintBoring.EZChange
             {
                 if (package != value)
                 {
+                    bool hasChanges = value != null && value.HasUnsavedChanges;
                     package = value;
                     
                     tbPackageName.Text = package.Name;
                     ShowPackageControl();
                     ResetSolutions();
+                    ResetVariables();
                     ResetTabs();
                     ReSetUI();
+
+                    Package.HasUnsavedChanges = hasChanges;
                 }
                 
 
@@ -74,6 +81,18 @@ namespace ItAintBoring.EZChange
             }
         }
 
+        public void ResetVariables()
+        {
+            if (Package == null) return;
+            lbVariables.Items.Clear();
+            foreach (var v in Package.Variables)
+            {
+                lbVariables.Items.Add(v);
+
+            }
+            
+        }
+
         public BaseSolution SelectedSolution {
             get
             {
@@ -93,6 +112,8 @@ namespace ItAintBoring.EZChange
             Font = SystemFonts.MessageBoxFont;
             InitializeComponent();
 
+            BaseComponent.Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
             var storageList = StorageFactory.GetStorageList();
             storageProvider = storageList[0];
             List<Type> types = new List<Type>();
@@ -110,6 +131,9 @@ namespace ItAintBoring.EZChange
             }
 
             storageProvider.AddKnownTypes(types);
+
+            //tcPackage.Height = Height - tcPackage.Top - 20;
+            lbVariables.Height = btnAddVar.Top - 10 - labelVariables.Top - labelVariables.Height;
 
             ResetTabs();
 
@@ -151,6 +175,7 @@ namespace ItAintBoring.EZChange
             btnRemovePreAction.Enabled = lbPreActions.SelectedItem != null;
             btnRemovePostAction.Enabled = lbPostActions.SelectedItem != null;
             btnDeleteSolution.Enabled = lbSolutions.SelectedIndex > -1;
+            btnRemoveVar.Enabled = lbVariables.SelectedIndex > -1;
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
@@ -599,12 +624,19 @@ namespace ItAintBoring.EZChange
         {
             try
             {
+                BaseComponent.Log.Info("Starting the build..");
                 Package.Build(storageProvider);
+
             }
             catch (Exception ex)
             {
+                BaseComponent.Log.Error(ex.Message);
                 ShowError(ex.Message);
                 return false;
+            }
+            finally
+            {
+                BaseComponent.Log.Info("Done");
             }
             return true;
         }
@@ -618,24 +650,33 @@ namespace ItAintBoring.EZChange
 
         }
 
-        public bool RunPackage()
+        public bool RunPackage(string location)
         {
             try
             {
-                BaseChangePackage bcp = storageProvider.LoadPackage(Package.PackageLocation);
+
+                BaseComponent.Log.Info("Starting the package..");
+                BaseChangePackage bcp = storageProvider.LoadPackage(location);
+                BaseComponent.Log.Info("Package loaded: " + bcp.Name);
                 bcp.Run();
             }
             catch(Exception ex)
             {
+                BaseComponent.Log.Error(ex.Message);
                 ShowError(ex.Message);
                 return false;
             }
+            finally
+            {
+                BaseComponent.Log.Info("Done");
+            }
+
             return true;
         }
 
         private void tbRunPackage_Click(object sender, EventArgs e)
         {
-            if(RunPackage())
+            if(RunPackage(Package.PackageLocation))
             {
                 ShowMessage("Success");
             }
@@ -650,6 +691,62 @@ namespace ItAintBoring.EZChange
         {
             About abt = new About();
             abt.ShowDialog();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRemoveVar_Click(object sender, EventArgs e)
+        {
+            if(lbVariables.SelectedIndex > -1)
+            {
+                Package.Variables.Remove((Variable)lbVariables.SelectedItem);
+                lbVariables.Items.Remove(lbVariables.SelectedItem);
+                ResetVariables();
+                ReSetUI();
+                Package.HasUnsavedChanges = true;
+            }
+        }
+
+        private void btnAddVar_Click(object sender, EventArgs e)
+        {
+            VariableEditor ve = new VariableEditor();
+            if(ve.ShowDialog() == DialogResult.OK)
+            {
+                Variable vr = new Variable();
+                vr.Name = ve.VariableName;
+                vr.Value = ve.DefaultValue;
+                Package.Variables.Add(vr);
+                lbVariables.Items.Add(vr);
+                ResetVariables();
+                ReSetUI();
+                Package.HasUnsavedChanges = true;
+            }
+        }
+
+        private void lbVariables_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ReSetUI();
+        }
+
+        private void lbVariables_DoubleClick(object sender, EventArgs e)
+        {
+            if (lbVariables.SelectedItem != null)
+            {
+                Variable vr = (Variable)lbVariables.SelectedItem;
+                VariableEditor ve = new VariableEditor(vr.Name, vr.Value);
+                if (ve.ShowDialog() == DialogResult.OK)
+                {
+                    vr.Name = ve.VariableName;
+                    vr.Value = ve.DefaultValue;
+                    var ind = lbVariables.Items.IndexOf(vr);
+                    lbVariables.Items.Remove(vr);
+                    lbVariables.Items.Insert(ind, vr);
+                    Package.HasUnsavedChanges = true;
+                }
+            }
         }
     }
 }

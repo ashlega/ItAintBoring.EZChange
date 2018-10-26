@@ -54,6 +54,7 @@ namespace ItAintBoring.EZChange.Core.Actions
 
         public override void DoAction(BaseSolution solution)
         {
+            ActionStarted();
             DynamicsSolution ds = (DynamicsSolution)solution;
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(XML);
@@ -97,6 +98,7 @@ namespace ItAintBoring.EZChange.Core.Actions
                         break;
                 }
             }
+            ActionCompleted();
         }
     }
 }

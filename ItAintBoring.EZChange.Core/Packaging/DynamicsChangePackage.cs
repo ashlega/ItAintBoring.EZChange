@@ -23,7 +23,6 @@ namespace ItAintBoring.EZChange.Core.Packaging
 
         public string DestinationConnectionString { get; set; }
 
-        public override bool HasUnsavedChanges {get;set;}
 
 
         private bool ignoreUpdates = false;

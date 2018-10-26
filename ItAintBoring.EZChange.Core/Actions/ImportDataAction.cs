@@ -65,6 +65,7 @@ namespace ItAintBoring.EZChange.Core.Actions
 
         public override void DoAction(BaseSolution solution)
         {
+            ActionStarted();
             DynamicsSolution ds = (DynamicsSolution)solution;
             string json = ds.LoadActionData(this, ds.GetActionsDataFolder(this) + "\\"+ FileName);
             if (json != null)
@@ -79,6 +80,7 @@ namespace ItAintBoring.EZChange.Core.Actions
                     throw new Exception("Error deserializing data for " + Name + ". " + ex.Message);
                 }
             }
+            ActionCompleted();
 
         }
     }

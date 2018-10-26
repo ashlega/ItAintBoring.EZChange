@@ -61,6 +61,7 @@ namespace ItAintBoring.EZChange.Core.Actions
 
         public override void DoAction(BaseSolution solution)
         {
+            ActionStarted();
             DynamicsSolution ds = (DynamicsSolution)solution;
             if (!String.IsNullOrEmpty(FetchXml) && !String.IsNullOrEmpty(WorkflowId))
             {
@@ -74,6 +75,7 @@ namespace ItAintBoring.EZChange.Core.Actions
                     ds.Service.Service.Execute(ewr);
                 }
             }
+            ActionCompleted();
         }
     }
 }

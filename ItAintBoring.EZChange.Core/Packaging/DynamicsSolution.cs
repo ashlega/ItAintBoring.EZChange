@@ -137,7 +137,7 @@ namespace ItAintBoring.EZChange.Core.Packaging
 
         public override void DeploySolution(BaseComponent package)
         {
-
+            ProcessingStarted();
             if (service == null)
             {
                 service = new DynamicsService(((DynamicsChangePackage)package).DestinationConnectionString);
@@ -151,7 +151,7 @@ namespace ItAintBoring.EZChange.Core.Packaging
                 action.DoAction(this);
             }
 
-
+            ProcessingCompleted();
         }
     }
 }

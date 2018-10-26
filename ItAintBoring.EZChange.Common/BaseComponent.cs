@@ -11,6 +11,9 @@ namespace ItAintBoring.EZChange.Common
     public abstract class BaseComponent
     {
 
+        [XmlIgnore]
+        public static log4net.ILog Log { get; set; }
+
         public Guid ComponentId { get; set; }
 
         public abstract string Version { get; }
@@ -55,6 +58,26 @@ namespace ItAintBoring.EZChange.Common
             s = s.Replace("&lt;", "<");
             s = s.Replace("&amp;", "&");
             return s;
+        }
+
+        public static void LogError(string msg)
+        {
+            if (Log != null) Log.Error(msg);
+        }
+
+        public static void LogWarning(string msg)
+        {
+            if (Log != null) Log.Warn(msg);
+        }
+
+        public static void LogInfo(string msg)
+        {
+            if (Log != null) Log.Info(msg);
+        }
+
+        public static void LogDebug(string msg)
+        {
+            if (Log != null) Log.Debug(msg);
         }
     }
 }

@@ -55,8 +55,10 @@ namespace ItAintBoring.EZChange.Core.Actions
 
         public override void DoAction(BaseSolution solution)
         {
+            ActionStarted();
             DynamicsSolution ds = (DynamicsSolution)solution;
             ds.ImportSolution();
+            ActionCompleted();
         }
     }
 }
