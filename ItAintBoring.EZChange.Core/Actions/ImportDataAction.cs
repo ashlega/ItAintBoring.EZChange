@@ -66,11 +66,18 @@ namespace ItAintBoring.EZChange.Core.Actions
         public override void DoAction(BaseSolution solution)
         {
             DynamicsSolution ds = (DynamicsSolution)solution;
-            string json = ds.LoadActionData(this, FileName);
+            string json = ds.LoadActionData(this, ds.GetActionsDataFolder(this) + "\\"+ FileName);
             if (json != null)
             {
-                var list = ItAintBoring.EZChange.Core.Dynamics.Common.DeSerializeEntityList(ds.Service.Service, json);
-                ds.Service.DeserializeData(list, CreateOnly);
+                try
+                {
+                    var list = ItAintBoring.EZChange.Core.Dynamics.Common.DeSerializeEntityList(ds.Service.Service, json);
+                    ds.Service.DeserializeData(list, CreateOnly);
+                }
+                catch(Exception ex)
+                {
+                    throw new Exception("Error deserializing data for " + Name + ". " + ex.Message);
+                }
             }
 
         }

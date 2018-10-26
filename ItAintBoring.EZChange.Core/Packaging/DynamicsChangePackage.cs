@@ -63,7 +63,7 @@ namespace ItAintBoring.EZChange.Core.Packaging
 
         public override string GetDataFolder()
         {
-            return AppDomain.CurrentDomain.BaseDirectory + "\\Packages\\" + this.Name.ToString();
+            return System.IO.Path.GetDirectoryName(PackageLocation)+"\\Build";
         }
     }
 }

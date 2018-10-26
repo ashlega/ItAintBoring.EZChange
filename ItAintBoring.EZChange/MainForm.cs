@@ -112,6 +112,13 @@ namespace ItAintBoring.EZChange
             storageProvider.AddKnownTypes(types);
 
             ResetTabs();
+
+
+            System.Net.ServicePointManager
+                .ServerCertificateValidationCallback +=
+                (sender, cert, chain, sslPolicyErrors) => true;
+
+
         }
 
         public void ResetTabs()
@@ -122,6 +129,7 @@ namespace ItAintBoring.EZChange
                 tcPackage.TabPages.Remove(tpSource);
                 tcPackage.TabPages.Remove(tpLogo);
                 tcPackage.TabPages.Add(tpLogo);
+
             }
             else
             {
@@ -130,6 +138,9 @@ namespace ItAintBoring.EZChange
                 tcPackage.TabPages.Remove(tpLogo);
                 tcPackage.TabPages.Add(tpSource);
                 tcPackage.TabPages.Add(tpSolutions);
+                lbSolutions.Height = btnAddSolution.Top - 10;
+                lbPreActions.Height = btnAddPreAction.Top - 10;
+                lbPostActions.Height = btnAddPostAction.Top - 10;
             }
         }
 
@@ -173,6 +184,7 @@ namespace ItAintBoring.EZChange
 
         private void tbSaveProject_Click(object sender, EventArgs e)
         {
+            
             storageProvider.SavePackage(Package);
 
             
@@ -202,7 +214,6 @@ namespace ItAintBoring.EZChange
 
                     BaseChangePackage pkg = PackageFactory.CreatePackage((BaseChangePackage)selector.SelectedItem);
                     pkg.HasUnsavedChanges = false;
-                    pkg.PackageLocation = "NewPackage.ecp";
                     ComponentControl ac = new ComponentControl();
 
                     pkg.Name = "New Change Package";
@@ -611,17 +622,8 @@ namespace ItAintBoring.EZChange
         {
             try
             {
-                string[] files = System.IO.Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + Package.GetDataFolder(), "*ecp");
-                if (files.Length > 0)
-                {
-                    BaseChangePackage bcp = storageProvider.LoadPackage(files[0]);
-                    bcp.PackageLocation = files[0];
-                    bcp.Run();
-                }
-                else
-                {
-                    throw new Exception("This project has not been built yet");
-                }
+                BaseChangePackage bcp = storageProvider.LoadPackage(Package.PackageLocation);
+                bcp.Run();
             }
             catch(Exception ex)
             {

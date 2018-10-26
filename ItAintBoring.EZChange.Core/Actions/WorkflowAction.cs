@@ -78,8 +78,3 @@ namespace ItAintBoring.EZChange.Core.Actions
     }
 }
 
-/*
- <action type="run" workflowid="">
-    fetchXml goes here
- </action>
- * */

@@ -73,13 +73,14 @@ namespace ItAintBoring.EZChange.Core.Dynamics
                 case "Integer":
                     return (typeof(int)).Name;
                 case "Owner":
-                    return (typeof(Guid)).Name;
+                    return (typeof(Microsoft.Xrm.Sdk.EntityReference)).Name;
+                    //return (typeof(Guid)).Name;
                     
                 case "DateTime": //DateTime
                     return (typeof(DateTime)).Name;
                     
                 case "Boolean": //Boolean
-                    
+                    return (typeof(bool)).Name;
                 case "String": //String
                     return (typeof(String)).Name;
                     

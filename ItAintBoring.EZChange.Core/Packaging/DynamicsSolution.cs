@@ -65,11 +65,19 @@ namespace ItAintBoring.EZChange.Core.Packaging
 
         private string solutionFolder = null;
 
+        public string GetActionsDataFolder(BaseAction action)
+        {
+            if (solutionFolder == null) return null;
+            string path = System.IO.Path.Combine(solutionFolder, "Actions");
+            System.IO.Directory.CreateDirectory(path);
+            return path;
+
+        }
+
         private string GetActionFileName(BaseAction action, string fileName)
         {
             if (solutionFolder == null) return null;
-            string path = System.IO.Path.Combine(solutionFolder, "buildactions");
-            System.IO.Directory.CreateDirectory(path);
+            string path = GetActionsDataFolder(action);
             return System.IO.Path.Combine(path, fileName != null ? fileName : action.Name+ ".txt");
         }
         public override void SaveActionData(BaseAction action, string data)
@@ -82,8 +90,8 @@ namespace ItAintBoring.EZChange.Core.Packaging
 
         public override string LoadActionData(BaseAction action, string fileName)
         {
-            fileName = GetActionFileName(action, fileName);
-            
+            fileName = System.IO.Path.Combine(GetActionsDataFolder(action), fileName);
+
             if (!System.IO.File.Exists(fileName)) return null;
             using (System.IO.StreamReader sr = new System.IO.StreamReader(fileName))
             {
@@ -104,7 +112,7 @@ namespace ItAintBoring.EZChange.Core.Packaging
             }
             else service.ConnectionString = ((DynamicsChangePackage)package).ConnectionString;
 
-            solutionFolder = package.GetDataFolder() + "\\Solutions\\" + GetDataFolder();
+            solutionFolder = package.GetDataFolder() + "\\" + GetDataFolder();
 
             foreach (var action in BuildActions)
             {
@@ -135,7 +143,8 @@ namespace ItAintBoring.EZChange.Core.Packaging
                 service = new DynamicsService(((DynamicsChangePackage)package).DestinationConnectionString);
             }
             else service.ConnectionString = ((DynamicsChangePackage)package).DestinationConnectionString;
-            solutionFolder = package.GetDataFolder() + "\\Solutions\\" + GetDataFolder();
+
+            solutionFolder = package.GetDataFolder() + "\\" + GetDataFolder();
 
             foreach (var action in DeployActions)
             {

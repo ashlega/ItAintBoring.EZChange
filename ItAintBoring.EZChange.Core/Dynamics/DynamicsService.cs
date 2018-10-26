@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Query;
 using System.Runtime.Serialization;
+using System.ServiceModel.Description;
+using Microsoft.Xrm.Sdk.Client;
+using System.Net;
 
 namespace ItAintBoring.EZChange.Core.Dynamics
 {
@@ -45,12 +48,47 @@ namespace ItAintBoring.EZChange.Core.Dynamics
             {
                 if (internalService == null)
                 {
+
+                    
                     var conn = new Microsoft.Xrm.Tooling.Connector.CrmServiceClient(connectionString);
                     if (conn.OrganizationServiceProxy != null)
                     {
                         conn.OrganizationServiceProxy.Timeout = new TimeSpan(0, 20, 0);
                     }
                     internalService = (IOrganizationService)conn.OrganizationWebProxyClient != null ? (IOrganizationService)conn.OrganizationWebProxyClient : (IOrganizationService)conn.OrganizationServiceProxy;
+                    
+                    if (internalService == null)
+                    {
+                        string[] pairs = connectionString.Split(';');
+                        Uri oUri = null;
+                        ClientCredentials clientCredentials = new ClientCredentials();
+                        
+
+                        foreach (string p in pairs)
+                        {
+                            string[] keyValue = p.Trim().Split('=');
+                            switch (keyValue[0].ToLower())
+                            {
+                                case "url":
+                                    oUri = new Uri(keyValue[1]+ "/XRMServices/2011/Organization.svc");
+                                    break;
+                                case "domain":
+                                    clientCredentials.UserName.UserName = keyValue[1] + "\\" + clientCredentials.UserName.UserName;
+                                    break;
+                                case "username":
+                                    clientCredentials.UserName.UserName = clientCredentials.UserName.UserName + keyValue[1];
+                                    break;
+                                case "password":
+                                    clientCredentials.UserName.Password = keyValue[1];
+                                    break;
+                            }
+                        }
+
+                                               
+                        var service = new OrganizationServiceProxy(oUri, null, clientCredentials, null);
+                        service.Timeout = new TimeSpan(0, 20, 0);
+                        internalService = service;
+                    }
                 }
                 return internalService;
 
@@ -85,9 +123,9 @@ namespace ItAintBoring.EZChange.Core.Dynamics
             importSolutionRequest.PublishWorkflows = true;
             importSolutionRequest.SkipProductUpdateDependencies = false;
 
-            ImportSolutionResponse resp = (ImportSolutionResponse)Service.Execute(importSolutionRequest);
+            //ImportSolutionResponse resp = (ImportSolutionResponse)Service.Execute(importSolutionRequest);
             
-            /*
+            
 
             var requestAsync = new ExecuteAsyncRequest
             {
@@ -95,6 +133,7 @@ namespace ItAintBoring.EZChange.Core.Dynamics
             };
             Service.Execute(requestAsync);
             bool isfinished = false;
+            int counter = 100;
             do
             {
                 try
@@ -104,15 +143,19 @@ namespace ItAintBoring.EZChange.Core.Dynamics
                     if (job.Contains("completedon"))
                     {
                         isfinished = true;
+
                     }
                 }
                 catch(Exception ex)
                 {
                     ex = ex;
+                    counter--;
+                    System.Threading.Thread.Sleep(500);
+                    if (counter == 0) throw new Exception("It's taking too long to import the " + fileName);
                 }
-                System.Threading.Thread.Sleep(500);
+                
             } while (isfinished == false);
-            */
+            
             PublishAll();
         }
 

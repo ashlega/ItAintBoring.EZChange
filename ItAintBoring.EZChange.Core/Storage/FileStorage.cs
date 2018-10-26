@@ -80,13 +80,20 @@ namespace ItAintBoring.EZChange.Core.Storage
         public bool SavePackage(BaseChangePackage package, string location = null)
         {
             if (package == null) return true;
-            
-            XmlSerializer ser = new XmlSerializer(typeof(BaseChangePackage), KnownTypes.ToArray());
-            TextWriter writer = new StreamWriter(location == null ? package.PackageLocation : location);
-            ser.Serialize(writer, package);
-            writer.Close();
-            package.HasUnsavedChanges = false;
-            return true;
+            location = location == null ? package.PackageLocation : location;
+            if (location == null)
+            {
+                return SavePackageAs(package);
+            }
+            else
+            {
+                XmlSerializer ser = new XmlSerializer(typeof(BaseChangePackage), KnownTypes.ToArray());
+                TextWriter writer = new StreamWriter(location);
+                ser.Serialize(writer, package);
+                writer.Close();
+                package.HasUnsavedChanges = false;
+                return true;
+            }
         }
     }
 }

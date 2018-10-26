@@ -76,8 +76,16 @@ namespace ItAintBoring.EZChange.Core.Dynamics
 
                 foreach (var sa in e.Attributes)
                 {
-                    var a = sa.ConvertToAttribute(service, ent.LogicalName);
-                    ent.Attributes[a.Key] = a.Value;
+                    try
+                    {
+                        var a = sa.ConvertToAttribute(service, ent.LogicalName);
+                        ent.Attributes[a.Key] = a.Value;
+                    }
+                    catch(Exception ex)
+                    {
+                        throw new Exception("Error converting to attribute: " + sa.Key + "=" + sa.Value + "." + ex.Message);
+                    }
+                    
                 }
                 result.Add(ent);
             }

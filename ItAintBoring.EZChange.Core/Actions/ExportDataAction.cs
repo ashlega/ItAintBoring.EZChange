@@ -13,6 +13,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using System.Web.Script.Serialization;
 using Microsoft.Xrm.Sdk;
+using Microsoft.Crm.Sdk.Messages;
 
 namespace ItAintBoring.EZChange.Core.Actions
 {
@@ -60,7 +61,7 @@ namespace ItAintBoring.EZChange.Core.Actions
         public override void DoAction(BaseSolution solution)
         {
             DynamicsSolution ds = (DynamicsSolution)solution;
-
+            
             var results = ds.Service.Service.RetrieveMultiple(new FetchExpression(UnescapeXML(XML)));
             var list = results.Entities.ToList();
             var json = ItAintBoring.EZChange.Core.Dynamics.Common.SerializeEntityList(list);

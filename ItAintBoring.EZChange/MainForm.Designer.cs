@@ -396,7 +396,7 @@
             // btnDeleteSolution
             // 
             this.btnDeleteSolution.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDeleteSolution.Location = new System.Drawing.Point(87, 284);
+            this.btnDeleteSolution.Location = new System.Drawing.Point(90, 284);
             this.btnDeleteSolution.Name = "btnDeleteSolution";
             this.btnDeleteSolution.Size = new System.Drawing.Size(75, 30);
             this.btnDeleteSolution.TabIndex = 6;
@@ -407,7 +407,7 @@
             // btnAddSolution
             // 
             this.btnAddSolution.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddSolution.Location = new System.Drawing.Point(6, 284);
+            this.btnAddSolution.Location = new System.Drawing.Point(9, 284);
             this.btnAddSolution.Name = "btnAddSolution";
             this.btnAddSolution.Size = new System.Drawing.Size(75, 30);
             this.btnAddSolution.TabIndex = 5;

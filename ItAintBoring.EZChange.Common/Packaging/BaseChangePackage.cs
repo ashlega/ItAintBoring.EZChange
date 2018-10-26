@@ -23,7 +23,7 @@ namespace ItAintBoring.EZChange.Common.Packaging
 
         public override string GetDataFolder()
         {
-            return System.IO.Path.GetFullPath(PackageLocation);
+            return System.IO.Path.Combine(System.IO.Path.GetFullPath(PackageLocation), "Solutions");
         }
 
         public virtual void Run()
