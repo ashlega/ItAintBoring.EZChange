@@ -2,6 +2,7 @@
 using ItAintBoring.EZChange.Common.Packaging;
 using ItAintBoring.EZChange.Core.UI;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -63,6 +64,13 @@ namespace ItAintBoring.EZChange.Core.Packaging
         public override string GetDataFolder()
         {
             return System.IO.Path.GetDirectoryName(PackageLocation)+"\\Build";
+        }
+
+        public override void UpdateRuntimeData(Hashtable values)
+        {
+            base.UpdateRuntimeData(values);
+            ConnectionString = ReplaceVariables(ConnectionString, values);
+            DestinationConnectionString = ReplaceVariables(DestinationConnectionString, values);
         }
     }
 }

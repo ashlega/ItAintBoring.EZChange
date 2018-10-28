@@ -1,25 +1,42 @@
-﻿using System;
+﻿using ItAintBoring.EZChange.Common.Packaging;
+using ItAintBoring.EZChange.Common.Storage;
+using ItAintBoring.EZChange.Core;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace ItAintBoring.EZChange
 {
     
     public class PackageRunner
     {
-        public string FolderPath { get; set; }
-        public string EnvironmentList { get; set; }
-        public PackageRunner(string folder, string environmentList)
+
+
+        public Hashtable LoadVariables(string folder, string targetEnvironment)
         {
-            FolderPath = folder;
+            Hashtable ht = new Hashtable();
+            XmlDocument doc = new XmlDocument();
+            doc.Load(System.IO.Path.Combine(folder, "variables.xml"));
+            var variableNodes = doc.SelectNodes($"//environment[@name='{targetEnvironment}']/variable");
+            foreach (XmlNode v in variableNodes)
+            {
+                ht.Add(v.Attributes["name"].Value, v.FirstChild.Value.Trim());
+            }
+            return ht;
         }
 
-        public void RunPackages(string targetEnvironment)
+        public void RunPackages(string folder, string targetEnvironment)
         {
+            var storageList = StorageFactory.GetStorageList();
+            var storageProvider = storageList[0];
+
+            Hashtable variableValues = LoadVariables(folder, targetEnvironment);
             List<string> packages = new List<string>();
-            using (System.IO.StreamReader sr = new System.IO.StreamReader(System.IO.Path.Combine(FolderPath, "orderedpackages.txt")))
+            using (System.IO.StreamReader sr = new System.IO.StreamReader(System.IO.Path.Combine(folder, "orderedpackages.txt")))
             {
                 while (!sr.EndOfStream)
                 {
@@ -47,9 +64,19 @@ namespace ItAintBoring.EZChange
 
             while (index < packages.Count)
             {
-
-                //Run the packages from this on
-                //Need to read configuration first (per environment)
+                string[] pair = packages[index].Split('=');
+                BaseChangePackage bcp = storageProvider.LoadPackage(System.IO.Path.Combine(folder, pair[0]));
+                /*
+                foreach(var v in bcp.Variables)
+                {
+                    if(variableValues.ContainsKey(v.Name))
+                    {
+                        v.Value = (string)variableValues[v.Name];
+                    }
+                }
+                */
+                bcp.UpdateRuntimeData(variableValues);
+                bcp.Run();
 
                 if (packages[index].IndexOf("=") > 0)
                 {
@@ -58,7 +85,7 @@ namespace ItAintBoring.EZChange
                 }
                 else packages[index] = packages[index] + "=" + targetEnvironment;
 
-                using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(FolderPath, "orderedpackages.txt")))
+                using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(folder, "orderedpackages.txt")))
                 {
                     foreach (var line in packages)
                     {

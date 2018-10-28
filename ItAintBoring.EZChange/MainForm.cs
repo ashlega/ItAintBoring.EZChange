@@ -19,7 +19,7 @@ namespace ItAintBoring.EZChange
 
         
 
-        public IPackageStorage storageProvider = null;
+        public static IPackageStorage storageProvider = null;
 
         private BaseChangePackage package = null;
         public BaseChangePackage Package
@@ -114,23 +114,7 @@ namespace ItAintBoring.EZChange
 
             BaseComponent.Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-            var storageList = StorageFactory.GetStorageList();
-            storageProvider = storageList[0];
-            List<Type> types = new List<Type>();
-            foreach(var obj in PackageFactory.GetPackageList())
-            {
-                types.Add(obj.GetType());
-            }
-            foreach (var obj in SolutionFactory.GetSolutionList())
-            {
-                types.Add(obj.GetType());
-            }
-            foreach (var obj in ActionFactory.GetActionList())
-            {
-                types.Add(obj.GetType());
-            }
-
-            storageProvider.AddKnownTypes(types);
+            
 
             //tcPackage.Height = Height - tcPackage.Top - 20;
             lbVariables.Height = btnAddVar.Top - 10 - labelVariables.Top - labelVariables.Height;

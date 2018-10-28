@@ -77,6 +77,12 @@ namespace ItAintBoring.EZChange.Core.Actions
             }
             ActionCompleted();
         }
+
+        public override void UpdateRuntimeData(System.Collections.Hashtable values)
+        {
+            FetchXml = ReplaceVariables(FetchXml, values);
+            WorkflowId = ReplaceVariables(WorkflowId, values);
+        }
     }
 }
 

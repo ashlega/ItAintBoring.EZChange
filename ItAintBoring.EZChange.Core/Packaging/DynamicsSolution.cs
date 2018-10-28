@@ -4,6 +4,7 @@ using ItAintBoring.EZChange.Core.Dynamics;
 using ItAintBoring.EZChange.Core.UI;
 using Microsoft.Crm.Sdk.Messages;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -152,6 +153,12 @@ namespace ItAintBoring.EZChange.Core.Packaging
             }
 
             ProcessingCompleted();
+        }
+
+        public override void UpdateRuntimeData(Hashtable values)
+        {
+            base.UpdateRuntimeData(values);
+            ExternalFileName = ReplaceVariables(ExternalFileName, values);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ItAintBoring.EZChange.Common.Storage;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -72,6 +73,14 @@ namespace ItAintBoring.EZChange.Common.Packaging
                 s.PrepareSolution(this);
             }
             
+        }
+
+        public override void UpdateRuntimeData(Hashtable values)
+        {
+            foreach(var s in Solutions)
+            {
+                s.UpdateRuntimeData(values);
+            }
         }
 
     }

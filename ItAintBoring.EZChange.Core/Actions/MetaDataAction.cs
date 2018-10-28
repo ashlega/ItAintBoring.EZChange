@@ -100,6 +100,11 @@ namespace ItAintBoring.EZChange.Core.Actions
             }
             ActionCompleted();
         }
+
+        public override void UpdateRuntimeData(System.Collections.Hashtable values)
+        {
+            XML = ReplaceVariables(XML, values);
+        }
     }
 }
 /*

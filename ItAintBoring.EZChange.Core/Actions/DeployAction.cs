@@ -60,6 +60,11 @@ namespace ItAintBoring.EZChange.Core.Actions
             ds.ImportSolution();
             ActionCompleted();
         }
+
+        public override void UpdateRuntimeData(System.Collections.Hashtable values)
+        {
+            XML = ReplaceVariables(XML, values);
+        }
     }
 }
 /*

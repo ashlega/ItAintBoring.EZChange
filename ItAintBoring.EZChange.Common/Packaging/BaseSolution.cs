@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -44,6 +45,18 @@ namespace ItAintBoring.EZChange.Common.Packaging
         public void ProcessingCompleted()
         {
             //No need to log
+        }
+
+        public override void UpdateRuntimeData(Hashtable values)
+        {
+            foreach (var a in BuildActions)
+            {
+                a.UpdateRuntimeData(values);
+            }
+            foreach (var a in DeployActions)
+            {
+                a.UpdateRuntimeData(values);
+            }
         }
     }
 }

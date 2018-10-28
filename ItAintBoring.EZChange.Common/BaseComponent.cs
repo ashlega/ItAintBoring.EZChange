@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,8 @@ namespace ItAintBoring.EZChange.Common
         public virtual string Description { get; }
 
         abstract public string Name { get; set; }
+
+        public abstract void UpdateRuntimeData(Hashtable values);
 
         public BaseComponent()
         {
@@ -78,6 +81,15 @@ namespace ItAintBoring.EZChange.Common
         public static void LogDebug(string msg)
         {
             if (Log != null) Log.Debug(msg);
+        }
+
+        public string ReplaceVariables(string s, Hashtable variables)
+        {
+            foreach(string key in variables.Keys)
+            {
+                s = s.Replace("#" + key + "#", (String)variables[key]);
+            }
+            return s;
         }
     }
 }

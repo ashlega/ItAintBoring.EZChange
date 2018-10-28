@@ -148,7 +148,6 @@ namespace ItAintBoring.EZChange.Core.Dynamics
                 }
                 catch(Exception ex)
                 {
-                    ex = ex;
                     counter--;
                     System.Threading.Thread.Sleep(500);
                     if (counter == 0) throw new Exception("It's taking too long to import the " + fileName);
