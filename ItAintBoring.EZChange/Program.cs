@@ -15,7 +15,13 @@ namespace ItAintBoring.EZChange
         [STAThread]
         static void Main(string[] args)
         {
-            var storageList = StorageFactory.GetStorageList();
+            if (args.Length == 0)
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+            }
+
+                var storageList = StorageFactory.GetStorageList();
             var storageProvider = storageList[0];
             List<Type> types = new List<Type>();
             foreach (var obj in PackageFactory.GetPackageList())
@@ -36,8 +42,6 @@ namespace ItAintBoring.EZChange
 
             if (args.Length == 0)
             {
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new MainForm());
             }
             else

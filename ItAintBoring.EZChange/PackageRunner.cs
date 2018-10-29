@@ -53,7 +53,7 @@ namespace ItAintBoring.EZChange
                 if (pair.Length > 1)
                 {
                     string[] environments = pair[1].Split(',');
-                    alreadyRun = (new List<string>(environments)).IndexOf(targetEnvironment) > 0;
+                    alreadyRun = (new List<string>(environments)).IndexOf(targetEnvironment) >= 0;
                 }
                 if (!alreadyRun)
                 {
@@ -80,8 +80,9 @@ namespace ItAintBoring.EZChange
 
                 if (packages[index].IndexOf("=") > 0)
                 {
-                    if (packages[index].IndexOf(",") > 0) packages[index] = packages[index] + "," + targetEnvironment;
-                    else packages[index] = packages[index] + targetEnvironment;
+                    //if (packages[index].IndexOf("=") > 0) packages[index] = packages[index] + "," + targetEnvironment;
+                    //else
+                    packages[index] = packages[index] + "," + targetEnvironment;
                 }
                 else packages[index] = packages[index] + "=" + targetEnvironment;
 
@@ -93,6 +94,7 @@ namespace ItAintBoring.EZChange
                     }
 
                 }
+                index++;
             }
                                    
         }
