@@ -67,6 +67,7 @@ namespace ItAintBoring.EZChange
                 while (index < packages.Count)
                 {
                     string[] pair = packages[index].Split('=');
+                    BaseComponent.LogInfo("Importing package: " + pair[0]);
                     BaseChangePackage bcp = storageProvider.LoadPackage(System.IO.Path.Combine(folder, pair[0]));
                     /*
                     foreach(var v in bcp.Variables)
