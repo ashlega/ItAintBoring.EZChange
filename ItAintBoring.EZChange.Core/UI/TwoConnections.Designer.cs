@@ -59,7 +59,7 @@
             this.tbSource.Location = new System.Drawing.Point(4, 29);
             this.tbSource.Multiline = true;
             this.tbSource.Name = "tbSource";
-            this.tbSource.Size = new System.Drawing.Size(624, 50);
+            this.tbSource.Size = new System.Drawing.Size(326, 50);
             this.tbSource.TabIndex = 2;
             this.tbSource.TextChanged += new System.EventHandler(this.tbSource_TextChanged);
             // 
@@ -70,7 +70,7 @@
             this.tbDestination.Location = new System.Drawing.Point(5, 102);
             this.tbDestination.Multiline = true;
             this.tbDestination.Name = "tbDestination";
-            this.tbDestination.Size = new System.Drawing.Size(623, 50);
+            this.tbDestination.Size = new System.Drawing.Size(325, 50);
             this.tbDestination.TabIndex = 3;
             this.tbDestination.TextChanged += new System.EventHandler(this.tbDestination_TextChanged);
             // 
@@ -83,7 +83,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "TwoConnections";
-            this.Size = new System.Drawing.Size(634, 156);
+            this.Size = new System.Drawing.Size(336, 156);
             this.ResumeLayout(false);
             this.PerformLayout();
 

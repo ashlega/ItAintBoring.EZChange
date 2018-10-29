@@ -85,6 +85,7 @@ namespace ItAintBoring.EZChange.Common
 
         public string ReplaceVariables(string s, Hashtable variables)
         {
+            if (s == null) return null;
             foreach(string key in variables.Keys)
             {
                 s = s.Replace("#" + key + "#", (String)variables[key]);

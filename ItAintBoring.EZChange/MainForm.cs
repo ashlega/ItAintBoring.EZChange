@@ -3,6 +3,7 @@ using ItAintBoring.EZChange.Common.Packaging;
 using ItAintBoring.EZChange.Common.Storage;
 using ItAintBoring.EZChange.Core;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -441,14 +442,12 @@ namespace ItAintBoring.EZChange
             }
             else
             {
-                pnlPackageControl.Controls.Clear();
-                pnlPackageControl.Controls.Add(Package.UIControl);
-                Package.UIControl.Top = 0;
-                Package.UIControl.Left = 1;
-                Package.UIControl.Width = pnlPackageControl.Width-3;
-                Package.UIControl.Height = pnlPackageControl.Height - 3;
+                //pnlPackageControl.Controls.Clear();
+                
+                
                 Package.UIControl.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
-
+                Package.UIControl.Parent = pnlPackageControl;
+                //pnlPackageControl.Controls.Add(Package.UIControl);
             }
         }
 
@@ -641,6 +640,13 @@ namespace ItAintBoring.EZChange
 
                 BaseComponent.Log.Info("Starting the package..");
                 BaseChangePackage bcp = storageProvider.LoadPackage(location);
+                Hashtable variables = new Hashtable();
+                foreach(var v in bcp.Variables)
+                {
+                    variables[v.Name] = v.Value;
+                }
+
+                bcp.UpdateRuntimeData(variables);
                 BaseComponent.Log.Info("Package loaded: " + bcp.Name);
                 bcp.Run();
             }
@@ -730,6 +736,17 @@ namespace ItAintBoring.EZChange
                     lbVariables.Items.Insert(ind, vr);
                     Package.HasUnsavedChanges = true;
                 }
+            }
+        }
+
+        private void pnlPackageControl_Resize(object sender, EventArgs e)
+        {
+            if (Package != null && Package.UIControl != null)
+            {
+                Package.UIControl.Top = 5;
+                Package.UIControl.Left = 5;
+                Package.UIControl.Width = pnlPackageControl.Width - 10;
+                Package.UIControl.Height = pnlPackageControl.Height - 10;
             }
         }
     }
