@@ -320,9 +320,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlPackageControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlPackageControl.Location = new System.Drawing.Point(4, 56);
+            this.pnlPackageControl.Location = new System.Drawing.Point(6, 59);
             this.pnlPackageControl.Name = "pnlPackageControl";
-            this.pnlPackageControl.Size = new System.Drawing.Size(671, 269);
+            this.pnlPackageControl.Size = new System.Drawing.Size(669, 260);
             this.pnlPackageControl.TabIndex = 0;
             this.pnlPackageControl.Resize += new System.EventHandler(this.pnlPackageControl_Resize);
             // 
