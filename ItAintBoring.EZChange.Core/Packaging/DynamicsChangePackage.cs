@@ -63,7 +63,10 @@ namespace ItAintBoring.EZChange.Core.Packaging
 
         public override string GetDataFolder()
         {
-            return System.IO.Path.GetDirectoryName(PackageLocation)+"\\Build";
+            string fileName = System.IO.Path.GetFileName(PackageLocation);
+            int i = fileName.LastIndexOf(".");
+            if (i > 0) fileName = fileName.Substring(0, i);
+            return System.IO.Path.GetDirectoryName(PackageLocation)+"\\Build_" + fileName;
         }
 
         public override void UpdateRuntimeData(Hashtable values)

@@ -113,7 +113,7 @@ namespace ItAintBoring.EZChange
             Font = SystemFonts.MessageBoxFont;
             InitializeComponent();
 
-            BaseComponent.Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+            
 
             
 

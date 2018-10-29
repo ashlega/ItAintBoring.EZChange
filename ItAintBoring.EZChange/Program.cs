@@ -1,4 +1,5 @@
-﻿using ItAintBoring.EZChange.Core;
+﻿using ItAintBoring.EZChange.Common;
+using ItAintBoring.EZChange.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,9 @@ namespace ItAintBoring.EZChange
                 Application.SetCompatibleTextRenderingDefault(false);
             }
 
-                var storageList = StorageFactory.GetStorageList();
+            BaseComponent.Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+            var storageList = StorageFactory.GetStorageList();
             var storageProvider = storageList[0];
             List<Type> types = new List<Type>();
             foreach (var obj in PackageFactory.GetPackageList())

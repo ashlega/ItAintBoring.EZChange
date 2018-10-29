@@ -1,4 +1,5 @@
-﻿using ItAintBoring.EZChange.Common.Packaging;
+﻿using ItAintBoring.EZChange.Common;
+using ItAintBoring.EZChange.Common.Packaging;
 using ItAintBoring.EZChange.Common.Storage;
 using ItAintBoring.EZChange.Core;
 using System;
@@ -33,68 +34,74 @@ namespace ItAintBoring.EZChange
         {
             var storageList = StorageFactory.GetStorageList();
             var storageProvider = storageList[0];
-
-            Hashtable variableValues = LoadVariables(folder, targetEnvironment);
-            List<string> packages = new List<string>();
-            using (System.IO.StreamReader sr = new System.IO.StreamReader(System.IO.Path.Combine(folder, "orderedpackages.txt")))
+            try
             {
-                while (!sr.EndOfStream)
+                Hashtable variableValues = LoadVariables(folder, targetEnvironment);
+                List<string> packages = new List<string>();
+                using (System.IO.StreamReader sr = new System.IO.StreamReader(System.IO.Path.Combine(folder, "orderedpackages.txt")))
                 {
-                    string data = sr.ReadLine();
-                    packages.Add(data);
-                }
-            }
-            int index = 0;
-            while(index < packages.Count)
-            {
-                string[] pair = packages[index].Split('=');
-                bool alreadyRun = false;
-                 
-                if (pair.Length > 1)
-                {
-                    string[] environments = pair[1].Split(',');
-                    alreadyRun = (new List<string>(environments)).IndexOf(targetEnvironment) >= 0;
-                }
-                if (!alreadyRun)
-                {
-                    break;
-                }
-                index++;
-            }
-
-            while (index < packages.Count)
-            {
-                string[] pair = packages[index].Split('=');
-                BaseChangePackage bcp = storageProvider.LoadPackage(System.IO.Path.Combine(folder, pair[0]));
-                /*
-                foreach(var v in bcp.Variables)
-                {
-                    if(variableValues.ContainsKey(v.Name))
+                    while (!sr.EndOfStream)
                     {
-                        v.Value = (string)variableValues[v.Name];
+                        string data = sr.ReadLine();
+                        packages.Add(data);
                     }
                 }
-                */
-                bcp.UpdateRuntimeData(variableValues);
-                bcp.Run();
-
-                if (packages[index].IndexOf("=") > 0)
+                int index = 0;
+                while (index < packages.Count)
                 {
-                    //if (packages[index].IndexOf("=") > 0) packages[index] = packages[index] + "," + targetEnvironment;
-                    //else
-                    packages[index] = packages[index] + "," + targetEnvironment;
-                }
-                else packages[index] = packages[index] + "=" + targetEnvironment;
+                    string[] pair = packages[index].Split('=');
+                    bool alreadyRun = false;
 
-                using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(folder, "orderedpackages.txt")))
-                {
-                    foreach (var line in packages)
+                    if (pair.Length > 1)
                     {
-                        sw.WriteLine(line);
+                        string[] environments = pair[1].Split(',');
+                        alreadyRun = (new List<string>(environments)).IndexOf(targetEnvironment) >= 0;
                     }
-
+                    if (!alreadyRun)
+                    {
+                        break;
+                    }
+                    index++;
                 }
-                index++;
+
+                while (index < packages.Count)
+                {
+                    string[] pair = packages[index].Split('=');
+                    BaseChangePackage bcp = storageProvider.LoadPackage(System.IO.Path.Combine(folder, pair[0]));
+                    /*
+                    foreach(var v in bcp.Variables)
+                    {
+                        if(variableValues.ContainsKey(v.Name))
+                        {
+                            v.Value = (string)variableValues[v.Name];
+                        }
+                    }
+                    */
+                    bcp.UpdateRuntimeData(variableValues);
+                    bcp.Run();
+
+                    if (packages[index].IndexOf("=") > 0)
+                    {
+                        //if (packages[index].IndexOf("=") > 0) packages[index] = packages[index] + "," + targetEnvironment;
+                        //else
+                        packages[index] = packages[index] + "," + targetEnvironment;
+                    }
+                    else packages[index] = packages[index] + "=" + targetEnvironment;
+
+                    using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(folder, "orderedpackages.txt")))
+                    {
+                        foreach (var line in packages)
+                        {
+                            sw.WriteLine(line);
+                        }
+
+                    }
+                    index++;
+                }
+            }
+            catch(Exception ex)
+            {
+                BaseComponent.LogError(ex.Message);
             }
                                    
         }
