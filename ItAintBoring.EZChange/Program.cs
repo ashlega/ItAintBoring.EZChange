@@ -49,9 +49,18 @@ namespace ItAintBoring.EZChange
             }
             else
             {
+                AllocConsole();
+                BaseComponent.LogInfo("Starting..");
                 PackageRunner pr = new PackageRunner();
                 pr.RunPackages(args[0], args[1]);
+                BaseComponent.LogInfo("Done");
+                Console.ReadLine();
             }
         }
+
+
+
+        [System.Runtime.InteropServices.DllImport("kernel32.dll")]
+        private static extern bool AllocConsole();
     }
 }
