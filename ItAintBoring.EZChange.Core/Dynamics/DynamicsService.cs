@@ -142,11 +142,16 @@ namespace ItAintBoring.EZChange.Core.Dynamics
 
                     if (job.Contains("completedon"))
                     {
+                        string data = (string)job["data"];
+                        if(data.IndexOf("result=\"failure\"") > 0)
+                        {
+                            throw new Exception("An error has occured while exporting the solution: " + data);
+                        }
                         isfinished = true;
 
                     }
                 }
-                catch(Exception ex)
+                catch(System.ServiceModel.FaultException ex)
                 {
                     counter--;
                     System.Threading.Thread.Sleep(500);
