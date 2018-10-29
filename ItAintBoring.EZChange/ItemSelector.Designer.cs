@@ -35,11 +35,14 @@
             // 
             // lbItems
             // 
+            this.lbItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lbItems.FormattingEnabled = true;
             this.lbItems.ItemHeight = 16;
             this.lbItems.Location = new System.Drawing.Point(2, 5);
             this.lbItems.Name = "lbItems";
-            this.lbItems.Size = new System.Drawing.Size(316, 228);
+            this.lbItems.Size = new System.Drawing.Size(423, 228);
             this.lbItems.TabIndex = 0;
             this.lbItems.SelectedIndexChanged += new System.EventHandler(this.lbActions_SelectedIndexChanged);
             this.lbItems.DoubleClick += new System.EventHandler(this.lbActions_DoubleClick);
@@ -48,7 +51,7 @@
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.Location = new System.Drawing.Point(243, 239);
+            this.button1.Location = new System.Drawing.Point(350, 239);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 32);
             this.button1.TabIndex = 1;
@@ -59,7 +62,7 @@
             // 
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOk.Location = new System.Drawing.Point(162, 239);
+            this.btnOk.Location = new System.Drawing.Point(269, 239);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 32);
             this.btnOk.TabIndex = 2;
@@ -70,7 +73,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(320, 275);
+            this.ClientSize = new System.Drawing.Size(427, 275);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lbItems);
