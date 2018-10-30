@@ -1,8 +1,5 @@
-﻿Run multiple packages from a folder
-Add variables tab + console mode
+﻿
 
-
-Add file solution links (no export)
 Maintaining the master package ?
 Add visual editing (to replace XML)
 
