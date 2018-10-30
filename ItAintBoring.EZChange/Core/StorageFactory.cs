@@ -53,5 +53,10 @@ namespace ItAintBoring.EZChange.Core
 
             return storageDescription;
         }
+
+        static public IPackageStorage GetDefaultProvider()
+        {
+            return GetStorageList()[0];
+        }
     }
 }

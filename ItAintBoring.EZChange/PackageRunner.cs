@@ -30,10 +30,43 @@ namespace ItAintBoring.EZChange
             return ht;
         }
 
+        public bool RunIndividualPackage(string location, Hashtable variables)
+        {
+            
+            var storageProvider = StorageFactory.GetDefaultProvider(); 
+            try
+            {
+                BaseComponent.Log.Info("Starting the package..");
+                BaseChangePackage bcp = storageProvider.LoadPackage(location);
+                if (variables == null)
+                {
+                    variables = new Hashtable();
+                    foreach (var v in bcp.Variables)
+                    {
+                        variables[v.Name] = v.Value;
+                    }
+                }
+
+                bcp.UpdateRuntimeData(variables);
+                BaseComponent.Log.Info("Package loaded: " + bcp.Name);
+                bcp.Run();
+            }
+            catch (Exception ex)
+            {
+                BaseComponent.Log.Error(ex.Message);
+                throw;
+            }
+            finally
+            {
+                BaseComponent.Log.Info("Done");
+            }
+
+            return true;
+        }
+
         public void RunPackages(string folder, string targetEnvironment)
         {
-            var storageList = StorageFactory.GetStorageList();
-            var storageProvider = storageList[0];
+            
             try
             {
                 Hashtable variableValues = LoadVariables(folder, targetEnvironment);
@@ -67,19 +100,7 @@ namespace ItAintBoring.EZChange
                 while (index < packages.Count)
                 {
                     string[] pair = packages[index].Split('=');
-                    BaseComponent.LogInfo("Importing package: " + pair[0]);
-                    BaseChangePackage bcp = storageProvider.LoadPackage(System.IO.Path.Combine(folder, pair[0]));
-                    /*
-                    foreach(var v in bcp.Variables)
-                    {
-                        if(variableValues.ContainsKey(v.Name))
-                        {
-                            v.Value = (string)variableValues[v.Name];
-                        }
-                    }
-                    */
-                    bcp.UpdateRuntimeData(variableValues);
-                    bcp.Run();
+                    RunIndividualPackage(System.IO.Path.Combine(folder, pair[0]), variableValues);
 
                     if (packages[index].IndexOf("=") > 0)
                     {

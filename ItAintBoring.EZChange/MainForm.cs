@@ -633,43 +633,23 @@ namespace ItAintBoring.EZChange
 
         }
 
-        public bool RunPackage(string location)
+        private void RunPackage()
         {
-            try
-            {
-
-                BaseComponent.Log.Info("Starting the package..");
-                BaseChangePackage bcp = storageProvider.LoadPackage(location);
-                Hashtable variables = new Hashtable();
-                foreach(var v in bcp.Variables)
-                {
-                    variables[v.Name] = v.Value;
-                }
-
-                bcp.UpdateRuntimeData(variables);
-                BaseComponent.Log.Info("Package loaded: " + bcp.Name);
-                bcp.Run();
-            }
-            catch(Exception ex)
-            {
-                BaseComponent.Log.Error(ex.Message);
-                ShowError(ex.Message);
-                return false;
-            }
-            finally
-            {
-                BaseComponent.Log.Info("Done");
-            }
-
-            return true;
+            PackageRunner pr = new PackageRunner();
+            pr.RunIndividualPackage(Package.PackageLocation, null);
         }
 
         private void tbRunPackage_Click(object sender, EventArgs e)
         {
-            if(RunPackage(Package.PackageLocation))
-            {
+            try {
+                RunPackage();
                 ShowMessage("Success");
             }
+            catch (Exception ex)
+            {
+                ShowError("Error: " + ex.Message);
+            }
+            
         }
 
         private void preparePackageToolStripMenuItem_Click(object sender, EventArgs e)
