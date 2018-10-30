@@ -11,6 +11,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel.Description;
 using Microsoft.Xrm.Sdk.Client;
 using System.Net;
+using ItAintBoring.EZChange.Common;
 
 namespace ItAintBoring.EZChange.Core.Dynamics
 {
@@ -122,49 +123,78 @@ namespace ItAintBoring.EZChange.Core.Dynamics
             importSolutionRequest.OverwriteUnmanagedCustomizations = true;
             importSolutionRequest.PublishWorkflows = true;
             importSolutionRequest.SkipProductUpdateDependencies = false;
+            try
+            {
+                ImportSolutionResponse resp = (ImportSolutionResponse)Service.Execute(importSolutionRequest);
+                if(resp.Results.Count > 0)
+                {
+                    //Testing
+                    resp = resp;
+                }
+            }
+            catch (Exception ex)
+            {
+                //Could not find the import job. Let's output asyncJobError (hopefully there is something)
+                throw new Exception("An error has occured while exporting the solution: " + ex.Message);
+            }
 
-            //ImportSolutionResponse resp = (ImportSolutionResponse)Service.Execute(importSolutionRequest);
-            
-            
-
+            /*
             var requestAsync = new ExecuteAsyncRequest
             {
                 Request = importSolutionRequest
             };
-            Service.Execute(requestAsync);
-            bool isfinished = false;
-            int counter = 100;
-            do
+
+            string asyncJobError = "";
+            var response = (ExecuteAsyncResponse)Service.Execute(requestAsync);
+
+                DateTime end = DateTime.Now.AddSeconds(600);
+            while (end >= DateTime.Now && String.IsNullOrEmpty(asyncJobError))
             {
-                try
+                Entity asyncOperation = Service.Retrieve("asyncoperation", response.AsyncJobId,
+                   new ColumnSet("asyncoperationid", "statuscode", "message"));
+                switch (((OptionSetValue)asyncOperation["statuscode"]).Value)
                 {
-                    var job = Service.Retrieve("importjob", importId, new ColumnSet(true));
+                    //Succeeded
+                    case 30:
+                        break;
+                    //Pausing //Canceling //Failed //Canceled
+                    case 21:
+                    case 22:
+                    case 31:
+                    case 32:
+                        asyncJobError = (string)asyncOperation["message"];
+                        break;
+                    default:
+                        break;
+                }
+            }
 
-                    if (job.Contains("completedon"))
+            try
+            {
+                var job = Service.Retrieve("importjob", importId, new ColumnSet(true));
+
+                if (job.Contains("completedon"))
+                {
+                    string data = (string)job["data"];
+                    if (data.IndexOf("result=\"failure\"") > 0 || !String.IsNullOrEmpty(asyncJobError))
                     {
-                        string data = (string)job["data"];
-                        if(data.IndexOf("result=\"failure\"") > 0)
-                        {
-                            throw new Exception("An error has occured while exporting the solution: " + data);
-                        }
-                        isfinished = true;
-
+                        throw new Exception("An error has occured while exporting the solution: " + asyncJobError + data);
                     }
+
                 }
-                catch(System.ServiceModel.FaultException ex)
-                {
-                    counter--;
-                    System.Threading.Thread.Sleep(500);
-                    if (counter == 0) throw new Exception("It's taking too long to import the " + fileName);
-                }
-                
-            } while (isfinished == false);
-            
+            }
+            catch (System.ServiceModel.FaultException ex)
+            {
+                //Could not find the import job. Let's output asyncJobError (hopefully there is something)
+                throw new Exception("An error has occured while exporting the solution: " + asyncJobError);
+            }
+            */
             PublishAll();
         }
 
         public void PublishAll()
         {
+            BaseComponent.LogInfo("Publishing customizations");
             PublishAllXmlRequest publishAll = new PublishAllXmlRequest();
             Service.Execute(publishAll);
         }
