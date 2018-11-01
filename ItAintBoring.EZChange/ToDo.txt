@@ -1,4 +1,5 @@
 ﻿Run package action (consider variables)
+Action images
 Package zip files
 Delete actions editor
 Progress Bar
