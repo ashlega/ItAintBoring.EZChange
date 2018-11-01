@@ -47,6 +47,7 @@ namespace ItAintBoring.EZChange.Core.Storage
                 TextReader reader = new StreamReader(location);
                 result = (BaseChangePackage)ser.Deserialize(reader);
                 result.PackageLocation = location;
+                result.InitializeComponents();
                 reader.Close();
             }
             return result;

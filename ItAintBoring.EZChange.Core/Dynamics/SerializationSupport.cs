@@ -162,7 +162,7 @@ namespace ItAintBoring.EZChange.Core.Dynamics
             }
             else if (TypeName.Contains("int"))
             {
-                attributeValue = long.Parse((string)Value);
+                attributeValue = int.Parse((string)Value);
             }
             else if (TypeName.Contains("double"))
             {

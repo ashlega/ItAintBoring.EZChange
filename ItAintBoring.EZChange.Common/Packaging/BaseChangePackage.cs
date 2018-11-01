@@ -83,5 +83,13 @@ namespace ItAintBoring.EZChange.Common.Packaging
             }
         }
 
+        public virtual void InitializeComponents()
+        {
+            foreach(var s in Solutions)
+            {
+                s.InitializeComponents();
+            }
+        }
+
     }
 }

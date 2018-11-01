@@ -43,6 +43,7 @@
             this.lbItems.Location = new System.Drawing.Point(2, 5);
             this.lbItems.Name = "lbItems";
             this.lbItems.Size = new System.Drawing.Size(423, 228);
+            this.lbItems.Sorted = true;
             this.lbItems.TabIndex = 0;
             this.lbItems.SelectedIndexChanged += new System.EventHandler(this.lbActions_SelectedIndexChanged);
             this.lbItems.DoubleClick += new System.EventHandler(this.lbActions_DoubleClick);

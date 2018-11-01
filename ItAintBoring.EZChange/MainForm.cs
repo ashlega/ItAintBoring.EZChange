@@ -38,6 +38,7 @@ namespace ItAintBoring.EZChange
                     
                     tbPackageName.Text = package.Name;
                     ShowPackageControl();
+                    ResizePackageControl();
                     ResetSolutions();
                     ResetVariables();
                     ResetTabs();
@@ -272,6 +273,7 @@ namespace ItAintBoring.EZChange
             if (selector.ShowIfMultiple() == DialogResult.OK && selector.SelectedItem != null)
             {
                 BaseAction da = ActionFactory.CreateAction((BaseAction)selector.SelectedItem);
+                da.Solution = SelectedSolution;
                 ComponentControl ac = new ComponentControl();
 
                 ac.Setup(da, da.Id + " - Properties");
@@ -279,6 +281,7 @@ namespace ItAintBoring.EZChange
                 if (ac.ShowDialog() == DialogResult.OK)
                 {
                     ac.UpdateComponent(da);
+                    
                     if (SelectedSolution != null)
                     {
                         if (preAction)
@@ -442,9 +445,7 @@ namespace ItAintBoring.EZChange
             }
             else
             {
-                //pnlPackageControl.Controls.Clear();
-                
-                
+                pnlPackageControl.Controls.Clear();
                 Package.UIControl.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
                 Package.UIControl.Parent = pnlPackageControl;
                 //pnlPackageControl.Controls.Add(Package.UIControl);
@@ -719,7 +720,7 @@ namespace ItAintBoring.EZChange
             }
         }
 
-        private void pnlPackageControl_Resize(object sender, EventArgs e)
+        private void ResizePackageControl()
         {
             if (Package != null && Package.UIControl != null)
             {
@@ -728,6 +729,10 @@ namespace ItAintBoring.EZChange
                 Package.UIControl.Width = pnlPackageControl.Width - 10;
                 Package.UIControl.Height = pnlPackageControl.Height - 10;
             }
+        }
+        private void pnlPackageControl_Resize(object sender, EventArgs e)
+        {
+            ResizePackageControl();
         }
     }
 }

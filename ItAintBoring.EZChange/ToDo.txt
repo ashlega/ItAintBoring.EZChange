@@ -1,9 +1,9 @@
-﻿
+﻿Package zip files
+Delete actions editor
+Progress Bar
+Connect to CRM for metadata
+Add actions to active workflows etc
+
 
 Maintaining the master package ?
 Add visual editing (to replace XML)
-
-
-
-Run package (how to define the connection?)
-Add XML schema validation

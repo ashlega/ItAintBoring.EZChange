@@ -9,11 +9,16 @@ using System.Xml.Serialization;
 
 namespace ItAintBoring.EZChange.Common
 {
-    public abstract class  BaseAction: BaseComponent
+    public abstract class  BaseAction: BaseComponent, IChangeAction
     {
        // public virtual string XML { get; set; }
 
-        abstract public void DoAction(BaseSolution solution);
+        virtual public void DoAction(BaseSolution solution)
+        {
+
+        }
+        [XmlIgnore]
+        public BaseSolution Solution { get; set; }
 
         [XmlIgnore]
         abstract public List<Type> SupportedSolutionTypes { get; }

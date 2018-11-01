@@ -58,5 +58,28 @@ namespace ItAintBoring.EZChange.Common.Packaging
                 a.UpdateRuntimeData(values);
             }
         }
+
+        public BaseAction FindAction(Guid actionId)
+        {
+            BaseAction result = null;
+            result = BuildActions.Find(a => a.ComponentId == actionId);
+            if(result == null)
+            {
+                result = DeployActions.Find(a => a.ComponentId == actionId);
+            }
+            return result;
+        }
+
+        public virtual void InitializeComponents()
+        {
+            foreach (var a in BuildActions)
+            {
+                a.Solution = this;
+            }
+            foreach (var a in DeployActions)
+            {
+                a.Solution = this;
+            }
+        }
     }
 }
