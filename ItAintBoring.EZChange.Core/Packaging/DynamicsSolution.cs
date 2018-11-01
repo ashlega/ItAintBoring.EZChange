@@ -38,6 +38,8 @@ namespace ItAintBoring.EZChange.Core.Packaging
             }
         }
 
+        
+
 
         public DynamicsSolution(): base()
         {
@@ -105,13 +107,20 @@ namespace ItAintBoring.EZChange.Core.Packaging
             return Name;
         }
 
+        private string currentConnectionString = null;
+        public void ReconnectService(bool forceReconnect)
+        {
+            if (service == null || forceReconnect)
+            {
+                service = new DynamicsService(currentConnectionString);
+            }
+            else service.ConnectionString = currentConnectionString;
+        }
         public override void PrepareSolution(BaseComponent package)
         {
-            if(service == null)
-            {
-                service = new DynamicsService(((DynamicsChangePackage)package).ConnectionString);
-            }
-            else service.ConnectionString = ((DynamicsChangePackage)package).ConnectionString;
+
+            currentConnectionString = ((DynamicsChangePackage)package).ConnectionString;
+            ReconnectService(true);
 
             solutionFolder = package.GetDataFolder() + "\\" + GetDataFolder();
 
@@ -136,20 +145,21 @@ namespace ItAintBoring.EZChange.Core.Packaging
             }
         }
 
-        public override void DeploySolution(BaseComponent package)
+        public override void DeploySolution(BaseComponent package, BaseAction selectedAction = null)
         {
             ProcessingStarted();
-            if (service == null)
-            {
-                service = new DynamicsService(((DynamicsChangePackage)package).DestinationConnectionString);
-            }
-            else service.ConnectionString = ((DynamicsChangePackage)package).DestinationConnectionString;
 
+            currentConnectionString = ((DynamicsChangePackage)package).DestinationConnectionString;
+            ReconnectService(true);
+            
             solutionFolder = package.GetDataFolder() + "\\" + GetDataFolder();
 
             foreach (var action in DeployActions)
             {
-                action.DoAction(this);
+                if (selectedAction == null || selectedAction.ComponentId == action.ComponentId)
+                {
+                    action.DoAction(this);
+                }
             }
 
             ProcessingCompleted();

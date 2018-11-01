@@ -52,11 +52,11 @@ namespace ItAintBoring.EZChange.Common.Packaging
             return System.IO.Path.Combine(System.IO.Path.GetFullPath(PackageLocation), "Solutions");
         }
 
-        public virtual void Run()
+        public virtual void Run(BaseAction selectedAction = null)
         {
             foreach (var s in Solutions)
             {
-                s.DeploySolution(this);
+                s.DeploySolution(this, selectedAction);
             }
         }
 

@@ -35,7 +35,7 @@ namespace ItAintBoring.EZChange.Common.Packaging
         {
             return null;
         }
-        public abstract void DeploySolution(BaseComponent package);
+        public abstract void DeploySolution(BaseComponent package, BaseAction selectedAction);
 
         public void ProcessingStarted()
         {

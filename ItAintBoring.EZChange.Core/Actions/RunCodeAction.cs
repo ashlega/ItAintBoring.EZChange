@@ -73,10 +73,11 @@ namespace ItAintBoring.EZChange.Core.Actions
         public override void DoAction(BaseSolution solution)
         {
             ActionStarted();
-
+            
             var a = Solution.FindAction(FileActionId);
             if(a != null)
             {
+                ((DynamicsSolution)solution).ReconnectService(true);
                 AddFileAction action = (AddFileAction)a;
 
                 string path = ((DynamicsSolution)solution).GetActionsDataFolder(this);

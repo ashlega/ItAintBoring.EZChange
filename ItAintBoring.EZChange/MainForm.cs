@@ -35,8 +35,7 @@ namespace ItAintBoring.EZChange
                 {
                     bool hasChanges = value != null && value.HasUnsavedChanges;
                     package = value;
-                    
-                    tbPackageName.Text = package.Name;
+                    if(package != null) tbPackageName.Text = package.Name;
                     ShowPackageControl();
                     ResizePackageControl();
                     ResetSolutions();
@@ -163,6 +162,7 @@ namespace ItAintBoring.EZChange
             btnRemovePostAction.Enabled = Package != null && lbPostActions.SelectedItem != null;
             btnDeleteSolution.Enabled = Package != null && lbSolutions.SelectedIndex > -1;
             btnRemoveVar.Enabled = Package != null && lbVariables.SelectedIndex > -1;
+            btnTestAction.Enabled = Package != null && lbPostActions.SelectedIndex > -1;
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
@@ -185,7 +185,7 @@ namespace ItAintBoring.EZChange
                 }
                 else if (confirmResult == DialogResult.No)
                 {
-                    storageProvider.SavePackage(Package);
+                    return true;
                 }
                 else result = false;
             }
@@ -440,7 +440,7 @@ namespace ItAintBoring.EZChange
 
         public void ShowPackageControl()
         {
-            if (Package == null && Package.UIControl == null)
+            if (Package != null && Package.UIControl == null)
             {
                 pnlPackageControl.Controls.Clear();
             }
@@ -637,10 +637,10 @@ namespace ItAintBoring.EZChange
 
         }
 
-        private void RunPackage()
+        private void RunPackage(BaseAction selectedAction = null)
         {
             PackageRunner pr = new PackageRunner();
-            pr.RunIndividualPackage(Package.PackageLocation, null);
+            pr.RunIndividualPackage(Package.PackageLocation, null, selectedAction);
         }
 
         private void tbRunPackage_Click(object sender, EventArgs e)
@@ -739,6 +739,23 @@ namespace ItAintBoring.EZChange
         private void pnlPackageControl_Resize(object sender, EventArgs e)
         {
             ResizePackageControl();
+        }
+
+        private void btnTestAction_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show("You are about to run the selected action. Do you want to proceed?", Text, MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    RunPackage((BaseAction)lbPostActions.SelectedItem);
+                    ShowMessage("Success");
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowError("Error: " + ex.Message);
+            }
+            
         }
     }
 }

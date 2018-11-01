@@ -30,7 +30,7 @@ namespace ItAintBoring.EZChange
             return ht;
         }
 
-        public bool RunIndividualPackage(string location, Hashtable variables)
+        public bool RunIndividualPackage(string location, Hashtable variables, BaseAction selectedAction = null)
         {
             
             var storageProvider = StorageFactory.GetDefaultProvider(); 
@@ -49,7 +49,7 @@ namespace ItAintBoring.EZChange
 
                 bcp.UpdateRuntimeData(variables);
                 BaseComponent.Log.Info("Package loaded: " + bcp.Name);
-                bcp.Run();
+                bcp.Run(selectedAction);
             }
             catch (Exception ex)
             {

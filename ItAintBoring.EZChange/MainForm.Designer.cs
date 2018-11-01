@@ -66,6 +66,7 @@
             this.btnDeleteSolution = new System.Windows.Forms.Button();
             this.btnAddSolution = new System.Windows.Forms.Button();
             this.lbSolutions = new System.Windows.Forms.ListBox();
+            this.btnTestAction = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tcPackage.SuspendLayout();
             this.tpLogo.SuspendLayout();
@@ -409,6 +410,7 @@
             // 
             // tpPostImportActions
             // 
+            this.tpPostImportActions.Controls.Add(this.btnTestAction);
             this.tpPostImportActions.Controls.Add(this.btnRemovePostAction);
             this.tpPostImportActions.Controls.Add(this.btnAddPostAction);
             this.tpPostImportActions.Controls.Add(this.lbPostActions);
@@ -499,6 +501,17 @@
             this.lbSolutions.DoubleClick += new System.EventHandler(this.lbSolutions_DoubleClick);
             this.lbSolutions.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lbSolutions_MouseDown);
             // 
+            // btnTestAction
+            // 
+            this.btnTestAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTestAction.Location = new System.Drawing.Point(6, 256);
+            this.btnTestAction.Name = "btnTestAction";
+            this.btnTestAction.Size = new System.Drawing.Size(110, 30);
+            this.btnTestAction.TabIndex = 10;
+            this.btnTestAction.Text = "Run Action";
+            this.btnTestAction.UseVisualStyleBackColor = true;
+            this.btnTestAction.Click += new System.EventHandler(this.btnTestAction_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -569,6 +582,7 @@
         private System.Windows.Forms.ListBox lbVariables;
         private System.Windows.Forms.Button btnRemoveVar;
         private System.Windows.Forms.Button btnAddVar;
+        private System.Windows.Forms.Button btnTestAction;
     }
 }
 
