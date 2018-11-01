@@ -1,11 +1,10 @@
-﻿Run package action (consider variables)
+﻿Update "metadata action" to work with workflows/plugins/sdk steps
+Delete actions editor?
 Action images
-Package zip files
-Delete actions editor
 Progress Bar
 Connect to CRM for metadata
-Add actions to active workflows etc
-
-
-Maintaining the master package ?
 Add visual editing (to replace XML)
+
+
+Package zip files?
+Maintaining the master package ?
