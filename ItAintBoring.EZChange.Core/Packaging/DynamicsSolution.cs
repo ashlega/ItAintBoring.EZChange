@@ -75,7 +75,7 @@ namespace ItAintBoring.EZChange.Core.Packaging
 
         }
 
-        private string GetActionFileName(BaseAction action, string fileName)
+        public string GetActionFileName(BaseAction action, string fileName)
         {
             if (solutionFolder == null) return null;
             string path = GetActionsDataFolder(action);

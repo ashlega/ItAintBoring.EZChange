@@ -30,7 +30,7 @@ namespace ItAintBoring.EZChange.Core.Actions
         [XmlIgnore]
         public override List<Type> SupportedSolutionTypes { get { return supportedSolutionTypes; } }
 
-        public string FileName { get; set; } 
+        public Guid ExportActionId { get; set; }
 
         public bool CreateOnly { get; set; }
 
@@ -40,15 +40,24 @@ namespace ItAintBoring.EZChange.Core.Actions
             supportedSolutionTypes.Add(typeof(DynamicsSolution));
         }
 
-        
 
+        public override void ApplyUIUpdates()
+        {
+            if (((ActionSelectorEditor)uiControl).SelectedAction != null)
+            {
+                ExportActionId = ((ActionSelectorEditor)uiControl).SelectedAction.ComponentId;
+            }
+            else ExportActionId = Guid.Empty;
+        }
+
+        /*
 
         public override void ApplyUIUpdates()
         {
             FileName = ((ImportActionEditor)uiControl).FileName;
             CreateOnly = ((ImportActionEditor)uiControl).CreateOnly;
         }
-
+        
         private UserControl uiControl = new ImportActionEditor();
         [XmlIgnore]
         public override UserControl UIControl
@@ -60,14 +69,34 @@ namespace ItAintBoring.EZChange.Core.Actions
                 return uiControl;
             }
         }
+        */
+
+        private UserControl uiControl = null;
+        [XmlIgnore]
+        public override UserControl UIControl
+        {
+            get
+            {
+                if (uiControl == null)
+                {
+                    uiControl = new ActionSelectorEditor(this, null, Solution.FindAction(ExportActionId));
+                }
+                ((ActionSelectorEditor)uiControl).PopulateActions(Solution.BuildActions.FindAll(x => x is ExportDataAction));
+                ((ActionSelectorEditor)uiControl).SelectedAction = Solution.FindAction(ExportActionId);
+                return uiControl;
+            }
+        }
+
 
 
 
         public override void DoAction(BaseSolution solution)
         {
             ActionStarted();
+
+            var exportAction = Solution.FindAction(ExportActionId);
             DynamicsSolution ds = (DynamicsSolution)solution;
-            string json = ds.LoadActionData(this, ds.GetActionsDataFolder(this) + "\\"+ FileName);
+            string json = ds.LoadActionData(this, ds.GetActionFileName(exportAction, null));
             if (json != null)
             {
                 try
@@ -86,7 +115,7 @@ namespace ItAintBoring.EZChange.Core.Actions
 
         public override void UpdateRuntimeData(System.Collections.Hashtable values)
         {
-            FileName = ReplaceVariables(FileName, values);
+            
         }
     }
 }

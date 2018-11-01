@@ -36,7 +36,7 @@
             this.tbSaveAsProject = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.tbExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.miPackage = new System.Windows.Forms.ToolStripMenuItem();
             this.tbPreparePackage = new System.Windows.Forms.ToolStripMenuItem();
             this.tbRunPackage = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,7 +83,7 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1,
-            this.toolStripMenuItem3,
+            this.miPackage,
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -145,26 +145,26 @@
             this.tbExit.Text = "Exit";
             this.tbExit.Click += new System.EventHandler(this.tbExit_Click);
             // 
-            // toolStripMenuItem3
+            // miPackage
             // 
-            this.toolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.miPackage.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tbPreparePackage,
             this.tbRunPackage});
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(55, 24);
-            this.toolStripMenuItem3.Text = "Build";
+            this.miPackage.Name = "miPackage";
+            this.miPackage.Size = new System.Drawing.Size(76, 24);
+            this.miPackage.Text = "Package";
             // 
             // tbPreparePackage
             // 
             this.tbPreparePackage.Name = "tbPreparePackage";
-            this.tbPreparePackage.Size = new System.Drawing.Size(118, 26);
+            this.tbPreparePackage.Size = new System.Drawing.Size(216, 26);
             this.tbPreparePackage.Text = "Build";
             this.tbPreparePackage.Click += new System.EventHandler(this.tbPreparePackage_Click);
             // 
             // tbRunPackage
             // 
             this.tbRunPackage.Name = "tbRunPackage";
-            this.tbRunPackage.Size = new System.Drawing.Size(118, 26);
+            this.tbRunPackage.Size = new System.Drawing.Size(216, 26);
             this.tbRunPackage.Text = "Run";
             this.tbRunPackage.Click += new System.EventHandler(this.tbRunPackage_Click);
             // 
@@ -561,7 +561,7 @@
         private System.Windows.Forms.TextBox tbPackageName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel pnlPackageControl;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem miPackage;
         private System.Windows.Forms.ToolStripMenuItem tbPreparePackage;
         private System.Windows.Forms.ToolStripMenuItem tbRunPackage;
         private System.Windows.Forms.Panel panelVariables;

@@ -114,9 +114,9 @@ namespace ItAintBoring.EZChange
             Font = SystemFonts.MessageBoxFont;
             InitializeComponent();
 
-            
+            ReSetUI();
 
-            
+
 
             //tcPackage.Height = Height - tcPackage.Top - 20;
             lbVariables.Height = btnAddVar.Top - 10 - labelVariables.Top - labelVariables.Height;
@@ -156,12 +156,13 @@ namespace ItAintBoring.EZChange
 
         public void ReSetUI()
         {
-            btnAddPostAction.Enabled = lbSolutions.SelectedItem != null;
-            btnAddPreAction.Enabled = lbSolutions.SelectedItem != null;
-            btnRemovePreAction.Enabled = lbPreActions.SelectedItem != null;
-            btnRemovePostAction.Enabled = lbPostActions.SelectedItem != null;
-            btnDeleteSolution.Enabled = lbSolutions.SelectedIndex > -1;
-            btnRemoveVar.Enabled = lbVariables.SelectedIndex > -1;
+            miPackage.Enabled = Package != null;
+            btnAddPostAction.Enabled = Package != null && lbSolutions.SelectedItem != null;
+            btnAddPreAction.Enabled = Package != null && lbSolutions.SelectedItem != null;
+            btnRemovePreAction.Enabled = Package != null && lbPreActions.SelectedItem != null;
+            btnRemovePostAction.Enabled = Package != null && lbPostActions.SelectedItem != null;
+            btnDeleteSolution.Enabled = Package != null && lbSolutions.SelectedIndex > -1;
+            btnRemoveVar.Enabled = Package != null && lbVariables.SelectedIndex > -1;
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
@@ -626,10 +627,12 @@ namespace ItAintBoring.EZChange
         }
         private void tbPreparePackage_Click(object sender, EventArgs e)
         {
-
-            if(BuildPackage())
+            if (MessageBox.Show("You are about to build this package. Do you want to proceed?", Text, MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                ShowMessage("Success");
+                if (BuildPackage())
+                {
+                    ShowMessage("Success");
+                }
             }
 
         }
@@ -643,8 +646,11 @@ namespace ItAintBoring.EZChange
         private void tbRunPackage_Click(object sender, EventArgs e)
         {
             try {
-                RunPackage();
-                ShowMessage("Success");
+                if (MessageBox.Show("You are about to run this package. Do you want to proceed?", Text, MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    RunPackage();
+                    ShowMessage("Success");
+                }
             }
             catch (Exception ex)
             {

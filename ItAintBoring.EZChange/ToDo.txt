@@ -1,4 +1,5 @@
-﻿Package zip files
+﻿Run package action (consider variables)
+Package zip files
 Delete actions editor
 Progress Bar
 Connect to CRM for metadata
