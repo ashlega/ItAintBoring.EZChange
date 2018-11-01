@@ -44,11 +44,6 @@
             this.tpLogo = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
             this.tpSource = new System.Windows.Forms.TabPage();
-            this.panelVariables = new System.Windows.Forms.Panel();
-            this.btnRemoveVar = new System.Windows.Forms.Button();
-            this.btnAddVar = new System.Windows.Forms.Button();
-            this.labelVariables = new System.Windows.Forms.Label();
-            this.lbVariables = new System.Windows.Forms.ListBox();
             this.pnlSource = new System.Windows.Forms.Panel();
             this.tbPackageName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -60,18 +55,17 @@
             this.btnAddPreAction = new System.Windows.Forms.Button();
             this.lbPreActions = new System.Windows.Forms.ListBox();
             this.tpPostImportActions = new System.Windows.Forms.TabPage();
+            this.btnTestAction = new System.Windows.Forms.Button();
             this.btnRemovePostAction = new System.Windows.Forms.Button();
             this.btnAddPostAction = new System.Windows.Forms.Button();
             this.lbPostActions = new System.Windows.Forms.ListBox();
             this.btnDeleteSolution = new System.Windows.Forms.Button();
             this.btnAddSolution = new System.Windows.Forms.Button();
             this.lbSolutions = new System.Windows.Forms.ListBox();
-            this.btnTestAction = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tcPackage.SuspendLayout();
             this.tpLogo.SuspendLayout();
             this.tpSource.SuspendLayout();
-            this.panelVariables.SuspendLayout();
             this.pnlSource.SuspendLayout();
             this.tpSolutions.SuspendLayout();
             this.tcSolution.SuspendLayout();
@@ -158,14 +152,14 @@
             // tbPreparePackage
             // 
             this.tbPreparePackage.Name = "tbPreparePackage";
-            this.tbPreparePackage.Size = new System.Drawing.Size(216, 26);
+            this.tbPreparePackage.Size = new System.Drawing.Size(118, 26);
             this.tbPreparePackage.Text = "Build";
             this.tbPreparePackage.Click += new System.EventHandler(this.tbPreparePackage_Click);
             // 
             // tbRunPackage
             // 
             this.tbRunPackage.Name = "tbRunPackage";
-            this.tbRunPackage.Size = new System.Drawing.Size(216, 26);
+            this.tbRunPackage.Size = new System.Drawing.Size(118, 26);
             this.tbRunPackage.Text = "Run";
             this.tbRunPackage.Click += new System.EventHandler(this.tbRunPackage_Click);
             // 
@@ -215,7 +209,6 @@
             // 
             // tpSource
             // 
-            this.tpSource.Controls.Add(this.panelVariables);
             this.tpSource.Controls.Add(this.pnlSource);
             this.tpSource.Location = new System.Drawing.Point(4, 25);
             this.tpSource.Name = "tpSource";
@@ -224,64 +217,6 @@
             this.tpSource.TabIndex = 0;
             this.tpSource.Text = "Package";
             this.tpSource.UseVisualStyleBackColor = true;
-            // 
-            // panelVariables
-            // 
-            this.panelVariables.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelVariables.Controls.Add(this.btnRemoveVar);
-            this.panelVariables.Controls.Add(this.btnAddVar);
-            this.panelVariables.Controls.Add(this.labelVariables);
-            this.panelVariables.Controls.Add(this.lbVariables);
-            this.panelVariables.Location = new System.Drawing.Point(683, 1);
-            this.panelVariables.Name = "panelVariables";
-            this.panelVariables.Size = new System.Drawing.Size(254, 324);
-            this.panelVariables.TabIndex = 1;
-            // 
-            // btnRemoveVar
-            // 
-            this.btnRemoveVar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRemoveVar.Location = new System.Drawing.Point(88, 287);
-            this.btnRemoveVar.Name = "btnRemoveVar";
-            this.btnRemoveVar.Size = new System.Drawing.Size(75, 30);
-            this.btnRemoveVar.TabIndex = 8;
-            this.btnRemoveVar.Text = "Remove";
-            this.btnRemoveVar.UseVisualStyleBackColor = true;
-            this.btnRemoveVar.Click += new System.EventHandler(this.btnRemoveVar_Click);
-            // 
-            // btnAddVar
-            // 
-            this.btnAddVar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddVar.Location = new System.Drawing.Point(7, 287);
-            this.btnAddVar.Name = "btnAddVar";
-            this.btnAddVar.Size = new System.Drawing.Size(75, 30);
-            this.btnAddVar.TabIndex = 7;
-            this.btnAddVar.Text = "Add";
-            this.btnAddVar.UseVisualStyleBackColor = true;
-            this.btnAddVar.Click += new System.EventHandler(this.btnAddVar_Click);
-            // 
-            // labelVariables
-            // 
-            this.labelVariables.AutoSize = true;
-            this.labelVariables.Location = new System.Drawing.Point(6, 5);
-            this.labelVariables.Name = "labelVariables";
-            this.labelVariables.Size = new System.Drawing.Size(67, 17);
-            this.labelVariables.TabIndex = 4;
-            this.labelVariables.Text = "Variables";
-            // 
-            // lbVariables
-            // 
-            this.lbVariables.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbVariables.FormattingEnabled = true;
-            this.lbVariables.ItemHeight = 16;
-            this.lbVariables.Location = new System.Drawing.Point(7, 27);
-            this.lbVariables.Name = "lbVariables";
-            this.lbVariables.Size = new System.Drawing.Size(241, 244);
-            this.lbVariables.TabIndex = 3;
-            this.lbVariables.SelectedIndexChanged += new System.EventHandler(this.lbVariables_SelectedIndexChanged);
-            this.lbVariables.DoubleClick += new System.EventHandler(this.lbVariables_DoubleClick);
             // 
             // pnlSource
             // 
@@ -293,7 +228,7 @@
             this.pnlSource.Controls.Add(this.pnlPackageControl);
             this.pnlSource.Location = new System.Drawing.Point(0, 0);
             this.pnlSource.Name = "pnlSource";
-            this.pnlSource.Size = new System.Drawing.Size(683, 329);
+            this.pnlSource.Size = new System.Drawing.Size(937, 329);
             this.pnlSource.TabIndex = 0;
             // 
             // tbPackageName
@@ -302,7 +237,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbPackageName.Location = new System.Drawing.Point(7, 28);
             this.tbPackageName.Name = "tbPackageName";
-            this.tbPackageName.Size = new System.Drawing.Size(668, 22);
+            this.tbPackageName.Size = new System.Drawing.Size(922, 22);
             this.tbPackageName.TabIndex = 2;
             this.tbPackageName.TextChanged += new System.EventHandler(this.tbPackageName_TextChanged);
             // 
@@ -323,7 +258,7 @@
             this.pnlPackageControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlPackageControl.Location = new System.Drawing.Point(6, 59);
             this.pnlPackageControl.Name = "pnlPackageControl";
-            this.pnlPackageControl.Size = new System.Drawing.Size(669, 260);
+            this.pnlPackageControl.Size = new System.Drawing.Size(923, 260);
             this.pnlPackageControl.TabIndex = 0;
             this.pnlPackageControl.Resize += new System.EventHandler(this.pnlPackageControl_Resize);
             // 
@@ -422,6 +357,17 @@
             this.tpPostImportActions.Text = "Run Actions";
             this.tpPostImportActions.UseVisualStyleBackColor = true;
             // 
+            // btnTestAction
+            // 
+            this.btnTestAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTestAction.Location = new System.Drawing.Point(6, 256);
+            this.btnTestAction.Name = "btnTestAction";
+            this.btnTestAction.Size = new System.Drawing.Size(110, 30);
+            this.btnTestAction.TabIndex = 10;
+            this.btnTestAction.Text = "Run Action";
+            this.btnTestAction.UseVisualStyleBackColor = true;
+            this.btnTestAction.Click += new System.EventHandler(this.btnTestAction_Click);
+            // 
             // btnRemovePostAction
             // 
             this.btnRemovePostAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -501,17 +447,6 @@
             this.lbSolutions.DoubleClick += new System.EventHandler(this.lbSolutions_DoubleClick);
             this.lbSolutions.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lbSolutions_MouseDown);
             // 
-            // btnTestAction
-            // 
-            this.btnTestAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTestAction.Location = new System.Drawing.Point(6, 256);
-            this.btnTestAction.Name = "btnTestAction";
-            this.btnTestAction.Size = new System.Drawing.Size(110, 30);
-            this.btnTestAction.TabIndex = 10;
-            this.btnTestAction.Text = "Run Action";
-            this.btnTestAction.UseVisualStyleBackColor = true;
-            this.btnTestAction.Click += new System.EventHandler(this.btnTestAction_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -529,8 +464,6 @@
             this.tpLogo.ResumeLayout(false);
             this.tpLogo.PerformLayout();
             this.tpSource.ResumeLayout(false);
-            this.panelVariables.ResumeLayout(false);
-            this.panelVariables.PerformLayout();
             this.pnlSource.ResumeLayout(false);
             this.pnlSource.PerformLayout();
             this.tpSolutions.ResumeLayout(false);
@@ -577,11 +510,6 @@
         private System.Windows.Forms.ToolStripMenuItem miPackage;
         private System.Windows.Forms.ToolStripMenuItem tbPreparePackage;
         private System.Windows.Forms.ToolStripMenuItem tbRunPackage;
-        private System.Windows.Forms.Panel panelVariables;
-        private System.Windows.Forms.Label labelVariables;
-        private System.Windows.Forms.ListBox lbVariables;
-        private System.Windows.Forms.Button btnRemoveVar;
-        private System.Windows.Forms.Button btnAddVar;
         private System.Windows.Forms.Button btnTestAction;
     }
 }

@@ -38,6 +38,7 @@ namespace ItAintBoring.EZChange
             {
                 BaseComponent.Log.Info("Starting the package..");
                 BaseChangePackage bcp = storageProvider.LoadPackage(location);
+                /*
                 if (variables == null)
                 {
                     variables = new Hashtable();
@@ -46,7 +47,7 @@ namespace ItAintBoring.EZChange
                         variables[v.Name] = v.Value;
                     }
                 }
-
+                */
                 bcp.UpdateRuntimeData(variables);
                 BaseComponent.Log.Info("Package loaded: " + bcp.Name);
                 bcp.Run(selectedAction);

@@ -16,7 +16,7 @@ namespace ItAintBoring.EZChange.Common.Packaging
 
         public string PackageLocation { get; set; } //Storage specific
         public List<BaseSolution> Solutions { get; set; }
-
+        /*
         private List<Variable> variables = null;
         public virtual List<Variable> Variables
         {
@@ -26,6 +26,7 @@ namespace ItAintBoring.EZChange.Common.Packaging
                 return variables;
             }
         }
+        */
 
         private bool hasUnsavedChanges = false;
         [XmlIgnore]

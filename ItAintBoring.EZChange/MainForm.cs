@@ -39,7 +39,7 @@ namespace ItAintBoring.EZChange
                     ShowPackageControl();
                     ResizePackageControl();
                     ResetSolutions();
-                    ResetVariables();
+                    //ResetVariables();
                     ResetTabs();
                     ReSetUI();
 
@@ -82,6 +82,7 @@ namespace ItAintBoring.EZChange
             }
         }
 
+        /*
         public void ResetVariables()
         {
             if (Package == null) return;
@@ -93,6 +94,7 @@ namespace ItAintBoring.EZChange
             }
             
         }
+        */
 
         public BaseSolution SelectedSolution {
             get
@@ -118,10 +120,7 @@ namespace ItAintBoring.EZChange
 
 
             //tcPackage.Height = Height - tcPackage.Top - 20;
-            lbVariables.Height = btnAddVar.Top - 10 - labelVariables.Top - labelVariables.Height;
-
             ResetTabs();
-
 
             System.Net.ServicePointManager
                 .ServerCertificateValidationCallback +=
@@ -161,7 +160,6 @@ namespace ItAintBoring.EZChange
             btnRemovePreAction.Enabled = Package != null && lbPreActions.SelectedItem != null;
             btnRemovePostAction.Enabled = Package != null && lbPostActions.SelectedItem != null;
             btnDeleteSolution.Enabled = Package != null && lbSolutions.SelectedIndex > -1;
-            btnRemoveVar.Enabled = Package != null && lbVariables.SelectedIndex > -1;
             btnTestAction.Enabled = Package != null && lbPostActions.SelectedIndex > -1;
         }
 
@@ -607,11 +605,17 @@ namespace ItAintBoring.EZChange
 
         private bool BuildPackage()
         {
+            if (!SaveIfRequired()) return false;
             try
             {
                 BaseComponent.Log.Info("Starting the build..");
-                Package.Build(storageProvider);
-
+                
+                PackageRunner pr = new PackageRunner();
+                var variables = pr.LoadVariables(System.IO.Path.GetDirectoryName(Package.PackageLocation), "Default");
+                BaseChangePackage bcp = storageProvider.LoadPackage(Package.PackageLocation);
+                bcp.UpdateRuntimeData(variables);
+                bcp.Build(storageProvider);
+                
             }
             catch (Exception ex)
             {
@@ -621,6 +625,7 @@ namespace ItAintBoring.EZChange
             }
             finally
             {
+                storageProvider.SavePackage(Package);//To restore variables
                 BaseComponent.Log.Info("Done");
             }
             return true;
@@ -640,7 +645,8 @@ namespace ItAintBoring.EZChange
         private void RunPackage(BaseAction selectedAction = null)
         {
             PackageRunner pr = new PackageRunner();
-            pr.RunIndividualPackage(Package.PackageLocation, null, selectedAction);
+            var variables = pr.LoadVariables(System.IO.Path.GetDirectoryName(Package.PackageLocation), "Default");
+            pr.RunIndividualPackage(Package.PackageLocation, variables, selectedAction);
         }
 
         private void tbRunPackage_Click(object sender, EventArgs e)
@@ -673,57 +679,6 @@ namespace ItAintBoring.EZChange
         private void label1_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void btnRemoveVar_Click(object sender, EventArgs e)
-        {
-            if(lbVariables.SelectedIndex > -1)
-            {
-                Package.Variables.Remove((Variable)lbVariables.SelectedItem);
-                lbVariables.Items.Remove(lbVariables.SelectedItem);
-                ResetVariables();
-                ReSetUI();
-                Package.HasUnsavedChanges = true;
-            }
-        }
-
-        private void btnAddVar_Click(object sender, EventArgs e)
-        {
-            VariableEditor ve = new VariableEditor();
-            if(ve.ShowDialog() == DialogResult.OK)
-            {
-                Variable vr = new Variable();
-                vr.Name = ve.VariableName;
-                vr.Value = ve.DefaultValue;
-                Package.Variables.Add(vr);
-                lbVariables.Items.Add(vr);
-                ResetVariables();
-                ReSetUI();
-                Package.HasUnsavedChanges = true;
-            }
-        }
-
-        private void lbVariables_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ReSetUI();
-        }
-
-        private void lbVariables_DoubleClick(object sender, EventArgs e)
-        {
-            if (lbVariables.SelectedItem != null)
-            {
-                Variable vr = (Variable)lbVariables.SelectedItem;
-                VariableEditor ve = new VariableEditor(vr.Name, vr.Value);
-                if (ve.ShowDialog() == DialogResult.OK)
-                {
-                    vr.Name = ve.VariableName;
-                    vr.Value = ve.DefaultValue;
-                    var ind = lbVariables.Items.IndexOf(vr);
-                    lbVariables.Items.Remove(vr);
-                    lbVariables.Items.Insert(ind, vr);
-                    Package.HasUnsavedChanges = true;
-                }
-            }
         }
 
         private void ResizePackageControl()
