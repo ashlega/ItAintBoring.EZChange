@@ -30,7 +30,13 @@ namespace ItAintBoring.EZChange
             return ht;
         }
 
-        public bool RunIndividualPackage(string location, Hashtable variables, BaseAction selectedAction = null)
+        public bool RunIndividualPackage(string folder, string targetEnvironment, string package)
+        {
+            BaseComponent.LogInfo(targetEnvironment + ":" + package);
+            Hashtable variableValues = LoadVariables(folder, targetEnvironment);
+            return RunIndividualPackage(System.IO.Path.Combine(folder, package), variableValues, null);
+        }
+        public bool RunIndividualPackage(string location, Hashtable variables, BaseAction selectedAction = null, string selectedActionId = null)
         {
             
             var storageProvider = StorageFactory.GetDefaultProvider(); 
@@ -50,6 +56,16 @@ namespace ItAintBoring.EZChange
                 */
                 bcp.UpdateRuntimeData(variables);
                 BaseComponent.Log.Info("Package loaded: " + bcp.Name);
+                
+                if (selectedAction == null && selectedActionId != null)
+                {
+                    Guid actionId = Guid.Parse(selectedActionId);
+                    foreach (var s in bcp.Solutions)
+                    {
+                        selectedAction = s.FindAction(actionId);
+                        if (selectedAction != null) break;
+                    }
+                }
                 bcp.Run(selectedAction);
             }
             catch (Exception ex)
@@ -101,7 +117,13 @@ namespace ItAintBoring.EZChange
                 while (index < packages.Count)
                 {
                     string[] pair = packages[index].Split('=');
-                    RunIndividualPackage(System.IO.Path.Combine(folder, pair[0]), variableValues);
+
+
+                    BaseComponent.LogInfo($"Starting process: \"{folder}\" \"{targetEnvironment}\" \"{pair[0]}\"");
+                    var process = System.Diagnostics.Process.Start("ItAintBoring.EZChange.exe", $"\"{folder}\" \"{targetEnvironment}\" \"{pair[0]}\"");
+                    process.WaitForExit();
+
+                    //RunIndividualPackage(System.IO.Path.Combine(folder, pair[0]), variableValues);
 
                     if (packages[index].IndexOf("=") > 0)
                     {

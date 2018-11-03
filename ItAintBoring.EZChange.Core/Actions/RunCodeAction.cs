@@ -68,15 +68,14 @@ namespace ItAintBoring.EZChange.Core.Actions
             }
         }
 
+        private BaseSolution solution = null;
 
-
-        public override void DoAction(BaseSolution solution)
+        private void InternalDoAction()
         {
-            ActionStarted();
-            
             var a = Solution.FindAction(FileActionId);
-            if(a != null)
+            if (a != null)
             {
+
                 ((DynamicsSolution)solution).ReconnectService(true);
                 AddFileAction action = (AddFileAction)a;
 
@@ -87,12 +86,25 @@ namespace ItAintBoring.EZChange.Core.Actions
                 {
                     if (typeof(IChangeAction).IsAssignableFrom(type))
                     {
-                       var codeAction = (IChangeAction)Activator.CreateInstance(type);
-                       codeAction.DoAction(solution);
+                        var codeAction = (IChangeAction)Activator.CreateInstance(type);
+                        codeAction.DoAction(solution);
                     }
                 }
 
             }
+        }
+
+        public override void DoAction(BaseSolution solution)
+        {
+            ActionStarted();
+            this.solution = solution;
+            InternalDoAction();
+            /*
+            System.Threading.Thread th = new System.Threading.Thread(InternalDoAction);
+            th.Start();
+            th.Join();
+            ((DynamicsSolution)solution).ReconnectService(true);
+            */
             /*
             DynamicsSolution ds = (DynamicsSolution)solution;
             string json = ds.LoadActionData(this, ds.GetActionsDataFolder(this) + "\\" + FileName);

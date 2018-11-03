@@ -52,9 +52,18 @@ namespace ItAintBoring.EZChange
                 AllocConsole();
                 BaseComponent.LogInfo("Starting..");
                 PackageRunner pr = new PackageRunner();
-                pr.RunPackages(args[0], args[1]);
-                BaseComponent.LogInfo("Done");
-                Console.ReadLine();
+                if (args.Length > 2)
+                {
+                    pr.RunIndividualPackage(args[0], args[1], args[2]);
+                    BaseComponent.LogInfo("Done");
+                }
+                else
+                {
+                    pr.RunPackages(args[0], args[1]);
+                    BaseComponent.LogInfo("Done");
+                    Console.ReadLine();
+                }
+                
             }
         }
 
