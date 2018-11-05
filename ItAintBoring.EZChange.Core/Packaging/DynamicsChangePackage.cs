@@ -1,5 +1,6 @@
 ﻿using ItAintBoring.EZChange.Common;
 using ItAintBoring.EZChange.Common.Packaging;
+using ItAintBoring.EZChange.Core.Dynamics;
 using ItAintBoring.EZChange.Core.UI;
 using System;
 using System.Collections;
@@ -74,6 +75,31 @@ namespace ItAintBoring.EZChange.Core.Packaging
             base.UpdateRuntimeData(values);
             ConnectionString = ReplaceVariables(ConnectionString, values);
             DestinationConnectionString = ReplaceVariables(DestinationConnectionString, values);
+        }
+
+        private bool IsPackageDeployed()
+        {
+            var service = new DynamicsService(DestinationConnectionString);
+            return service.IsPackageDeployed(System.IO.Path.GetFileName(PackageLocation));
+        }
+
+        private void LogPackageDeployment()
+        {
+            var service = new DynamicsService(DestinationConnectionString);
+            service.LogPackageDeployment(System.IO.Path.GetFileName(PackageLocation));
+        }
+
+        public override void Run(BaseAction selectedAction = null)
+        {
+            if (!IsPackageDeployed())
+            {
+                base.Run(selectedAction);
+                LogPackageDeployment();
+            }
+            else
+            {
+                BaseComponent.LogInfo("This package has already been deployed");
+            }
         }
     }
 }

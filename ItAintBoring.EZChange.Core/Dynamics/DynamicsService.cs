@@ -96,6 +96,69 @@ namespace ItAintBoring.EZChange.Core.Dynamics
             }
         }
 
+        Guid trackerResourceId = Guid.Parse("8c427a1c-cda6-4a2d-9073-b75728259427");
+        public string GetTrackerResource()
+        {
+            QueryExpression qe = new QueryExpression("webresource");
+            qe.Criteria.AddCondition(new ConditionExpression("webresourceid", ConditionOperator.Equal, trackerResourceId));
+            qe.ColumnSet = new ColumnSet(true);
+            var result = Service.RetrieveMultiple(qe).Entities.FirstOrDefault();
+            string content = "";
+            if(result == null)
+            {
+                UpdateTrackerResource("");
+            }
+            else
+            {
+                content = result.Contains("content") ? (string)result["content"] : "";
+            }
+            if (content != "")
+            {
+                content = System.Text.Encoding.Default.GetString(System.Convert.FromBase64String(content));
+            }
+            return content;
+                
+        }
+
+        public void UpdateTrackerResource(string content)
+        {
+            QueryExpression qe = new QueryExpression("webresource");
+            qe.Criteria.AddCondition(new ConditionExpression("webresourceid", ConditionOperator.Equal, trackerResourceId));
+            qe.ColumnSet = new ColumnSet(true);
+            var result = Service.RetrieveMultiple(qe).Entities.FirstOrDefault();
+            if(result == null)
+            {
+                result = new Entity("webresource");
+                result.Id = trackerResourceId;
+                result["content"] = System.Convert.ToBase64String(System.Text.Encoding.Default.GetBytes(content));
+                result["displayname"] = "Package Tracker - DO NOT DELETE";
+                result["description"] = "Package Tracker";
+                result["name"] = "ita_packagetracker";
+                result["webresourcetype"] = new OptionSetValue(1);//HTML
+                Service.Create(result);
+            }
+            else
+            {
+                result["content"] = System.Convert.ToBase64String(System.Text.Encoding.Default.GetBytes(content));
+                Service.Update(result);
+            }
+        }
+
+        public bool IsPackageDeployed(string packageName)
+        {
+            string data = GetTrackerResource();
+            return data.IndexOf("#" + packageName + "#") > -1;
+        }
+
+
+        public void LogPackageDeployment(string packageName)
+        {
+            UpdateTrackerResource(GetTrackerResource() + "#" + packageName + "#,");
+            PublishAll();
+        }
+
+        
+
         public void ExportSolution(string solutionName, string folder, bool managed)
         {
             ExportSolutionRequest exportSolutionRequest = new ExportSolutionRequest();
@@ -300,5 +363,7 @@ namespace ItAintBoring.EZChange.Core.Dynamics
             }
         }
     }
+
+   
     
 }

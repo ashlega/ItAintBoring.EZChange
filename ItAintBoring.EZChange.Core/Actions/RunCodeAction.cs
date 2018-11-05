@@ -75,8 +75,8 @@ namespace ItAintBoring.EZChange.Core.Actions
             var a = Solution.FindAction(FileActionId);
             if (a != null)
             {
-
-                ((DynamicsSolution)solution).ReconnectService(true);
+                ((DynamicsSolution)solution).Service.PublishAll();
+                //((DynamicsSolution)solution).ReconnectService(true);
                 AddFileAction action = (AddFileAction)a;
 
                 string path = ((DynamicsSolution)solution).GetActionsDataFolder(this);

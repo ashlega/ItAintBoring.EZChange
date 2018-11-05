@@ -87,62 +87,23 @@ namespace ItAintBoring.EZChange
             try
             {
                 Hashtable variableValues = LoadVariables(folder, targetEnvironment);
-                List<string> packages = new List<string>();
                 using (System.IO.StreamReader sr = new System.IO.StreamReader(System.IO.Path.Combine(folder, "orderedpackages.txt")))
                 {
                     while (!sr.EndOfStream)
                     {
-                        string data = sr.ReadLine();
-                        packages.Add(data);
-                    }
-                }
-                int index = 0;
-                while (index < packages.Count)
-                {
-                    string[] pair = packages[index].Split('=');
-                    bool alreadyRun = false;
-
-                    if (pair.Length > 1)
-                    {
-                        string[] environments = pair[1].Split(',');
-                        alreadyRun = (new List<string>(environments)).IndexOf(targetEnvironment) >= 0;
-                    }
-                    if (!alreadyRun)
-                    {
-                        break;
-                    }
-                    index++;
-                }
-
-                while (index < packages.Count)
-                {
-                    string[] pair = packages[index].Split('=');
-
-
-                    BaseComponent.LogInfo($"Starting process: \"{folder}\" \"{targetEnvironment}\" \"{pair[0]}\"");
-                    var process = System.Diagnostics.Process.Start("ItAintBoring.EZChange.exe", $"\"{folder}\" \"{targetEnvironment}\" \"{pair[0]}\"");
-                    process.WaitForExit();
-
-                    //RunIndividualPackage(System.IO.Path.Combine(folder, pair[0]), variableValues);
-
-                    if (packages[index].IndexOf("=") > 0)
-                    {
-                        //if (packages[index].IndexOf("=") > 0) packages[index] = packages[index] + "," + targetEnvironment;
-                        //else
-                        packages[index] = packages[index] + "," + targetEnvironment;
-                    }
-                    else packages[index] = packages[index] + "=" + targetEnvironment;
-
-                    using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(folder, "orderedpackages.txt")))
-                    {
-                        foreach (var line in packages)
+                        string packageName = sr.ReadLine().Trim();
+                        /*
+                            BaseComponent.LogInfo($"Starting process: \"{folder}\" \"{targetEnvironment}\" \"{packageName}\"");
+                            var process = System.Diagnostics.Process.Start("ItAintBoring.EZChange.exe", $"\"{folder}\" \"{targetEnvironment}\" \"{pair[0]}\"");
+                            process.WaitForExit();
+                        */
+                        if (!String.IsNullOrEmpty(packageName) && !packageName.StartsWith("#"))
                         {
-                            sw.WriteLine(line);
+                            RunIndividualPackage(System.IO.Path.Combine(folder, packageName), variableValues);
                         }
-
                     }
-                    index++;
                 }
+                
             }
             catch(Exception ex)
             {
