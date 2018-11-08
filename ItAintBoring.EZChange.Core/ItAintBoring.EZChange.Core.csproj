@@ -87,6 +87,7 @@
   <ItemGroup>
     <Compile Include="Actions\DeployAction.cs" />
     <Compile Include="Actions\AddFileAction.cs" />
+    <Compile Include="Actions\FieldPermissionAction.cs" />
     <Compile Include="Actions\RunCodeAction.cs" />
     <Compile Include="Actions\ImportDataAction.cs" />
     <Compile Include="Actions\ExportDataAction.cs" />
@@ -106,6 +107,12 @@
     </Compile>
     <Compile Include="UI\ActionSelectorEditor.Designer.cs">
       <DependentUpon>ActionSelectorEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FieldPermissionEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\FieldPermissionEditor.Designer.cs">
+      <DependentUpon>FieldPermissionEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\ImportActionEditor.cs">
       <SubType>UserControl</SubType>
@@ -153,6 +160,9 @@
   <ItemGroup>
     <EmbeddedResource Include="UI\ActionSelectorEditor.resx">
       <DependentUpon>ActionSelectorEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FieldPermissionEditor.resx">
+      <DependentUpon>FieldPermissionEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ImportActionEditor.resx">
       <DependentUpon>ImportActionEditor.cs</DependentUpon>

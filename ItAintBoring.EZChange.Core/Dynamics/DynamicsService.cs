@@ -96,6 +96,38 @@ namespace ItAintBoring.EZChange.Core.Dynamics
             }
         }
 
+        public void SetFieldPermission(string fieldSecurityProfileId, string entityName, string attributeName, bool canRead, bool canCreate, bool canUpdate)
+        {
+            QueryExpression qe = new QueryExpression("fieldpermission");
+            qe.Criteria.AddCondition(new ConditionExpression("fieldsecurityprofileid", ConditionOperator.Equal, Guid.Parse(fieldSecurityProfileId)));
+            qe.Criteria.AddCondition(new ConditionExpression("entityname", ConditionOperator.Equal, entityName));
+            qe.Criteria.AddCondition(new ConditionExpression("attributelogicalname", ConditionOperator.Equal, attributeName));
+            qe.ColumnSet = new ColumnSet("fieldpermissionid");
+            var fp = Service.RetrieveMultiple(qe).Entities.FirstOrDefault();
+            if(fp != null && !canRead && !canCreate && !canUpdate)
+            {
+                Service.Delete(fp.LogicalName, fp.Id);
+            }
+            else if(fp != null)
+            {
+                fp["canread"] = new OptionSetValue(canRead ? FieldPermissionType.Allowed : FieldPermissionType.NotAllowed);
+                fp["cancreate"] = new OptionSetValue(canCreate ? FieldPermissionType.Allowed : FieldPermissionType.NotAllowed);
+                fp["canupdate"] = new OptionSetValue(canUpdate ? FieldPermissionType.Allowed : FieldPermissionType.NotAllowed);
+                Service.Update(fp);
+            }
+            else 
+            {
+                fp = new Entity("fieldpermission");
+                fp["fieldsecurityprofileid"] = new EntityReference("fieldsecurityprofile", Guid.Parse(fieldSecurityProfileId));
+                fp["entityname"] = entityName;
+                fp["attributelogicalname"] = attributeName;
+                fp["canread"] = new OptionSetValue(canRead ? FieldPermissionType.Allowed : FieldPermissionType.NotAllowed);
+                fp["cancreate"] = new OptionSetValue(canCreate ? FieldPermissionType.Allowed : FieldPermissionType.NotAllowed);
+                fp["canupdate"] = new OptionSetValue(canUpdate ? FieldPermissionType.Allowed : FieldPermissionType.NotAllowed);
+                Service.Create(fp);
+            }
+        }
+
         Guid trackerResourceId = Guid.Parse("8c427a1c-cda6-4a2d-9073-b75728259427");
         public string GetTrackerResource()
         {

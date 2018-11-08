@@ -91,10 +91,10 @@ namespace ItAintBoring.EZChange.Core.Packaging
 
         public override void Run(BaseAction selectedAction = null)
         {
-            if (!IsPackageDeployed())
+            if (selectedAction != null || !IsPackageDeployed())
             {
                 base.Run(selectedAction);
-                LogPackageDeployment();
+                if(selectedAction == null) LogPackageDeployment();
             }
             else
             {
