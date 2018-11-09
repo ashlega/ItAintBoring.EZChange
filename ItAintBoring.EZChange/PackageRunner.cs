@@ -16,13 +16,25 @@ namespace ItAintBoring.EZChange
     public class PackageRunner
     {
 
+        public static List<string> LoadVariableSets(string folder)
+        {
+            List<string> result = new List<string>();
+            XmlDocument doc = new XmlDocument();
+            doc.Load(System.IO.Path.Combine(folder, "variables.xml"));
+            var variableSetNodes = doc.SelectNodes($"//variableSet");
+            foreach (XmlNode v in variableSetNodes)
+            {
+                result.Add(v.Attributes["name"].Value);
+            }
+            return result;
+        }
 
         public Hashtable LoadVariables(string folder, string targetEnvironment)
         {
             Hashtable ht = new Hashtable();
             XmlDocument doc = new XmlDocument();
             doc.Load(System.IO.Path.Combine(folder, "variables.xml"));
-            var variableNodes = doc.SelectNodes($"//environment[@name='{targetEnvironment}']/variable");
+            var variableNodes = doc.SelectNodes($"//variableSet[@name='{targetEnvironment}']/variable");
             foreach (XmlNode v in variableNodes)
             {
                 ht.Add(v.Attributes["name"].Value, v.FirstChild.Value.Trim());
@@ -30,20 +42,23 @@ namespace ItAintBoring.EZChange
             return ht;
         }
 
-        public bool RunIndividualPackage(string folder, string targetEnvironment, string package)
+        public bool RunIndividualPackage(string folder, string targetEnvironment, string package, bool checkIfDeployed)
         {
             BaseComponent.LogInfo(targetEnvironment + ":" + package);
             Hashtable variableValues = LoadVariables(folder, targetEnvironment);
-            return RunIndividualPackage(System.IO.Path.Combine(folder, package), variableValues, null);
+            return RunIndividualPackage(System.IO.Path.Combine(folder, package), variableValues, null, null, checkIfDeployed);
         }
-        public bool RunIndividualPackage(string location, Hashtable variables, BaseAction selectedAction = null, string selectedActionId = null)
+        public bool RunIndividualPackage(string location, Hashtable variables, BaseAction selectedAction, string selectedActionId, bool checkIfDeployed)
         {
-            
-            var storageProvider = StorageFactory.GetDefaultProvider(); 
+
+
+            var storageProvider = StorageFactory.GetDefaultProvider();
             try
             {
                 BaseComponent.Log.Info("Starting the package..");
                 BaseChangePackage bcp = storageProvider.LoadPackage(location);
+
+
                 /*
                 if (variables == null)
                 {
@@ -56,7 +71,7 @@ namespace ItAintBoring.EZChange
                 */
                 bcp.UpdateRuntimeData(variables);
                 BaseComponent.Log.Info("Package loaded: " + bcp.Name);
-                
+
                 if (selectedAction == null && selectedActionId != null)
                 {
                     Guid actionId = Guid.Parse(selectedActionId);
@@ -66,7 +81,18 @@ namespace ItAintBoring.EZChange
                         if (selectedAction != null) break;
                     }
                 }
-                bcp.Run(selectedAction);
+
+                if (selectedAction != null || !checkIfDeployed || !bcp.IsPackageDeployed())
+                {
+                    bcp.Run(selectedAction);
+                    if (selectedAction == null && checkIfDeployed) bcp.LogPackageDeployment();
+                }
+                else
+                {
+                    BaseComponent.LogInfo("This package has already been deployed");
+                }
+                                
+                
             }
             catch (Exception ex)
             {
@@ -99,7 +125,7 @@ namespace ItAintBoring.EZChange
                         */
                         if (!String.IsNullOrEmpty(packageName) && !packageName.StartsWith("#"))
                         {
-                            RunIndividualPackage(System.IO.Path.Combine(folder, packageName), variableValues);
+                            RunIndividualPackage(System.IO.Path.Combine(folder, packageName), variableValues, null, null, true);
                         }
                     }
                 }

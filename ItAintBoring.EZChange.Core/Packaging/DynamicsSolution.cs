@@ -149,7 +149,7 @@ namespace ItAintBoring.EZChange.Core.Packaging
         {
             ProcessingStarted();
 
-            currentConnectionString = ((DynamicsChangePackage)package).DestinationConnectionString;
+            currentConnectionString = ((DynamicsChangePackage)package).ConnectionString;
             ReconnectService(true);
             
             solutionFolder = package.GetDataFolder() + "\\" + GetDataFolder();

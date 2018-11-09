@@ -87,6 +87,7 @@
   <ItemGroup>
     <Compile Include="Actions\DeployAction.cs" />
     <Compile Include="Actions\AddFileAction.cs" />
+    <Compile Include="Actions\SecurityRoleAction.cs" />
     <Compile Include="Actions\FieldPermissionAction.cs" />
     <Compile Include="Actions\RunCodeAction.cs" />
     <Compile Include="Actions\ImportDataAction.cs" />
@@ -119,6 +120,12 @@
     </Compile>
     <Compile Include="UI\ImportActionEditor.Designer.cs">
       <DependentUpon>ImportActionEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SecurityRoleEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\SecurityRoleEditor.Designer.cs">
+      <DependentUpon>SecurityRoleEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\SimpleEditor.cs">
       <SubType>UserControl</SubType>
@@ -166,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ImportActionEditor.resx">
       <DependentUpon>ImportActionEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\SecurityRoleEditor.resx">
+      <DependentUpon>SecurityRoleEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\SimpleEditor.resx">
       <DependentUpon>SimpleEditor.cs</DependentUpon>

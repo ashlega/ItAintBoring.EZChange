@@ -27,7 +27,7 @@ namespace ItAintBoring.EZChange.Core.UI
             this.component = component;
         }
 
-        public string SourceConnection
+        public string Connection
         {
             get
             {
@@ -39,23 +39,7 @@ namespace ItAintBoring.EZChange.Core.UI
             }
         }
 
-        public string DestinationConnection
-        {
-            get
-            {
-                return tbDestination.Text;
-            }
-            set
-            {
-                tbDestination.Text = value;
-            }
-        }
-
-        private void tbDestination_TextChanged(object sender, EventArgs e)
-        {
-            if (component != null) component.ApplyUIUpdates();
-        }
-
+        
         private void tbSource_TextChanged(object sender, EventArgs e)
         {
             if (component != null) component.ApplyUIUpdates();

@@ -23,19 +23,14 @@ namespace ItAintBoring.EZChange.Core.Packaging
         
         public string ConnectionString { get; set; }
 
-        public string DestinationConnectionString { get; set; }
-
-
 
         private bool ignoreUpdates = false;
         public override void ApplyUIUpdates()
         {
             if (ignoreUpdates) return;
 
-            if (((TwoConnections)uiControl).SourceConnection == ConnectionString &&
-                ((TwoConnections)uiControl).DestinationConnection == DestinationConnectionString) return;
-            ConnectionString = ((TwoConnections)uiControl).SourceConnection;
-            DestinationConnectionString = ((TwoConnections)uiControl).DestinationConnection;
+            if (((TwoConnections)uiControl).Connection == ConnectionString) return;
+            ConnectionString = ((TwoConnections)uiControl).Connection;
             HasUnsavedChanges = true;
         }
 
@@ -50,8 +45,7 @@ namespace ItAintBoring.EZChange.Core.Packaging
                 ignoreUpdates = true;
                 try
                 {
-                    ((TwoConnections)uiControl).SourceConnection = ConnectionString;
-                    ((TwoConnections)uiControl).DestinationConnection = DestinationConnectionString;
+                    ((TwoConnections)uiControl).Connection = ConnectionString;
                 }
                 finally
                 {
@@ -74,32 +68,23 @@ namespace ItAintBoring.EZChange.Core.Packaging
         {
             base.UpdateRuntimeData(values);
             ConnectionString = ReplaceVariables(ConnectionString, values);
-            DestinationConnectionString = ReplaceVariables(DestinationConnectionString, values);
         }
 
-        private bool IsPackageDeployed()
+        public override bool IsPackageDeployed()
         {
-            var service = new DynamicsService(DestinationConnectionString);
+            var service = new DynamicsService(ConnectionString);
             return service.IsPackageDeployed(System.IO.Path.GetFileName(PackageLocation));
         }
 
-        private void LogPackageDeployment()
+        public override void LogPackageDeployment()
         {
-            var service = new DynamicsService(DestinationConnectionString);
+            var service = new DynamicsService(ConnectionString);
             service.LogPackageDeployment(System.IO.Path.GetFileName(PackageLocation));
         }
 
         public override void Run(BaseAction selectedAction = null)
         {
-            if (selectedAction != null || !IsPackageDeployed())
-            {
-                base.Run(selectedAction);
-                if(selectedAction == null) LogPackageDeployment();
-            }
-            else
-            {
-                BaseComponent.LogInfo("This package has already been deployed");
-            }
+            base.Run(selectedAction);
         }
     }
 }

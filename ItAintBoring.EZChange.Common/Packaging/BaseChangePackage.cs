@@ -13,6 +13,8 @@ namespace ItAintBoring.EZChange.Common.Packaging
     public abstract class BaseChangePackage : BaseComponent
     {
         
+        public string DefaultBuildVariableSet { get; set; }
+        public string DefaultRunVariableSet { get; set; }
 
         public string PackageLocation { get; set; } //Storage specific
         public List<BaseSolution> Solutions { get; set; }
@@ -92,7 +94,18 @@ namespace ItAintBoring.EZChange.Common.Packaging
             }
         }
 
-        
+        public virtual bool IsPackageDeployed()
+        {
+            return false;
+        }
+
+        public virtual void LogPackageDeployment()
+        {
+            
+        }
+
+
+
 
     }
 }

@@ -54,7 +54,7 @@ namespace ItAintBoring.EZChange
                 PackageRunner pr = new PackageRunner();
                 if (args.Length > 2)
                 {
-                    pr.RunIndividualPackage(args[0], args[1], args[2]);
+                    pr.RunIndividualPackage(args[0], args[1], args[2], true);
                     BaseComponent.LogInfo("Done");
                 }
                 else

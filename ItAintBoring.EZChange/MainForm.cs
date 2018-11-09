@@ -21,6 +21,7 @@ namespace ItAintBoring.EZChange
         
 
         public static IPackageStorage storageProvider = null;
+        public static VariableSetSelector vss = null;
 
         private BaseChangePackage package = null;
         public BaseChangePackage Package
@@ -115,6 +116,8 @@ namespace ItAintBoring.EZChange
             Font = SystemFonts.MessageBoxFont;
             InitializeComponent();
 
+            vss = new VariableSetSelector(); 
+            
             ReSetUI();
 
 
@@ -611,7 +614,7 @@ namespace ItAintBoring.EZChange
                 BaseComponent.Log.Info("Starting the build..");
                 
                 PackageRunner pr = new PackageRunner();
-                var variables = pr.LoadVariables(System.IO.Path.GetDirectoryName(Package.PackageLocation), "Default");
+                var variables = pr.LoadVariables(System.IO.Path.GetDirectoryName(Package.PackageLocation), Package.DefaultBuildVariableSet);
                 BaseChangePackage bcp = storageProvider.LoadPackage(Package.PackageLocation);
                 bcp.UpdateRuntimeData(variables);
                 bcp.Build(storageProvider);
@@ -632,8 +635,11 @@ namespace ItAintBoring.EZChange
         }
         private void tbPreparePackage_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("You are about to build this package. Do you want to proceed?", Text, MessageBoxButtons.OKCancel) == DialogResult.OK)
+            //if (MessageBox.Show("You are about to build this package. Do you want to proceed?", Text, MessageBoxButtons.OKCancel) == DialogResult.OK)
+            vss.Initilize(System.IO.Path.GetDirectoryName(Package.PackageLocation), Package.DefaultBuildVariableSet);
+            if (vss.ShowDialog() == DialogResult.OK)
             {
+                Package.DefaultBuildVariableSet = vss.SelectedSet;
                 if (BuildPackage())
                 {
                     ShowMessage("Success");
@@ -645,15 +651,18 @@ namespace ItAintBoring.EZChange
         private void RunPackage(BaseAction selectedAction = null)
         {
             PackageRunner pr = new PackageRunner();
-            var variables = pr.LoadVariables(System.IO.Path.GetDirectoryName(Package.PackageLocation), "Default");
-            pr.RunIndividualPackage(Package.PackageLocation, variables, selectedAction);
+            var variables = pr.LoadVariables(System.IO.Path.GetDirectoryName(Package.PackageLocation), Package.DefaultRunVariableSet);
+            pr.RunIndividualPackage(Package.PackageLocation, variables, selectedAction, null, false);
         }
 
         private void tbRunPackage_Click(object sender, EventArgs e)
         {
             try {
-                if (MessageBox.Show("You are about to run this package. Do you want to proceed?", Text, MessageBoxButtons.OKCancel) == DialogResult.OK)
+                vss.Initilize(System.IO.Path.GetDirectoryName(Package.PackageLocation), Package.DefaultRunVariableSet);
+                //if (MessageBox.Show("You are about to run this package. Do you want to proceed?", Text, MessageBoxButtons.OKCancel) == DialogResult.OK)
+                if (vss.ShowDialog() == DialogResult.OK)
                 {
+                    Package.DefaultRunVariableSet = vss.SelectedSet;
                     RunPackage();
                     ShowMessage("Success");
                 }
