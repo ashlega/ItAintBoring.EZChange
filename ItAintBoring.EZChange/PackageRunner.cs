@@ -137,5 +137,18 @@ namespace ItAintBoring.EZChange
             }
                                    
         }
+
+        public void MarkPackageAsDeployed(BaseChangePackage package)
+        {
+            
+            Hashtable variableValues = LoadVariables(System.IO.Path.GetDirectoryName(package.PackageLocation), package.DefaultRunVariableSet);
+            var storageProvider = StorageFactory.GetDefaultProvider();
+            BaseChangePackage bcp = storageProvider.LoadPackage(package.PackageLocation);
+
+            bcp.UpdateRuntimeData(variableValues);
+            BaseComponent.Log.Info("Package loaded: " + bcp.Name);
+            bcp.LogPackageDeployment();
+            BaseComponent.Log.Info("Deployment status updated: " + bcp.Name);
+        }
     }
 }

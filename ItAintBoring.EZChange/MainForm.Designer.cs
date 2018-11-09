@@ -62,6 +62,8 @@
             this.btnDeleteSolution = new System.Windows.Forms.Button();
             this.btnAddSolution = new System.Windows.Forms.Button();
             this.lbSolutions = new System.Windows.Forms.ListBox();
+            this.tbMarkAsDeployed = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.tcPackage.SuspendLayout();
             this.tpLogo.SuspendLayout();
@@ -144,7 +146,9 @@
             // 
             this.miPackage.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tbPreparePackage,
-            this.tbRunPackage});
+            this.tbRunPackage,
+            this.toolStripMenuItem3,
+            this.tbMarkAsDeployed});
             this.miPackage.Name = "miPackage";
             this.miPackage.Size = new System.Drawing.Size(76, 24);
             this.miPackage.Text = "Package";
@@ -152,14 +156,14 @@
             // tbPreparePackage
             // 
             this.tbPreparePackage.Name = "tbPreparePackage";
-            this.tbPreparePackage.Size = new System.Drawing.Size(118, 26);
+            this.tbPreparePackage.Size = new System.Drawing.Size(216, 26);
             this.tbPreparePackage.Text = "Build";
             this.tbPreparePackage.Click += new System.EventHandler(this.tbPreparePackage_Click);
             // 
             // tbRunPackage
             // 
             this.tbRunPackage.Name = "tbRunPackage";
-            this.tbRunPackage.Size = new System.Drawing.Size(118, 26);
+            this.tbRunPackage.Size = new System.Drawing.Size(216, 26);
             this.tbRunPackage.Text = "Run";
             this.tbRunPackage.Click += new System.EventHandler(this.tbRunPackage_Click);
             // 
@@ -447,6 +451,18 @@
             this.lbSolutions.DoubleClick += new System.EventHandler(this.lbSolutions_DoubleClick);
             this.lbSolutions.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lbSolutions_MouseDown);
             // 
+            // tbMarkAsDeployed
+            // 
+            this.tbMarkAsDeployed.Name = "tbMarkAsDeployed";
+            this.tbMarkAsDeployed.Size = new System.Drawing.Size(216, 26);
+            this.tbMarkAsDeployed.Text = "Mark as Deployed";
+            this.tbMarkAsDeployed.Click += new System.EventHandler(this.tbMarkAsDeployed_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(213, 6);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -511,6 +527,8 @@
         private System.Windows.Forms.ToolStripMenuItem tbPreparePackage;
         private System.Windows.Forms.ToolStripMenuItem tbRunPackage;
         private System.Windows.Forms.Button btnTestAction;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem tbMarkAsDeployed;
     }
 }
 

@@ -733,5 +733,21 @@ namespace ItAintBoring.EZChange
             }
             
         }
+
+        private void tbMarkAsDeployed_Click(object sender, EventArgs e)
+        {
+            if (!SaveIfRequired()) return;
+
+            vss.Initilize(System.IO.Path.GetDirectoryName(Package.PackageLocation), Package.DefaultRunVariableSet);
+            //if (MessageBox.Show("You are about to run this package. Do you want to proceed?", Text, MessageBoxButtons.OKCancel) == DialogResult.OK)
+            if (vss.ShowDialog() == DialogResult.OK)
+            {
+                Package.DefaultRunVariableSet = vss.SelectedSet;
+                storageProvider.SavePackage(Package);//To save variable selection
+                PackageRunner pr = new PackageRunner();
+                pr.MarkPackageAsDeployed(Package);
+                ShowMessage("Success");
+            }
+        }
     }
 }
