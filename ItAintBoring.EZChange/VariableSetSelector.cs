@@ -22,7 +22,7 @@ namespace ItAintBoring.EZChange
         {
             cbVariableSet.Items.Clear();
             var variableSets = PackageRunner.LoadVariableSets(folder);
-            variableSets.Sort();
+            //variableSets.Sort();
             variableSets.Insert(0, "");
             cbVariableSet.Items.AddRange(variableSets.ToArray());
             cbVariableSet.SelectedIndex = variableSets.IndexOf(defaultSet);

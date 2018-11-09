@@ -2,6 +2,8 @@
 using ItAintBoring.EZChange.Common.Packaging;
 using ItAintBoring.EZChange.Core.Packaging;
 using ItAintBoring.EZChange.Core.UI;
+using Microsoft.Crm.Sdk.Messages;
+using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using System;
 using System.Collections.Generic;
@@ -18,8 +20,8 @@ namespace ItAintBoring.EZChange.Core.Actions
     {
 
         public override string Version { get { return "1.0"; } }
-        public override string Id { get { return "MetaData Action"; } }
-        public override string Description { get { return "MetaData Action"; } }
+        public override string Id { get { return "Delete Action"; } }
+        public override string Description { get { return "Delete Action"; } }
 
         public override string Name { get; set; }
 
@@ -31,6 +33,7 @@ namespace ItAintBoring.EZChange.Core.Actions
         {
             supportedSolutionTypes = new List<Type>();
             supportedSolutionTypes.Add(typeof(DynamicsSolution));
+            XML = @"<action target=""entity/attribute/workflow/businessrule/webresource/record"" attribute="""" entity="""" plugin="""" recordid=""""/>";
         }
 
         public string XML { get; set; }
@@ -59,44 +62,63 @@ namespace ItAintBoring.EZChange.Core.Actions
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(XML);
             var actions = doc.GetElementsByTagName("action");
-            foreach(XmlNode a in actions)
+            foreach (XmlNode a in actions)
             {
-                switch(a.Attributes["type"].Value)
+                try
                 {
-                    case "delete":
-                        try
-                        {
-                            switch (a.Attributes["target"].Value)
+                    switch (a.Attributes["target"].Value)
+                    {
+                        case "attribute":
+                            DeleteAttributeRequest dar = new DeleteAttributeRequest();
+                            dar.EntityLogicalName = a.Attributes["entity"].Value;
+                            dar.LogicalName = a.Attributes["attribute"].Value;
+                            ds.Service.Service.Execute(dar);
+                            break;
+                        case "entity":
+                            DeleteEntityRequest der = new DeleteEntityRequest();
+                            der.LogicalName = a.Attributes["entity"].Value;
+                            ds.Service.Service.Execute(der);
+                            break;
+                        case "pluginstep":
+                            break;
+                        case "plugin":
+                            break;
+                        case "businessrule": case "workflow":
+                            try
                             {
-                                case "attribute":
-                                    DeleteAttributeRequest dar = new DeleteAttributeRequest();
-                                    dar.EntityLogicalName = a.Attributes["entity"].Value;
-                                    dar.LogicalName = a.Attributes["attribute"].Value;
-                                    ds.Service.Service.Execute(dar);
-                                    break;
-                                case "entity":
-                                    DeleteEntityRequest der = new DeleteEntityRequest();
-                                    der.LogicalName = a.Attributes["entity"].Value;
-                                    ds.Service.Service.Execute(der);
-                                    break;
-                                case "workflow":
-                                    break;
-                                case "pluginstep":
-                                    break;
-                                case "plugin":
-                                    break;
-                                case "businessrule":
-                                    break;
-                                case "webresource":
-                                    break;
+                                SetStateRequest deactivateRequest = new SetStateRequest
+                                {
+                                    EntityMoniker =
+                                            new EntityReference("workflow", Guid.Parse(a.Attributes["recordid"].Value)),
+                                    State = new OptionSetValue(0),
+                                    Status = new OptionSetValue(1)
+                                };
+                                ds.Service.Service.Execute(deactivateRequest);
+                                ds.Service.Service.Delete("workflow", Guid.Parse(a.Attributes["recordid"].Value));
                             }
-                        }
-                        catch(Exception ex)
-                        {
-                            if (!ex.Message.ToLower().Contains("could not find")) throw; //Ignore if the "artefact" does not exist
-                        }
-                        break;
+                            catch(Exception ex)
+                            {
+                                if(!ex.Message.ToUpper().Contains(a.Attributes["recordid"].Value.ToUpper()))
+                                {
+                                    throw;
+                                }
+                                //Ignore if the ID is there - likely "does not exist" error
+                                //May need an extra attribute to decide if to ignore or not
+                            }
+                            break;
+                        case "webresource":
+                            ds.Service.Service.Delete("webresrouce", Guid.Parse(a.Attributes["recordid"].Value));
+                            break;
+                        case "record":
+                            ds.Service.Service.Delete(a.Attributes["entity"].Value, Guid.Parse(a.Attributes["recordid"].Value));
+                            break;
+                    }
                 }
+                catch (Exception ex)
+                {
+                    if (!ex.Message.ToLower().Contains("could not find")) throw; //Ignore if the "artefact" does not exist
+                }
+                break;
             }
             ActionCompleted();
         }
@@ -108,6 +130,5 @@ namespace ItAintBoring.EZChange.Core.Actions
     }
 }
 /*
- <action type="delete" target="entity/attribute/workflow/pluginstep/plugin/businessrule/webresource" attribute="" entity="" plugin="">
- </action>
- * */
+ <action target="entity/attribute/workflow/pluginstep/plugin/businessrule/webresource/record" attribute="" entity="" plugin="" recordid=""/>
+  * */

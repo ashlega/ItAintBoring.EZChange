@@ -50,45 +50,51 @@ namespace ItAintBoring.EZChange.Core.Dynamics
                 if (internalService == null)
                 {
 
-                    
-                    var conn = new Microsoft.Xrm.Tooling.Connector.CrmServiceClient(connectionString);
-                    if (conn.OrganizationServiceProxy != null)
+                    try
                     {
-                        conn.OrganizationServiceProxy.Timeout = new TimeSpan(0, 20, 0);
-                    }
-                    internalService = (IOrganizationService)conn.OrganizationWebProxyClient != null ? (IOrganizationService)conn.OrganizationWebProxyClient : (IOrganizationService)conn.OrganizationServiceProxy;
-                    
-                    if (internalService == null)
-                    {
-                        string[] pairs = connectionString.Split(';');
-                        Uri oUri = null;
-                        ClientCredentials clientCredentials = new ClientCredentials();
-                        
-
-                        foreach (string p in pairs)
+                        var conn = new Microsoft.Xrm.Tooling.Connector.CrmServiceClient(connectionString);
+                        if (conn.OrganizationServiceProxy != null)
                         {
-                            string[] keyValue = p.Trim().Split('=');
-                            switch (keyValue[0].ToLower())
-                            {
-                                case "url":
-                                    oUri = new Uri(keyValue[1]+ "/XRMServices/2011/Organization.svc");
-                                    break;
-                                case "domain":
-                                    clientCredentials.UserName.UserName = keyValue[1] + "\\" + clientCredentials.UserName.UserName;
-                                    break;
-                                case "username":
-                                    clientCredentials.UserName.UserName = clientCredentials.UserName.UserName + keyValue[1];
-                                    break;
-                                case "password":
-                                    clientCredentials.UserName.Password = keyValue[1];
-                                    break;
-                            }
+                            conn.OrganizationServiceProxy.Timeout = new TimeSpan(0, 20, 0);
                         }
+                        internalService = (IOrganizationService)conn.OrganizationWebProxyClient != null ? (IOrganizationService)conn.OrganizationWebProxyClient : (IOrganizationService)conn.OrganizationServiceProxy;
 
-                                               
-                        var service = new OrganizationServiceProxy(oUri, null, clientCredentials, null);
-                        service.Timeout = new TimeSpan(0, 20, 0);
-                        internalService = service;
+                        if (internalService == null)
+                        {
+                            string[] pairs = connectionString.Split(';');
+                            Uri oUri = null;
+                            ClientCredentials clientCredentials = new ClientCredentials();
+
+
+                            foreach (string p in pairs)
+                            {
+                                string[] keyValue = p.Trim().Split('=');
+                                switch (keyValue[0].ToLower())
+                                {
+                                    case "url":
+                                        oUri = new Uri(keyValue[1] + "/XRMServices/2011/Organization.svc");
+                                        break;
+                                    case "domain":
+                                        clientCredentials.UserName.UserName = keyValue[1] + "\\" + clientCredentials.UserName.UserName;
+                                        break;
+                                    case "username":
+                                        clientCredentials.UserName.UserName = clientCredentials.UserName.UserName + keyValue[1];
+                                        break;
+                                    case "password":
+                                        clientCredentials.UserName.Password = keyValue[1];
+                                        break;
+                                }
+                            }
+
+
+                            var service = new OrganizationServiceProxy(oUri, null, clientCredentials, null);
+                            service.Timeout = new TimeSpan(0, 20, 0);
+                            internalService = service;
+                        }
+                    }
+                    catch(Exception ex)
+                    {
+                        throw new Exception("Could not connect to Dynamics");
                     }
                 }
                 return internalService;

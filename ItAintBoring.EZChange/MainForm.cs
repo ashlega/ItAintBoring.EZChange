@@ -607,7 +607,7 @@ namespace ItAintBoring.EZChange
 
         private bool BuildPackage()
         {
-            if (!SaveIfRequired()) return false;
+            
             try
             {
                 BaseComponent.Log.Info("Starting the build..");
@@ -634,11 +634,14 @@ namespace ItAintBoring.EZChange
         }
         private void tbPreparePackage_Click(object sender, EventArgs e)
         {
+            if (!SaveIfRequired()) return;
+
             //if (MessageBox.Show("You are about to build this package. Do you want to proceed?", Text, MessageBoxButtons.OKCancel) == DialogResult.OK)
             vss.Initilize(System.IO.Path.GetDirectoryName(Package.PackageLocation), Package.DefaultBuildVariableSet);
             if (vss.ShowDialog() == DialogResult.OK)
             {
                 Package.DefaultBuildVariableSet = vss.SelectedSet;
+                storageProvider.SavePackage(Package);//To save variable selection
                 if (BuildPackage())
                 {
                     ShowMessage("Success");
@@ -656,12 +659,16 @@ namespace ItAintBoring.EZChange
 
         private void tbRunPackage_Click(object sender, EventArgs e)
         {
-            try {
+            try
+            {
+                if (!SaveIfRequired()) return;
+
                 vss.Initilize(System.IO.Path.GetDirectoryName(Package.PackageLocation), Package.DefaultRunVariableSet);
                 //if (MessageBox.Show("You are about to run this package. Do you want to proceed?", Text, MessageBoxButtons.OKCancel) == DialogResult.OK)
                 if (vss.ShowDialog() == DialogResult.OK)
                 {
                     Package.DefaultRunVariableSet = vss.SelectedSet;
+                    storageProvider.SavePackage(Package);//To save variable selection
                     RunPackage();
                     ShowMessage("Success");
                 }
@@ -708,8 +715,14 @@ namespace ItAintBoring.EZChange
         {
             try
             {
-                if (MessageBox.Show("You are about to run the selected action. Do you want to proceed?", Text, MessageBoxButtons.OKCancel) == DialogResult.OK)
+                if (!SaveIfRequired()) return;
+
+                vss.Initilize(System.IO.Path.GetDirectoryName(Package.PackageLocation), Package.DefaultRunVariableSet);
+                //if (MessageBox.Show("You are about to run this package. Do you want to proceed?", Text, MessageBoxButtons.OKCancel) == DialogResult.OK)
+                if (vss.ShowDialog() == DialogResult.OK)
                 {
+                    Package.DefaultRunVariableSet = vss.SelectedSet;
+                    storageProvider.SavePackage(Package);//To save variable selection
                     RunPackage((BaseAction)lbPostActions.SelectedItem);
                     ShowMessage("Success");
                 }
