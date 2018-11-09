@@ -1,4 +1,6 @@
-﻿Update "metadata action" to work with workflows/plugins/sdk steps
+﻿Security roles?
+Verify execution log
+Update "metadata action" to work with workflows/plugins/sdk steps
 Delete actions editor?
 Action images
 Progress Bar

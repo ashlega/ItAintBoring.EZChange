@@ -207,7 +207,11 @@ namespace ItAintBoring.EZChange
         {
             if (SaveIfRequired())
             {
-                Package = storageProvider.LoadPackage();
+                var pkg = storageProvider.LoadPackage();
+                if(pkg != null)
+                {
+                    Package = pkg;
+                }
             }
         }
 
@@ -441,16 +445,11 @@ namespace ItAintBoring.EZChange
 
         public void ShowPackageControl()
         {
-            if (Package != null && Package.UIControl == null)
+            pnlPackageControl.Controls.Clear();
+            if (Package != null && Package.UIControl != null)
             {
-                pnlPackageControl.Controls.Clear();
-            }
-            else
-            {
-                pnlPackageControl.Controls.Clear();
                 Package.UIControl.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
                 Package.UIControl.Parent = pnlPackageControl;
-                //pnlPackageControl.Controls.Add(Package.UIControl);
             }
         }
 
