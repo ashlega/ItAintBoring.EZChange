@@ -46,6 +46,7 @@ namespace ItAintBoring.EZChange.Core.Actions
             if (((ActionSelectorEditor)uiControl).SelectedAction != null)
             {
                 ExportActionId = ((ActionSelectorEditor)uiControl).SelectedAction.ComponentId;
+                CreateOnly = ((ActionSelectorEditor)uiControl).CreateOnly;
             }
             else ExportActionId = Guid.Empty;
         }
@@ -83,6 +84,8 @@ namespace ItAintBoring.EZChange.Core.Actions
                 }
                 ((ActionSelectorEditor)uiControl).PopulateActions(Solution.BuildActions.FindAll(x => x is ExportDataAction));
                 ((ActionSelectorEditor)uiControl).SelectedAction = Solution.FindAction(ExportActionId);
+                ((ActionSelectorEditor)uiControl).CreateOnly = CreateOnly;
+                ((ActionSelectorEditor)uiControl).ShowCreateOnly(true);
                 return uiControl;
             }
         }

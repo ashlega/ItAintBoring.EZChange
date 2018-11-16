@@ -38,7 +38,22 @@ namespace ItAintBoring.EZChange.Core.UI
             }
             cbAction.SelectedIndex = -1;
         }
+        public void ShowCreateOnly(bool visible)
+        {
+            cbCreateOnly.Visible = visible;
+        }
 
+        public bool CreateOnly
+        {
+            get
+            {
+                return cbCreateOnly.Checked;
+            }
+            set
+            {
+                cbCreateOnly.Checked = value;
+            }
+        }
         public BaseAction SelectedAction
         {
             get
