@@ -18,7 +18,11 @@ namespace ItAintBoring.EZChange
     public partial class MainForm : Form
     {
 
-        
+
+        ProgressIndicator progressBar = new ProgressIndicator();
+        Exception threadException = null;
+
+        bool inProgress = false;
 
         public static IPackageStorage storageProvider = null;
         public static VariableSetSelector vss = null;
@@ -49,6 +53,20 @@ namespace ItAintBoring.EZChange
                 
 
             }
+        }
+
+        public void ShowProgressIndicator()
+        {
+            inProgress = true;
+            tmProgress.Start();
+            progressBar.StartProgress();
+        }
+
+        public void HideProgressIndicator()
+        {
+            inProgress = false;
+            tmProgress.Stop();
+            progressBar.Close();
         }
 
         public void ResetActions()
@@ -605,19 +623,38 @@ namespace ItAintBoring.EZChange
             e.Cancel = !SaveIfRequired();
         }
 
-        private bool BuildPackage()
+
+        private void InternalBuild()
         {
-            
             try
             {
-                BaseComponent.Log.Info("Starting the build..");
                 
                 PackageRunner pr = new PackageRunner();
                 var variables = pr.LoadVariables(System.IO.Path.GetDirectoryName(Package.PackageLocation), Package.DefaultBuildVariableSet);
                 BaseChangePackage bcp = storageProvider.LoadPackage(Package.PackageLocation);
                 bcp.UpdateRuntimeData(variables);
                 bcp.Build(storageProvider);
-                
+            }
+            catch(Exception ex)
+            {
+                threadException = ex;
+            }
+            finally
+            {
+                inProgress = false;
+            }
+        }
+        private bool BuildPackage()
+        {
+            
+            try
+            {
+                BaseComponent.Log.Info("Starting the build..");
+                threadException = null;
+                System.Threading.Thread th = new System.Threading.Thread(InternalBuild);
+                th.Start();
+                ShowProgressIndicator();
+                if (threadException != null) throw threadException;
             }
             catch (Exception ex)
             {
@@ -650,11 +687,33 @@ namespace ItAintBoring.EZChange
 
         }
 
+        
+        private void InternalRunPackage(Object parameter)
+        {
+            try
+            {
+                BaseAction selectedAction = (BaseAction)parameter;
+                PackageRunner pr = new PackageRunner();
+                var variables = pr.LoadVariables(System.IO.Path.GetDirectoryName(Package.PackageLocation), Package.DefaultRunVariableSet);
+                pr.RunIndividualPackage(Package.PackageLocation, variables, selectedAction, null, false);
+            }
+            catch (Exception ex)
+            {
+                threadException = ex;
+            }
+            finally
+            {
+                inProgress = false;
+            }
+        }
+
         private void RunPackage(BaseAction selectedAction = null)
         {
-            PackageRunner pr = new PackageRunner();
-            var variables = pr.LoadVariables(System.IO.Path.GetDirectoryName(Package.PackageLocation), Package.DefaultRunVariableSet);
-            pr.RunIndividualPackage(Package.PackageLocation, variables, selectedAction, null, false);
+            threadException = null;
+            System.Threading.Thread th = new System.Threading.Thread(InternalRunPackage);
+            th.Start(selectedAction);
+            ShowProgressIndicator();
+            if (threadException != null) throw threadException;
         }
 
         private void tbRunPackage_Click(object sender, EventArgs e)
@@ -669,6 +728,7 @@ namespace ItAintBoring.EZChange
                 {
                     Package.DefaultRunVariableSet = vss.SelectedSet;
                     storageProvider.SavePackage(Package);//To save variable selection
+
                     RunPackage();
                     ShowMessage("Success");
                 }
@@ -747,6 +807,15 @@ namespace ItAintBoring.EZChange
                 PackageRunner pr = new PackageRunner();
                 pr.MarkPackageAsDeployed(Package);
                 ShowMessage("Success");
+            }
+        }
+
+        private void tmProgress_Tick(object sender, EventArgs e)
+        {
+            if (!inProgress)
+            {
+                tmProgress.Stop();
+                HideProgressIndicator();
             }
         }
     }
