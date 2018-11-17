@@ -69,6 +69,7 @@ namespace ItAintBoring.EZChange.Core.Dynamics
                 case "Money": //Money
                     return (typeof(Microsoft.Xrm.Sdk.Money)).Name;
                 case "Lookup":
+                case "Customer":
                     return (typeof(Microsoft.Xrm.Sdk.EntityReference)).Name;
                 case "Integer":
                     return (typeof(int)).Name;
