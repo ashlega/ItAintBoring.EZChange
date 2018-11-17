@@ -30,6 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.cbAction = new System.Windows.Forms.ComboBox();
+            this.cbCreateOnly = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -53,14 +54,26 @@
             this.cbAction.TabIndex = 2;
             this.cbAction.SelectedIndexChanged += new System.EventHandler(this.cbAction_SelectedIndexChanged);
             // 
+            // cbCreateOnly
+            // 
+            this.cbCreateOnly.AutoSize = true;
+            this.cbCreateOnly.Location = new System.Drawing.Point(6, 56);
+            this.cbCreateOnly.Name = "cbCreateOnly";
+            this.cbCreateOnly.Size = new System.Drawing.Size(105, 21);
+            this.cbCreateOnly.TabIndex = 3;
+            this.cbCreateOnly.Text = "Create Only";
+            this.cbCreateOnly.UseVisualStyleBackColor = true;
+            this.cbCreateOnly.Visible = false;
+            // 
             // ActionSelectorEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cbCreateOnly);
             this.Controls.Add(this.cbAction);
             this.Controls.Add(this.label1);
             this.Name = "ActionSelectorEditor";
-            this.Size = new System.Drawing.Size(587, 51);
+            this.Size = new System.Drawing.Size(587, 85);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -69,5 +82,6 @@
         #endregion
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbAction;
+        private System.Windows.Forms.CheckBox cbCreateOnly;
     }
 }
