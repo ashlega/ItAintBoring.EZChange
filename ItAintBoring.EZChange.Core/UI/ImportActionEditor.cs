@@ -14,13 +14,13 @@ namespace ItAintBoring.EZChange.Core.UI
     public partial class ImportActionEditor : UserControl
     {
 
-        BaseComponent component = null;
+        IUIControlEnabled component = null;
         public ImportActionEditor()
         {
             InitializeComponent();
         }
 
-        public ImportActionEditor(string fileName, bool createOnly, BaseComponent component)
+        public ImportActionEditor(string fileName, bool createOnly, IUIControlEnabled component)
         {
             InitializeComponent();
             this.component = component;

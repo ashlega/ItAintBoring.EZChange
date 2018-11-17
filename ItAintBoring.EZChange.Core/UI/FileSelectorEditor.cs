@@ -13,13 +13,13 @@ namespace ItAintBoring.EZChange.Core.UI
 {
     public partial class FileSelectorEditor : UserControl
     {
-        BaseComponent component = null;
+        public IUIControlEnabled component = null;
         public FileSelectorEditor()
         {
             InitializeComponent();
         }
 
-        public FileSelectorEditor(BaseComponent component)
+        public FileSelectorEditor(IUIControlEnabled component)
         {
             InitializeComponent();
             this.component = component;
@@ -55,6 +55,12 @@ namespace ItAintBoring.EZChange.Core.UI
         private void tbFile_TextChanged(object sender, EventArgs e)
         {
             if (component != null) component.ApplyUIUpdates();
+        }
+
+        public void AdjustSize()
+        {
+            tbFile.Width = Width - btnOpenFile.Width - 8;
+            btnOpenFile.Left = tbFile.Left + tbFile.Width + 5;
         }
     }
     

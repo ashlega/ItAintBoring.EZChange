@@ -109,6 +109,12 @@
     <Compile Include="UI\ActionSelectorEditor.Designer.cs">
       <DependentUpon>ActionSelectorEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\DynamicsSolutionEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DynamicsSolutionEditor.Designer.cs">
+      <DependentUpon>DynamicsSolutionEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\FieldPermissionEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -167,6 +173,9 @@
   <ItemGroup>
     <EmbeddedResource Include="UI\ActionSelectorEditor.resx">
       <DependentUpon>ActionSelectorEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DynamicsSolutionEditor.resx">
+      <DependentUpon>DynamicsSolutionEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FieldPermissionEditor.resx">
       <DependentUpon>FieldPermissionEditor.cs</DependentUpon>

@@ -22,13 +22,13 @@ namespace ItAintBoring.EZChange
         {
             Text = title;
             UseControl(component.UIControl);
-            tbName.Text = component.Name;
+            tbName.Text = component.DisplayName;
             tbName.Focus();
         }
 
         public void UpdateComponent(BaseComponent component)
         {
-            component.Name = tbName.Text;
+            component.DisplayName = tbName.Text;
             component.ApplyUIUpdates();
         }
 

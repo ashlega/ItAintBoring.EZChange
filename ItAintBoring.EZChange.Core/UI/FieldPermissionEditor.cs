@@ -13,13 +13,13 @@ namespace ItAintBoring.EZChange.Core.UI
 {
     public partial class FieldPermissionEditor : UserControl
     {
-        BaseComponent component = null;
+        IUIControlEnabled component = null;
         public FieldPermissionEditor()
         {
             InitializeComponent();
         }
 
-        public FieldPermissionEditor(BaseComponent component)
+        public FieldPermissionEditor(IUIControlEnabled component)
         {
             InitializeComponent();
             this.component = component;

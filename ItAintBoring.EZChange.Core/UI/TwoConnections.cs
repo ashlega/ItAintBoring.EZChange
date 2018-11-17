@@ -13,7 +13,7 @@ namespace ItAintBoring.EZChange.Core.UI
 {
     public partial class TwoConnections : UserControl
     {
-        BaseComponent component = null;
+        IUIControlEnabled component = null;
 
         public TwoConnections()
         {
@@ -21,7 +21,7 @@ namespace ItAintBoring.EZChange.Core.UI
         }
 
 
-        public TwoConnections(BaseComponent component)
+        public TwoConnections(IUIControlEnabled component)
         {
             InitializeComponent();
             this.component = component;

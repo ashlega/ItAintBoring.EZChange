@@ -14,13 +14,13 @@ namespace ItAintBoring.EZChange.Core.UI
     public partial class ActionSelectorEditor : UserControl
     {
 
-        BaseComponent component = null;
+        IUIControlEnabled component = null;
         public ActionSelectorEditor()
         {
             InitializeComponent();
         }
 
-        public ActionSelectorEditor(BaseComponent component, List<BaseAction> actions, BaseAction selectedAction)
+        public ActionSelectorEditor(IUIControlEnabled component, List<BaseAction> actions, BaseAction selectedAction)
         {
             InitializeComponent();
             this.component = component;

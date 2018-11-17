@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 
 namespace ItAintBoring.EZChange.Common
 {
-    public abstract class BaseComponent
+    public abstract class BaseComponent : IUIControlEnabled
     {
 
         [XmlIgnore]
@@ -31,8 +31,22 @@ namespace ItAintBoring.EZChange.Common
         }
 
         [XmlIgnore]
-        abstract public UserControl UIControl { get; }
+        virtual public UserControl UIControl { get { return null; } }
         virtual public void ApplyUIUpdates() { }
+
+
+        [XmlIgnore]
+        public virtual string DisplayName
+        {
+            get
+            {
+             return Name;
+            }
+            set
+            {
+                Name = value;
+            }
+        }
 
         public override string ToString()
         {

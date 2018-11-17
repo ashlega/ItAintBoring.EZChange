@@ -11,25 +11,25 @@ using ItAintBoring.EZChange.Common;
 
 namespace ItAintBoring.EZChange.Core.UI
 {
-    public partial class SimpleEditor : UserControl
+    public partial class DynamicsSolutionEditor : UserControl, IUIControlEnabled
     {
 
         IUIControlEnabled component = null;
-
-        public SimpleEditor()
+        public DynamicsSolutionEditor()
         {
             InitializeComponent();
+            fsEditor.component = this;
         }
 
-        public SimpleEditor(string label, bool multiLine, IUIControlEnabled component)
+        public DynamicsSolutionEditor(IUIControlEnabled component)
         {
             InitializeComponent();
             this.component = component;
-            lbName.Text = label;
-            tbText.Multiline = multiLine;
+            fsEditor.component = this;
+            fsEditor.AdjustSize();
         }
 
-        public string SimpleText
+        public string SolutionName
         {
             get
             {
@@ -39,6 +39,25 @@ namespace ItAintBoring.EZChange.Core.UI
             {
                 tbText.Text = value;
             }
+        }
+
+        public string FileName
+        {
+            get
+            {
+                return fsEditor.FileName;
+            }
+            set
+            {
+                fsEditor.FileName = value;
+            }
+        }
+
+        public UserControl UIControl { get { return fsEditor; } }
+
+        public void ApplyUIUpdates()
+        {
+            if(component != null)  component.ApplyUIUpdates();
         }
 
         private void tbText_TextChanged(object sender, EventArgs e)

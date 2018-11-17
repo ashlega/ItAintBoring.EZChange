@@ -20,6 +20,20 @@ namespace ItAintBoring.EZChange.Core.Packaging
         public override string Id { get { return "Dynamics Solution"; } }
         public override string Description { get { return "Dynamics Solution"; } }
 
+
+        private string displayName = null;
+        public override string DisplayName {
+            get
+            {
+                if (displayName == null) return Name;
+                else return displayName;
+            }
+            set
+            {
+                displayName = value;
+            }
+        }
+
         public override string Name { get; set; }
 
         public string ExternalFileName { get; set; }
@@ -53,9 +67,10 @@ namespace ItAintBoring.EZChange.Core.Packaging
         {
             get
             {
-                if (uiControl == null) uiControl = new SimpleEditor("External File Name", false, this);
+                if (uiControl == null) uiControl = new DynamicsSolutionEditor(this);// ("External File Name", false, this);
                                
-                ((SimpleEditor)uiControl).SimpleText = ExternalFileName;
+                ((DynamicsSolutionEditor)uiControl).SolutionName = Name;
+                ((DynamicsSolutionEditor)uiControl).FileName = ExternalFileName;
 
                 return uiControl;
             }
@@ -63,7 +78,8 @@ namespace ItAintBoring.EZChange.Core.Packaging
 
         public override void ApplyUIUpdates()
         {
-            ExternalFileName = ((SimpleEditor)uiControl).SimpleText;
+            ExternalFileName = ((DynamicsSolutionEditor)uiControl).FileName;
+            Name = ((DynamicsSolutionEditor)uiControl).SolutionName;
         }
 
         private string solutionFolder = null;
@@ -133,7 +149,7 @@ namespace ItAintBoring.EZChange.Core.Packaging
                 System.IO.Directory.CreateDirectory(solutionFolder);
                 System.IO.File.Copy(ExternalFileName, System.IO.Path.Combine(solutionFolder, System.IO.Path.GetFileName(ExternalFileName)));
             }
-            else service.ExportSolution(Name, solutionFolder, false);
+            else if(!String.IsNullOrEmpty(Name)) service.ExportSolution(Name, solutionFolder, false);
         }
 
         public void ImportSolution()
@@ -170,5 +186,13 @@ namespace ItAintBoring.EZChange.Core.Packaging
             base.UpdateRuntimeData(values);
             ExternalFileName = ReplaceVariables(ExternalFileName, values);
         }
+
+        public override string ToString()
+        {
+            if (DisplayName == null) return Name;
+            else return DisplayName;
+        }
+
+        
     }
 }

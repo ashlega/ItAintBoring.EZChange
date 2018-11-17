@@ -14,14 +14,14 @@ namespace ItAintBoring.EZChange.Core.UI
     public partial class WorkflowActionEditor : UserControl
     {
 
-        BaseComponent component = null;
+        IUIControlEnabled component = null;
 
         public WorkflowActionEditor()
         {
             InitializeComponent();
         }
 
-        public WorkflowActionEditor(string workflowId, string fetchXml, BaseComponent component)
+        public WorkflowActionEditor(string workflowId, string fetchXml, IUIControlEnabled component)
         {
             InitializeComponent();
             this.component = component;

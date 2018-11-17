@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="BaseComponent.cs" />
     <Compile Include="IChangeAction.cs" />
+    <Compile Include="IUIControlEnabled.cs" />
     <Compile Include="Packaging\BaseChangePackage.cs" />
     <Compile Include="BaseAction.cs" />
     <Compile Include="Packaging\BaseSolution.cs" />
