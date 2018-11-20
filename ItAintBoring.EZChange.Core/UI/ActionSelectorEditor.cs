@@ -15,6 +15,8 @@ namespace ItAintBoring.EZChange.Core.UI
     {
 
         IUIControlEnabled component = null;
+
+        bool disableUpdates = false;
         public ActionSelectorEditor()
         {
             InitializeComponent();
@@ -51,7 +53,9 @@ namespace ItAintBoring.EZChange.Core.UI
             }
             set
             {
+                disableUpdates = true;
                 cbCreateOnly.Checked = value;
+                disableUpdates = false;
             }
         }
         public BaseAction SelectedAction
@@ -70,7 +74,9 @@ namespace ItAintBoring.EZChange.Core.UI
                         var a = (BaseAction)item;
                         if (a.ComponentId == value.ComponentId)
                         {
+                            disableUpdates = true;
                             cbAction.SelectedItem = item;
+                            disableUpdates = false;
                             break;
                         }
                     }
@@ -81,6 +87,8 @@ namespace ItAintBoring.EZChange.Core.UI
 
         private void cbAction_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (disableUpdates) return;
+
             if (component != null) component.ApplyUIUpdates();
         }
     }
