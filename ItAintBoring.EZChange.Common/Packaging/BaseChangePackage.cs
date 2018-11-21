@@ -14,7 +14,7 @@ namespace ItAintBoring.EZChange.Common.Packaging
     {
         private Hashtable runTimeVariables = null;
         [XmlIgnore]
-        public Hashtable RunTimeVariables { get { return RunTimeVariables; } }
+        public Hashtable RunTimeVariables { get { return runTimeVariables; } }
 
         public string DefaultBuildVariableSet { get; set; }
         public string DefaultRunVariableSet { get; set; }
