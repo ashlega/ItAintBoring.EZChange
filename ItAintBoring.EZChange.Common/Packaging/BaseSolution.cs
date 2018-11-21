@@ -10,8 +10,12 @@ namespace ItAintBoring.EZChange.Common.Packaging
 {
     public abstract class BaseSolution: BaseComponent
     {
+        [XmlIgnore]
+        public BaseChangePackage Package { get; set; }
+
         public List<BaseAction> BuildActions { get; set; }
         public List<BaseAction> DeployActions { get; set; }
+
 
         public BaseSolution(): base()
         {

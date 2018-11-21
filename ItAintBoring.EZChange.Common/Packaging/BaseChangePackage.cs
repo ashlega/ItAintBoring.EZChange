@@ -12,7 +12,10 @@ namespace ItAintBoring.EZChange.Common.Packaging
 {
     public abstract class BaseChangePackage : BaseComponent
     {
-        
+        private Hashtable runTimeVariables = null;
+        [XmlIgnore]
+        public Hashtable RunTimeVariables { get { return RunTimeVariables; } }
+
         public string DefaultBuildVariableSet { get; set; }
         public string DefaultRunVariableSet { get; set; }
 
@@ -59,6 +62,7 @@ namespace ItAintBoring.EZChange.Common.Packaging
         {
             foreach (var s in Solutions)
             {
+                s.Package = this;
                 s.DeploySolution(this, selectedAction);
             }
         }
@@ -73,6 +77,7 @@ namespace ItAintBoring.EZChange.Common.Packaging
             storage.SavePackage(this);//, System.IO.Path.Combine(GetDataFolder(), Name + ".ecp"));
             foreach (var s in Solutions)
             {
+                s.Package = this;
                 s.PrepareSolution(this);
             }
             
@@ -80,7 +85,8 @@ namespace ItAintBoring.EZChange.Common.Packaging
 
         public override void UpdateRuntimeData(Hashtable values)
         {
-            foreach(var s in Solutions)
+            runTimeVariables = values;
+            foreach (var s in Solutions)
             {
                 s.UpdateRuntimeData(values);
             }
