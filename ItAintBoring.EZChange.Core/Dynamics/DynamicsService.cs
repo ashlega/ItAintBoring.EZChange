@@ -68,7 +68,10 @@ namespace ItAintBoring.EZChange.Core.Dynamics
 
                             foreach (string p in pairs)
                             {
-                                string[] keyValue = p.Trim().Split('=');
+                                int i = p.IndexOf("=");
+                                string[] keyValue = new string[2];
+                                keyValue[0] = p.Substring(0, i).Trim();
+                                keyValue[1] = p.Substring(i + 1).Trim();
                                 switch (keyValue[0].ToLower())
                                 {
                                     case "url":
