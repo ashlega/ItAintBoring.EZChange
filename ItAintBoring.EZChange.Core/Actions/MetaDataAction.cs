@@ -33,7 +33,7 @@ namespace ItAintBoring.EZChange.Core.Actions
         {
             supportedSolutionTypes = new List<Type>();
             supportedSolutionTypes.Add(typeof(DynamicsSolution));
-            XML = @"<action target=""entity/attribute/workflow/businessrule/webresource/record"" attribute="""" entity="""" plugin="""" recordid=""""/>";
+            XML = @"<actions>\r\n<action target=""entity/attribute/workflow/businessrule/webresource/record"" attribute="""" entity="""" plugin="""" recordid="""" errorIfMissing=""false""/>\r\n</actions>";
         }
 
         public string XML { get; set; }
@@ -116,7 +116,8 @@ namespace ItAintBoring.EZChange.Core.Actions
                 }
                 catch (Exception ex)
                 {
-                    if (!ex.Message.ToLower().Contains("could not find")) throw; //Ignore if the "artefact" does not exist
+                    if (!ex.Message.ToLower().Contains("could not find") ||
+                        a.Attributes["errorIfMissing"].Value == "true") throw; //Ignore if the "artefact" does not exist
                 }
                 break;
             }

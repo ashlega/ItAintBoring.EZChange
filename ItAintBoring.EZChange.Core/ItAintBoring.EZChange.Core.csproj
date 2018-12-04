@@ -94,6 +94,7 @@
     <Compile Include="Actions\ExportDataAction.cs" />
     <Compile Include="Actions\MetaDataAction.cs" />
     <Compile Include="Actions\ActivateWorkflowAction.cs" />
+    <Compile Include="Actions\ReusePackage.cs" />
     <Compile Include="Actions\WorkflowAction.cs" />
     <Compile Include="Dynamics\Common.cs" />
     <Compile Include="Dynamics\DynamicsService.cs" />
