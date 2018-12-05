@@ -69,6 +69,7 @@ namespace ItAintBoring.EZChange.Core.Dynamics
                             foreach (string p in pairs)
                             {
                                 int i = p.IndexOf("=");
+                                if (i < 0) continue;
                                 string[] keyValue = new string[2];
                                 keyValue[0] = p.Substring(0, i).Trim();
                                 keyValue[1] = p.Substring(i + 1).Trim();
