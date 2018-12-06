@@ -54,16 +54,41 @@ namespace ItAintBoring.EZChange
                 PackageRunner pr = new PackageRunner();
                 if (args.Length > 2)
                 {
-                    pr.RunIndividualPackage(args[0], args[1], args[2], true);
-                    BaseComponent.LogInfo("Done");
+                    if (args[0] == "/b")
+                    {
+                        if (args.Length == 4)
+                        {
+                            pr.BuildIndividualPackage(args[1], args[3], args[2]);
+                        }
+                        else
+                        {
+                            BaseComponent.LogInfo("Expected format: /b <folder> <targetenv> <packagename>");
+                        }
+                    }
+                    else if (args[0] == "/r")
+                    {
+                        if (args.Length == 4)
+                        {
+                            pr.RunIndividualPackage(args[1], args[2], args[3], true);
+                        }
+                        else
+                        {
+                            BaseComponent.LogInfo("Expected format: /r <folder> <targetenv> <packagename>");
+                        }
+                    }
+                    else {
+                        pr.RunIndividualPackage(args[0], args[1], args[2], true);
+                        
+                    }
                 }
                 else
                 {
                     pr.RunPackages(args[0], args[1]);
-                    BaseComponent.LogInfo("Done");
-                    Console.ReadLine();
+                    
                 }
-                
+                BaseComponent.LogInfo("Done");
+                //Console.ReadLine();
+
             }
         }
 

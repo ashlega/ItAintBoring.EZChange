@@ -33,7 +33,7 @@ namespace ItAintBoring.EZChange.Core.Actions
         {
             supportedSolutionTypes = new List<Type>();
             supportedSolutionTypes.Add(typeof(DynamicsSolution));
-            XML = @"<actions>\r\n<action target=""entity/attribute/workflow/businessrule/webresource/record"" attribute="""" entity="""" plugin="""" recordid="""" errorIfMissing=""false""/>\r\n</actions>";
+            XML = @"<actions><action target=""entity/attribute/workflow/businessrule/webresource/record"" attribute="""" entity="""" plugin="""" recordid="""" errorIfMissing=""false""/></actions>";
         }
 
         public string XML { get; set; }

@@ -42,6 +42,16 @@ namespace ItAintBoring.EZChange
             return ht;
         }
 
+        public bool BuildIndividualPackage(string folder, string targetEnvironment, string package)
+        {
+            var storageProvider = StorageFactory.GetDefaultProvider();
+            BaseChangePackage bcp = storageProvider.LoadPackage(System.IO.Path.Combine(folder, package));
+            var variables = LoadVariables(System.IO.Path.GetDirectoryName(bcp.PackageLocation), bcp.DefaultBuildVariableSet);
+            bcp.UpdateRuntimeData(variables);
+            bcp.Build(storageProvider);
+            return true;
+        }
+
         public bool RunIndividualPackage(string folder, string targetEnvironment, string package, bool checkIfDeployed)
         {
             BaseComponent.LogInfo(targetEnvironment + ":" + package);
