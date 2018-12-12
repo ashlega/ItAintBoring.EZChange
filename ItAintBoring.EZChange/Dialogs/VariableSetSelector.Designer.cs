@@ -1,4 +1,4 @@
-﻿namespace ItAintBoring.EZChange
+﻿namespace ItAintBoring.EZChange.Dialogs
 {
     partial class VariableSetSelector
     {
@@ -61,9 +61,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 17);
+            this.label1.Size = new System.Drawing.Size(87, 17);
             this.label1.TabIndex = 13;
-            this.label1.Text = "Variable Set";
+            this.label1.Text = "Environment";
             // 
             // cbVariableSet
             // 
@@ -90,7 +90,7 @@
             this.MinimizeBox = false;
             this.Name = "VariableSetSelector";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Variable Set Selector";
+            this.Text = "Environment";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ItAintBoring.EZChange
+namespace ItAintBoring.EZChange.Dialogs
 {
     public partial class VariableEditor : Form
     {

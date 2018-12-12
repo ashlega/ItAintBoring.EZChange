@@ -1,4 +1,5 @@
 ﻿using ItAintBoring.EZChange.Common.Packaging;
+using ItAintBoring.EZChange.Core;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ItAintBoring.EZChange
+namespace ItAintBoring.EZChange.Dialogs
 {
     public partial class VariableSetSelector : Form
     {
@@ -21,7 +22,7 @@ namespace ItAintBoring.EZChange
         public void Initilize(string folder, string defaultSet)
         {
             cbVariableSet.Items.Clear();
-            var variableSets = PackageRunner.LoadVariableSets(folder);
+            var variableSets = EnvironmentManager.LoadVariableSets(folder);
             //variableSets.Sort();
             variableSets.Insert(0, "");
             cbVariableSet.Items.AddRange(variableSets.ToArray());

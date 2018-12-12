@@ -67,6 +67,7 @@
             this.btnAddSolution = new System.Windows.Forms.Button();
             this.lbSolutions = new System.Windows.Forms.ListBox();
             this.tmProgress = new System.Windows.Forms.Timer(this.components);
+            this.tsVariableEditor = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tcPackage.SuspendLayout();
             this.tpLogo.SuspendLayout();
@@ -108,40 +109,40 @@
             // tbNew
             // 
             this.tbNew.Name = "tbNew";
-            this.tbNew.Size = new System.Drawing.Size(135, 26);
+            this.tbNew.Size = new System.Drawing.Size(216, 26);
             this.tbNew.Text = "New";
             this.tbNew.Click += new System.EventHandler(this.tbNew_Click);
             // 
             // tbOpenProject
             // 
             this.tbOpenProject.Name = "tbOpenProject";
-            this.tbOpenProject.Size = new System.Drawing.Size(135, 26);
+            this.tbOpenProject.Size = new System.Drawing.Size(216, 26);
             this.tbOpenProject.Text = "Open";
             this.tbOpenProject.Click += new System.EventHandler(this.tbOpenProject_Click);
             // 
             // tbSaveProject
             // 
             this.tbSaveProject.Name = "tbSaveProject";
-            this.tbSaveProject.Size = new System.Drawing.Size(135, 26);
+            this.tbSaveProject.Size = new System.Drawing.Size(216, 26);
             this.tbSaveProject.Text = "Save";
             this.tbSaveProject.Click += new System.EventHandler(this.tbSaveProject_Click);
             // 
             // tbSaveAsProject
             // 
             this.tbSaveAsProject.Name = "tbSaveAsProject";
-            this.tbSaveAsProject.Size = new System.Drawing.Size(135, 26);
+            this.tbSaveAsProject.Size = new System.Drawing.Size(216, 26);
             this.tbSaveAsProject.Text = "Save As";
             this.tbSaveAsProject.Click += new System.EventHandler(this.tbSaveAsProject_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(132, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(213, 6);
             // 
             // tbExit
             // 
             this.tbExit.Name = "tbExit";
-            this.tbExit.Size = new System.Drawing.Size(135, 26);
+            this.tbExit.Size = new System.Drawing.Size(216, 26);
             this.tbExit.Text = "Exit";
             this.tbExit.Click += new System.EventHandler(this.tbExit_Click);
             // 
@@ -151,6 +152,7 @@
             this.tbPreparePackage,
             this.tbRunPackage,
             this.toolStripMenuItem3,
+            this.tsVariableEditor,
             this.tbMarkAsDeployed});
             this.miPackage.Name = "miPackage";
             this.miPackage.Size = new System.Drawing.Size(75, 24);
@@ -159,26 +161,26 @@
             // tbPreparePackage
             // 
             this.tbPreparePackage.Name = "tbPreparePackage";
-            this.tbPreparePackage.Size = new System.Drawing.Size(204, 26);
+            this.tbPreparePackage.Size = new System.Drawing.Size(216, 26);
             this.tbPreparePackage.Text = "Build";
             this.tbPreparePackage.Click += new System.EventHandler(this.tbPreparePackage_Click);
             // 
             // tbRunPackage
             // 
             this.tbRunPackage.Name = "tbRunPackage";
-            this.tbRunPackage.Size = new System.Drawing.Size(204, 26);
+            this.tbRunPackage.Size = new System.Drawing.Size(216, 26);
             this.tbRunPackage.Text = "Run";
             this.tbRunPackage.Click += new System.EventHandler(this.tbRunPackage_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(201, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(213, 6);
             // 
             // tbMarkAsDeployed
             // 
             this.tbMarkAsDeployed.Name = "tbMarkAsDeployed";
-            this.tbMarkAsDeployed.Size = new System.Drawing.Size(204, 26);
+            this.tbMarkAsDeployed.Size = new System.Drawing.Size(216, 26);
             this.tbMarkAsDeployed.Text = "Mark as Deployed";
             this.tbMarkAsDeployed.Click += new System.EventHandler(this.tbMarkAsDeployed_Click);
             // 
@@ -470,6 +472,13 @@
             // 
             this.tmProgress.Tick += new System.EventHandler(this.tmProgress_Tick);
             // 
+            // tsVariableEditor
+            // 
+            this.tsVariableEditor.Name = "tsVariableEditor";
+            this.tsVariableEditor.Size = new System.Drawing.Size(216, 26);
+            this.tsVariableEditor.Text = "Variable Editor";
+            this.tsVariableEditor.Click += new System.EventHandler(this.tsVariableEditor_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -538,6 +547,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem tbMarkAsDeployed;
         private System.Windows.Forms.Timer tmProgress;
+        private System.Windows.Forms.ToolStripMenuItem tsVariableEditor;
     }
 }
 

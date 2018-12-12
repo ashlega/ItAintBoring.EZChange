@@ -2,6 +2,7 @@
 using ItAintBoring.EZChange.Common.Packaging;
 using ItAintBoring.EZChange.Common.Storage;
 using ItAintBoring.EZChange.Core;
+using ItAintBoring.EZChange.Dialogs;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -630,7 +631,7 @@ namespace ItAintBoring.EZChange
             {
                 
                 PackageRunner pr = new PackageRunner();
-                var variables = pr.LoadVariables(System.IO.Path.GetDirectoryName(Package.PackageLocation), Package.DefaultBuildVariableSet);
+                var variables = EnvironmentManager.LoadVariables(System.IO.Path.GetDirectoryName(Package.PackageLocation), Package.DefaultBuildVariableSet);
                 BaseChangePackage bcp = storageProvider.LoadPackage(Package.PackageLocation);
                 bcp.UpdateRuntimeData(variables);
                 bcp.Build(storageProvider);
@@ -694,7 +695,7 @@ namespace ItAintBoring.EZChange
             {
                 BaseAction selectedAction = (BaseAction)parameter;
                 PackageRunner pr = new PackageRunner();
-                var variables = pr.LoadVariables(System.IO.Path.GetDirectoryName(Package.PackageLocation), Package.DefaultRunVariableSet);
+                var variables = EnvironmentManager.LoadVariables(System.IO.Path.GetDirectoryName(Package.PackageLocation), Package.DefaultRunVariableSet);
                 pr.RunIndividualPackage(Package.PackageLocation, variables, selectedAction, null, false);
             }
             catch (Exception ex)
@@ -817,6 +818,12 @@ namespace ItAintBoring.EZChange
                 tmProgress.Stop();
                 HideProgressIndicator();
             }
+        }
+
+        private void tsVariableEditor_Click(object sender, EventArgs e)
+        {
+            Variables vars = new Variables(System.IO.Path.GetDirectoryName(Package.PackageLocation));
+            vars.ShowDialog();
         }
     }
 }

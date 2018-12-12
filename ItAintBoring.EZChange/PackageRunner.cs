@@ -16,37 +16,14 @@ namespace ItAintBoring.EZChange
     public class PackageRunner
     {
 
-        public static List<string> LoadVariableSets(string folder)
-        {
-            List<string> result = new List<string>();
-            XmlDocument doc = new XmlDocument();
-            doc.Load(System.IO.Path.Combine(folder, "variables.xml"));
-            var variableSetNodes = doc.SelectNodes($"//variableSet");
-            foreach (XmlNode v in variableSetNodes)
-            {
-                result.Add(v.Attributes["name"].Value);
-            }
-            return result;
-        }
-
-        public Hashtable LoadVariables(string folder, string targetEnvironment)
-        {
-            Hashtable ht = new Hashtable();
-            XmlDocument doc = new XmlDocument();
-            doc.Load(System.IO.Path.Combine(folder, "variables.xml"));
-            var variableNodes = doc.SelectNodes($"//variableSet[@name='{targetEnvironment}']/variable");
-            foreach (XmlNode v in variableNodes)
-            {
-                ht.Add(v.Attributes["name"].Value, v.FirstChild.Value.Trim());
-            }
-            return ht;
-        }
+        
+        
 
         public bool BuildIndividualPackage(string folder, string targetEnvironment, string package)
         {
             var storageProvider = StorageFactory.GetDefaultProvider();
             BaseChangePackage bcp = storageProvider.LoadPackage(System.IO.Path.Combine(folder, package));
-            var variables = LoadVariables(System.IO.Path.GetDirectoryName(bcp.PackageLocation), bcp.DefaultBuildVariableSet);
+            var variables = EnvironmentManager.LoadVariables(System.IO.Path.GetDirectoryName(bcp.PackageLocation), bcp.DefaultBuildVariableSet);
             bcp.UpdateRuntimeData(variables);
             bcp.Build(storageProvider);
             return true;
@@ -55,7 +32,7 @@ namespace ItAintBoring.EZChange
         public bool RunIndividualPackage(string folder, string targetEnvironment, string package, bool checkIfDeployed)
         {
             BaseComponent.LogInfo(targetEnvironment + ":" + package);
-            Hashtable variableValues = LoadVariables(folder, targetEnvironment);
+            Hashtable variableValues = EnvironmentManager.LoadVariables(folder, targetEnvironment);
             return RunIndividualPackage(System.IO.Path.Combine(folder, package), variableValues, null, null, checkIfDeployed);
         }
         public bool RunIndividualPackage(string location, Hashtable variables, BaseAction selectedAction, string selectedActionId, bool checkIfDeployed)
@@ -122,7 +99,7 @@ namespace ItAintBoring.EZChange
             
             try
             {
-                Hashtable variableValues = LoadVariables(folder, targetEnvironment);
+                Hashtable variableValues = EnvironmentManager.LoadVariables(folder, targetEnvironment);
                 using (System.IO.StreamReader sr = new System.IO.StreamReader(System.IO.Path.Combine(folder, "orderedpackages.txt")))
                 {
                     while (!sr.EndOfStream)
@@ -151,7 +128,7 @@ namespace ItAintBoring.EZChange
         public void MarkPackageAsDeployed(BaseChangePackage package)
         {
             
-            Hashtable variableValues = LoadVariables(System.IO.Path.GetDirectoryName(package.PackageLocation), package.DefaultRunVariableSet);
+            Hashtable variableValues = EnvironmentManager.LoadVariables(System.IO.Path.GetDirectoryName(package.PackageLocation), package.DefaultRunVariableSet);
             var storageProvider = StorageFactory.GetDefaultProvider();
             BaseChangePackage bcp = storageProvider.LoadPackage(package.PackageLocation);
 
