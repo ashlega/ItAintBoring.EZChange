@@ -41,15 +41,31 @@ namespace ItAintBoring.EZChange.Core.UI
             }
         }
 
+        public int GuidShift
+        {
+            get
+            {
+                int result = 0;
+                int.TryParse(tbGuidShift.Text, out result);
+                return result;
+            }
+            set
+            {
+                tbGuidShift.Text = value.ToString();
+            }
+        }
+
         public string FileName
         {
             get
             {
+                if (fsEditor == null) return null;
                 return fsEditor.FileName;
             }
             set
             {
-                fsEditor.FileName = value;
+                if(fsEditor != null)
+                  fsEditor.FileName = value;
             }
         }
 

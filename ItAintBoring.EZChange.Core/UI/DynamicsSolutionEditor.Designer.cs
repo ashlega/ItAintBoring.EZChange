@@ -32,6 +32,8 @@
             this.lbName = new System.Windows.Forms.Label();
             this.fsEditor = new ItAintBoring.EZChange.Core.UI.FileSelectorEditor();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbGuidShift = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // tbText
@@ -70,20 +72,40 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(3, 17);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(470, 17);
+            this.label1.Size = new System.Drawing.Size(0, 17);
             this.label1.TabIndex = 4;
-            this.label1.Text = "";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 157);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 17);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Guid Shift";
+            // 
+            // tbGuidShift
+            // 
+            this.tbGuidShift.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbGuidShift.Location = new System.Drawing.Point(5, 177);
+            this.tbGuidShift.Name = "tbGuidShift";
+            this.tbGuidShift.Size = new System.Drawing.Size(82, 22);
+            this.tbGuidShift.TabIndex = 6;
             // 
             // DynamicsSolutionEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.tbGuidShift);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.fsEditor);
             this.Controls.Add(this.lbName);
             this.Controls.Add(this.tbText);
             this.Name = "DynamicsSolutionEditor";
-            this.Size = new System.Drawing.Size(529, 159);
+            this.Size = new System.Drawing.Size(529, 211);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -95,5 +117,7 @@
         private System.Windows.Forms.Label lbName;
         private FileSelectorEditor fsEditor;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox tbGuidShift;
     }
 }

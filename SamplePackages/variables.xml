@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<variableSets>
+  <variableSet name="qa">
+    <variable name="TargetServer">AuthType=Office365;Username=; Password=;Url=</variable>
+  </variableSet>
+  <variableSet name="UAT">
+    <variable name="TargetServer">AuthType=Office365;Username=; Password=;Url=</variable>
+  </variableSet>
+</variableSets>

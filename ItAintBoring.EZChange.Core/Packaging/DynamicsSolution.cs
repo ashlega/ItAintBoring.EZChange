@@ -19,6 +19,7 @@ namespace ItAintBoring.EZChange.Core.Packaging
         public override string Version { get { return "1.0"; } }
         public override string Id { get { return "Dynamics Solution"; } }
         public override string Description { get { return "Dynamics Solution"; } }
+        
 
 
         private string displayName = null;
@@ -33,6 +34,8 @@ namespace ItAintBoring.EZChange.Core.Packaging
                 displayName = value;
             }
         }
+
+        public int GuidShift { get; set; }
 
         public override string Name { get; set; }
 
@@ -71,6 +74,7 @@ namespace ItAintBoring.EZChange.Core.Packaging
                                
                 ((DynamicsSolutionEditor)uiControl).SolutionName = Name;
                 ((DynamicsSolutionEditor)uiControl).FileName = ExternalFileName;
+                ((DynamicsSolutionEditor)uiControl).GuidShift = GuidShift;
 
                 return uiControl;
             }
@@ -80,6 +84,7 @@ namespace ItAintBoring.EZChange.Core.Packaging
         {
             ExternalFileName = ((DynamicsSolutionEditor)uiControl).FileName;
             Name = ((DynamicsSolutionEditor)uiControl).SolutionName;
+            GuidShift = ((DynamicsSolutionEditor)uiControl).GuidShift;
         }
 
         private string solutionFolder = null;

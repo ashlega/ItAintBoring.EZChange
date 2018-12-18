@@ -104,7 +104,7 @@ namespace ItAintBoring.EZChange.Core.Actions
             {
                 try
                 {
-                    var list = ItAintBoring.EZChange.Core.Dynamics.Common.DeSerializeEntityList(ds.Service.Service, json);
+                    var list = ItAintBoring.EZChange.Core.Dynamics.Common.DeSerializeEntityList(ds.Service.Service, json, ((DynamicsSolution)solution).GuidShift);
                     ds.Service.DeserializeData(list, CreateOnly);
                 }
                 catch(Exception ex)

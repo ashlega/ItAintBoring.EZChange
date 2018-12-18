@@ -79,23 +79,25 @@ namespace ItAintBoring.EZChange.Core.Dynamics
         {
         }
 
-        public SerializableEntityAttribute(KeyValuePair<string, object> a)
+        public SerializableEntityAttribute(KeyValuePair<string, object> a, int guidShift)
         {
-            ConvertFromAttribute(a);
+            ConvertFromAttribute(a, guidShift);
         }
 
-        public void ConvertFromAttribute(KeyValuePair<string, object> a)
+        
+
+        public void ConvertFromAttribute(KeyValuePair<string, object> a, int guidShift)
         {
             Key = a.Key;
             TypeName = a.Value.GetType().ToString().ToLower();
             if (TypeName.Contains("guid"))
             {
-                Value = a.Value.ToString();
+                Value = Common.ShiftString(a.Value.ToString(), guidShift);
             }
             else if (TypeName.Contains("entityreference"))
             {
                 var er = (EntityReference)a.Value;
-                Value = er.Id.ToString() + ":" + er.LogicalName;
+                Value = Common.ShiftString(er.Id.ToString(), guidShift) + ":" + er.LogicalName;
             }
             else if (TypeName.Contains("string"))
             {
@@ -133,13 +135,18 @@ namespace ItAintBoring.EZChange.Core.Dynamics
             {
                 Value = a.Value.ToString();
             }
+            else if (TypeName.Contains("entitycollection"))
+            {
+                Value = null;
+            }
             else
             {
                 throw new InvalidPluginExecutionException("Type not supported: " + TypeName);
             }
         }
 
-        public KeyValuePair<string, object> ConvertToAttribute(IOrganizationService service, string entityName)
+        //No need for buid backshift - the point is to have new guids
+        public KeyValuePair<string, object> ConvertToAttribute(IOrganizationService service, string entityName, int guidShift)
         {
             if (Value == null) return new KeyValuePair<string, object>(Key, null);
 

@@ -38,8 +38,28 @@ namespace ItAintBoring.EZChange.Core.Dynamics
             return result;
         }
 
-        
-        public static List<SerializableEntity> GetSerializableList(List<Entity> entities)
+        public static string ShiftString(string s, int guidShift)
+        {
+            if (guidShift > 0 && s != null)
+            {
+                while (guidShift > 0)
+                {
+                    s = s[s.Length - 1] + s.Substring(1, s.Length - 2) + s[0];
+                    guidShift--;
+                }
+            }
+            return s;
+        }
+
+        public static string BackShiftString(string s, int guidShift)
+        {
+            if (guidShift > 0 && s != null)
+            {
+                s = s.Substring(s.Length - guidShift) + s.Substring(0, s.Length - guidShift);
+            }
+            return s;
+        }
+        public static List<SerializableEntity> GetSerializableList(List<Entity> entities, int guidShift)
         {
             if (entities == null) return null;
 
@@ -48,14 +68,14 @@ namespace ItAintBoring.EZChange.Core.Dynamics
             {
                 SerializableEntity ent = new SerializableEntity();
                 ent.LogicalName = e.LogicalName;
-                ent.Id = e.Id;
+                ent.Id = Guid.Parse(ShiftString(e.Id.ToString(), guidShift));
                 var attribList = e.Attributes.ToList();
                 var removeList = attribList.FindAll(a => a.Value is AliasedValue);
                 foreach (var a in removeList) e.Attributes.Remove(a.Key);
 
                 foreach (var a in e.Attributes)
                 {
-                    var sa = new SerializableEntityAttribute(a);
+                    var sa = new SerializableEntityAttribute(a, guidShift);
                     ent.Attributes.Add(sa);
                 }
                 result.Add(ent);
@@ -63,7 +83,7 @@ namespace ItAintBoring.EZChange.Core.Dynamics
             return result;
         }
 
-        public static List<Entity> GetRegularEntityList(IOrganizationService service, List<SerializableEntity> entities)
+        public static List<Entity> GetRegularEntityList(IOrganizationService service, List<SerializableEntity> entities, int guidShift)
         {
             if (entities == null) return null;
 
@@ -78,7 +98,7 @@ namespace ItAintBoring.EZChange.Core.Dynamics
                 {
                     try
                     {
-                        var a = sa.ConvertToAttribute(service, ent.LogicalName);
+                        var a = sa.ConvertToAttribute(service, ent.LogicalName, guidShift);
                         ent.Attributes[a.Key] = a.Value;
                     }
                     catch(Exception ex)
@@ -92,10 +112,10 @@ namespace ItAintBoring.EZChange.Core.Dynamics
             return result;
         }
 
-        public static string SerializeEntityList(List<Entity> entities)
+        public static string SerializeEntityList(List<Entity> entities, int guidShift)
         {
             string result = null;
-            var serializableList = GetSerializableList(entities);
+            var serializableList = GetSerializableList(entities, guidShift);
 
 
             var lateBoundSerializer = new DataContractJsonSerializer(typeof(List<SerializableEntity>));
@@ -113,7 +133,7 @@ namespace ItAintBoring.EZChange.Core.Dynamics
             return result;
         }
 
-        public static List<Entity> DeSerializeEntityList(IOrganizationService service, string data)
+        public static List<Entity> DeSerializeEntityList(IOrganizationService service, string data, int guidShift)
         {
             if (data == null) return null;
             //data = DecompressString(data);
@@ -128,7 +148,7 @@ namespace ItAintBoring.EZChange.Core.Dynamics
                 result = (List<SerializableEntity>)lateBoundSerializer.ReadObject(ms);
             }
 
-            return GetRegularEntityList(service, result);
+            return GetRegularEntityList(service, result, guidShift);
         }
 
         public static DataSetResource ResourceFromString(string data)

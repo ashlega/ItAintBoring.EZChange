@@ -66,7 +66,7 @@ namespace ItAintBoring.EZChange.Core.Actions
             
             var results = ds.Service.Service.RetrieveMultiple(new FetchExpression(UnescapeXML(XML)));
             var list = results.Entities.ToList();
-            var json = ItAintBoring.EZChange.Core.Dynamics.Common.SerializeEntityList(list);
+            var json = ItAintBoring.EZChange.Core.Dynamics.Common.SerializeEntityList(list, ((DynamicsSolution)solution).GuidShift);
             ds.SaveActionData(this, json);
 
             ActionCompleted();
