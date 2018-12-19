@@ -53,11 +53,19 @@ namespace ItAintBoring.EZChange.Core.Dynamics
         {
             if (guidShift > 0 && s != null)
             {
-                while (guidShift > 0)
+                StringBuilder sb = new StringBuilder(s);
+                for(int i = 0; i< sb.Length; i++)
                 {
-                    s = s[s.Length - 1] + s.Substring(1, s.Length - 2) + s[0];
-                    guidShift--;
+
+                    int intVal = 0;
+                    if (int.TryParse(sb[i].ToString(), System.Globalization.NumberStyles.HexNumber, null, out intVal))
+                    {
+                        intVal = (intVal + guidShift) % 16;
+                        sb[i] = intVal.ToString("X")[0];
+                    }
+
                 }
+                return sb.ToString();
             }
             return s;
         }

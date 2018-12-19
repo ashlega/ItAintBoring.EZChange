@@ -3,7 +3,7 @@
   <ComponentId>92067a58-cd5c-4f0c-b5df-74f11e52593e</ComponentId>
   <Name>Portal</Name>
   <DefaultBuildVariableSet>qa</DefaultBuildVariableSet>
-  <DefaultRunVariableSet>qa</DefaultRunVariableSet>
+  <DefaultRunVariableSet>Test</DefaultRunVariableSet>
   <PackageLocation>C:\Work\Projects\EZChange\TreeCatOnline\Portal.ecp</PackageLocation>
   <Solutions>
     <BaseSolution xsi:type="DynamicsSolution">
@@ -584,16 +584,6 @@
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
         <BaseAction xsi:type="ExportDataAction">
-          <ComponentId>f4099c5a-c51d-47e8-9b11-a81f66cf5566</ComponentId>
-          <Name>adx_websitebinding</Name>
-          <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
-  &amp;lt;entity name=&amp;quot;adx_websitebinding&amp;quot;&amp;gt;
-   &amp;lt;all-attributes/&amp;gt;
-   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
-   &amp;lt;/entity&amp;gt;
-&amp;lt;/fetch&amp;gt;</XML>
-        </BaseAction>
-        <BaseAction xsi:type="ExportDataAction">
           <ComponentId>f4099c5a-c51d-47e8-9b11-a82f66cf5566</ComponentId>
           <Name>adx_websitelanguage</Name>
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
@@ -663,6 +653,18 @@
           <StepName>Adxstudio.Xrm.Plugins.UrlHistory.WebpageUrlHistoryPlugin: Update of adx_webpage</StepName>
           <Activate>false</Activate>
         </BaseAction>
+        <BaseAction xsi:type="SdkProcessingStepStatusAction">
+          <ComponentId>e85ef19e-ccad-4498-a28a-4e6a3b51efcc</ComponentId>
+          <Name>Disable Adxstudio.Xrm.Plugins.PublishingStateValidation: Update of adx_webfile</Name>
+          <StepName>Adxstudio.Xrm.Plugins.PublishingStateValidation: Update of adx_webfile</StepName>
+          <Activate>false</Activate>
+        </BaseAction>
+        <BaseAction xsi:type="SdkProcessingStepStatusAction">
+          <ComponentId>5d65e5b7-fd37-4a2e-96c0-cdb52839ec75</ComponentId>
+          <Name>Disable Adxstudio.Xrm.Plugins.PublishingStateValidation: Create of adx_webfile</Name>
+          <StepName>Adxstudio.Xrm.Plugins.PublishingStateValidation: Create of adx_webfile</StepName>
+          <Activate>false</Activate>
+        </BaseAction>
         <BaseAction xsi:type="DataAction">
           <ComponentId>82b106be-e459-4dbb-9a0a-99b5a147537b</ComponentId>
           <Name>adx_website</Name>
@@ -721,12 +723,6 @@
           <ComponentId>f4399c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
           <Name>adx_communityforumannouncement </Name>
           <ExportActionId>f4399c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
-          <CreateOnly>false</CreateOnly>
-        </BaseAction>
-        <BaseAction xsi:type="DataAction">
-          <ComponentId>f4499c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
-          <Name>adx_communityforumpost </Name>
-          <ExportActionId>f4499c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
           <CreateOnly>false</CreateOnly>
         </BaseAction>
         <BaseAction xsi:type="DataAction">
@@ -1006,12 +1002,6 @@
           <CreateOnly>false</CreateOnly>
         </BaseAction>
         <BaseAction xsi:type="DataAction">
-          <ComponentId>f4099c5a-c51d-47e8-9b11-a81f66cf5566</ComponentId>
-          <Name>adx_websitebinding </Name>
-          <ExportActionId>f4099c5a-c51d-47e8-9b11-a81f66cf5566</ExportActionId>
-          <CreateOnly>false</CreateOnly>
-        </BaseAction>
-        <BaseAction xsi:type="DataAction">
           <ComponentId>f4099c5a-c51d-47e8-9b11-a82f66cf5566</ComponentId>
           <Name>adx_websitelanguage </Name>
           <ExportActionId>f4099c5a-c51d-47e8-9b11-a82f66cf5566</ExportActionId>
@@ -1021,6 +1011,12 @@
           <ComponentId>f4099c5a-c51d-47e8-9b11-a83f66cf5566</ComponentId>
           <Name>adx_webtemplate </Name>
           <ExportActionId>f4099c5a-c51d-47e8-9b11-a83f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4499c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_communityforumpost </Name>
+          <ExportActionId>f4499c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
           <CreateOnly>false</CreateOnly>
         </BaseAction>
       </DeployActions>
@@ -1376,12 +1372,6 @@
           <CreateOnly>false</CreateOnly>
         </BaseAction>
         <BaseAction xsi:type="DataAction">
-          <ComponentId>f4099c5a-c51d-47e8-9b11-a81f66cf5566</ComponentId>
-          <Name>adx_websitebinding </Name>
-          <ExportActionId>f4099c5a-c51d-47e8-9b11-a81f66cf5566</ExportActionId>
-          <CreateOnly>false</CreateOnly>
-        </BaseAction>
-        <BaseAction xsi:type="DataAction">
           <ComponentId>f4099c5a-c51d-47e8-9b11-a82f66cf5566</ComponentId>
           <Name>adx_websitelanguage </Name>
           <ExportActionId>f4099c5a-c51d-47e8-9b11-a82f66cf5566</ExportActionId>
@@ -1441,11 +1431,23 @@
           <StepName>Adxstudio.Xrm.Plugins.UrlHistory.WebpageUrlHistoryPlugin: Update of adx_webpage</StepName>
           <Activate>true</Activate>
         </BaseAction>
+        <BaseAction xsi:type="SdkProcessingStepStatusAction">
+          <ComponentId>c083cad0-007d-4fc8-b956-b826f00481b2</ComponentId>
+          <Name>Enable Adxstudio.Xrm.Plugins.PublishingStateValidation: Create of adx_webfile</Name>
+          <StepName>Adxstudio.Xrm.Plugins.PublishingStateValidation: Create of adx_webfile</StepName>
+          <Activate>true</Activate>
+        </BaseAction>
+        <BaseAction xsi:type="SdkProcessingStepStatusAction">
+          <ComponentId>bdf69cbb-5a94-4580-b4ae-b342ec688da9</ComponentId>
+          <Name>Enable Adxstudio.Xrm.Plugins.PublishingStateValidation: Update of adx_webfile</Name>
+          <StepName>Adxstudio.Xrm.Plugins.PublishingStateValidation: Update of adx_webfile</StepName>
+          <Activate>true</Activate>
+        </BaseAction>
       </DeployActions>
       <DisplayName>Portal Data Second Pass</DisplayName>
       <GuidShift>0</GuidShift>
       <ExternalFileName />
     </BaseSolution>
   </Solutions>
-  <ConnectionString>#TargetServer#</ConnectionString>
+  <ConnectionString>AuthType=Office365;Username=info@treecatsoftware.com; Password=Canada234_;Url=https://treecatsoftware.crm3.dynamics.com</ConnectionString>
 </BaseChangePackage>
