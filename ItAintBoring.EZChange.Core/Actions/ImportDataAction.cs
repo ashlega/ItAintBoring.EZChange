@@ -82,8 +82,8 @@ namespace ItAintBoring.EZChange.Core.Actions
                 {
                     uiControl = new ActionSelectorEditor(this, null, Solution.FindAction(ExportActionId));
                 }
-                ((ActionSelectorEditor)uiControl).PopulateActions(Solution.BuildActions.FindAll(x => x is ExportDataAction));
-                ((ActionSelectorEditor)uiControl).SelectedAction = Solution.FindAction(ExportActionId);
+                ((ActionSelectorEditor)uiControl).PopulateActions(Solution.Package.BuildActions.FindAll(x => x is ExportDataAction));
+                ((ActionSelectorEditor)uiControl).SelectedAction = Solution.Package.FindAction(ExportActionId);
                 ((ActionSelectorEditor)uiControl).CreateOnly = CreateOnly;
                 ((ActionSelectorEditor)uiControl).ShowCreateOnly(true);
                 return uiControl;
@@ -97,7 +97,7 @@ namespace ItAintBoring.EZChange.Core.Actions
         {
             ActionStarted();
 
-            var exportAction = Solution.FindAction(ExportActionId);
+            var exportAction = Solution.Package.FindAction(ExportActionId);
             DynamicsSolution ds = (DynamicsSolution)solution;
             string json = ds.LoadActionData(this, ds.GetActionFileName(exportAction, null));
             if (json != null)

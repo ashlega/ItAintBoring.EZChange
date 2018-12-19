@@ -12,6 +12,17 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace ItAintBoring.EZChange.Core.Dynamics
 {
+    public class NamedEntity
+    {
+        public Entity Ent { get; set; }
+        public override string ToString()
+        {
+            if (Ent != null && Ent.Contains("name")) return (string)Ent["name"];
+            else return base.ToString();
+        }
+    }
+
+
     public class Common
     {
 
@@ -82,6 +93,9 @@ namespace ItAintBoring.EZChange.Core.Dynamics
             }
             return result;
         }
+
+        
+        
 
         public static List<Entity> GetRegularEntityList(IOrganizationService service, List<SerializableEntity> entities, int guidShift)
         {

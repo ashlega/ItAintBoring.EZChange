@@ -110,6 +110,51 @@ namespace ItAintBoring.EZChange.Common.Packaging
             
         }
 
+        [XmlIgnore]
+        public List<BaseAction> DeployActions
+        {
+            get
+            {
+                List<BaseAction> actions = new List<BaseAction>();
+                foreach (var s in Solutions)
+                {
+                    actions.AddRange(s.DeployActions);
+                }
+                return actions;
+            }
+        }
+
+        [XmlIgnore]
+        public List<BaseAction> BuildActions {
+            get
+            {
+                List<BaseAction> actions = new List<BaseAction>();
+                foreach (var s in Solutions)
+                {
+                    actions.AddRange(s.BuildActions);
+                }
+                return actions;
+            }
+        }
+
+        public virtual BaseAction FindAction(Guid actionId)
+        {
+            BaseAction result = null;
+            
+            foreach (var s in Solutions)
+            {
+                result = s.BuildActions.Find(a => a.ComponentId == actionId);
+
+                if (result == null)
+                {
+                    result = s.DeployActions.Find(a => a.ComponentId == actionId);
+                }
+                if (result != null) return result;
+            }
+
+            return null;
+        }
+
 
 
 

@@ -16,7 +16,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_ad&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
-   &amp;lt;/entity&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;&amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
         <BaseAction xsi:type="ExportDataAction">
@@ -25,6 +25,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_adplacement&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -34,6 +35,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_alertsubscription&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -43,6 +45,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_bingmaplookup&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -52,6 +55,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_casedeflection&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -61,6 +65,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_communityforum&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -70,6 +75,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_communityforumaccesspermission&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -79,6 +85,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_communityforumalert&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -88,6 +95,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_communityforumannouncement&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -97,6 +105,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_communityforumpost&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -106,16 +115,22 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_communityforumthread&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
         <BaseAction xsi:type="ExportDataAction">
           <ComponentId>f4699c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
           <Name>adx_contentaccesslevel</Name>
-          <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
+          <XML>&amp;lt;fetch distinct=&amp;quot;false&amp;quot; mapping=&amp;quot;logical&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; version=&amp;quot;1.0&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_contentaccesslevel&amp;quot;&amp;gt;
-   &amp;lt;all-attributes/&amp;gt;
-   &amp;lt;/entity&amp;gt;
+    &amp;lt;attribute name=&amp;quot;adx_name&amp;quot;/&amp;gt;
+    &amp;lt;attribute name=&amp;quot;statuscode&amp;quot;/&amp;gt;
+    &amp;lt;attribute name=&amp;quot;statecode&amp;quot;/&amp;gt;
+    &amp;lt;attribute name=&amp;quot;adx_description&amp;quot;/&amp;gt;
+    &amp;lt;attribute name=&amp;quot;adx_contentaccesslevelid&amp;quot;/&amp;gt;
+    &amp;lt;order descending=&amp;quot;false&amp;quot; attribute=&amp;quot;adx_name&amp;quot;/&amp;gt;
+ &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
         <BaseAction xsi:type="ExportDataAction">
@@ -124,6 +139,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_contentsnippet&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -133,6 +149,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_entityform&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -142,6 +159,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_entityformmetadata&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -151,6 +169,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_entitylist&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -160,6 +179,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_entitypermission&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -169,6 +189,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_externalidentity&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -178,6 +199,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_forumnotification&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -187,6 +209,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_forumthreadtype&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -196,6 +219,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_invitation&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -205,6 +229,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_inviteredemption&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -214,6 +239,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_pagealert&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -223,6 +249,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_pagenotification&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -232,6 +259,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_pagetag&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -241,6 +269,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_pagetemplate&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -250,6 +279,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_poll&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -259,6 +289,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_polloption&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -268,6 +299,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_pollplacement&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -277,15 +309,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_pollsubmission&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
-   &amp;lt;/entity&amp;gt;
-&amp;lt;/fetch&amp;gt;</XML>
-        </BaseAction>
-        <BaseAction xsi:type="ExportDataAction">
-          <ComponentId>f4096c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
-          <Name>adx_portalcomment</Name>
-          <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
-  &amp;lt;entity name=&amp;quot;adx_portalcomment&amp;quot;&amp;gt;
-   &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -295,6 +319,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_portallanguage&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -304,6 +329,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_publishingstate&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -313,6 +339,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_publishingstatetransitionrule&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -322,6 +349,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_redirect&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -331,6 +359,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_setting&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -340,6 +369,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_shortcut&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -349,6 +379,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_sitemarker&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -358,6 +389,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_sitesetting&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -367,6 +399,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_tag&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -376,6 +409,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_urlhistory&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -385,6 +419,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_webfile&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -394,6 +429,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_webfilelog&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -403,6 +439,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_webform&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -412,6 +449,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_webformmetadata&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -421,6 +459,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_webformsession&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -430,6 +469,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_webformstep&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -439,6 +479,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_weblink&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -448,6 +489,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_weblinkset&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -457,6 +499,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_webnotificationentity&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -466,6 +509,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_webnotificationurl&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -475,7 +519,8 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_webpage&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
-   &amp;lt;/entity&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
+  &amp;lt;order descending=&amp;quot;false&amp;quot; attribute=&amp;quot;adx_rootwebpageid&amp;quot;/&amp;gt; &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
         <BaseAction xsi:type="ExportDataAction">
@@ -484,6 +529,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_webpageaccesscontrolrule&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -493,6 +539,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_webpagehistory&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -502,6 +549,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_webpagelog&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -511,6 +559,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_webrole&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -520,6 +569,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_website&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -529,6 +579,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_websiteaccess&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -538,6 +589,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_websitebinding&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -547,6 +599,7 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_websitelanguage&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
@@ -556,11 +609,66 @@
           <XML>&amp;lt;fetch version=&amp;quot;1.0&amp;quot; output-format=&amp;quot;xml-platform&amp;quot; mapping=&amp;quot;logical&amp;quot; distinct=&amp;quot;false&amp;quot;&amp;gt;
   &amp;lt;entity name=&amp;quot;adx_webtemplate&amp;quot;&amp;gt;
    &amp;lt;all-attributes/&amp;gt;
+   &amp;lt;filter type=&amp;quot;and&amp;quot;&amp;gt;&amp;lt;condition attribute=&amp;quot;statecode&amp;quot; value=&amp;quot;1&amp;quot; operator=&amp;quot;ne&amp;quot;/&amp;gt;&amp;lt;/filter&amp;gt;
    &amp;lt;/entity&amp;gt;
 &amp;lt;/fetch&amp;gt;</XML>
         </BaseAction>
       </BuildActions>
       <DeployActions>
+        <BaseAction xsi:type="SdkProcessingStepStatusAction">
+          <ComponentId>8e1b699d-bef8-436a-9fb4-b87bf915b802</ComponentId>
+          <Name>Disable Adxstudio.Xrm.Plugins.MultiLanguage.WebPagePlugin: Create of adx_webpage</Name>
+          <StepName>Adxstudio.Xrm.Plugins.MultiLanguage.WebPagePlugin: Create of adx_webpage</StepName>
+          <Activate>false</Activate>
+        </BaseAction>
+        <BaseAction xsi:type="SdkProcessingStepStatusAction">
+          <ComponentId>028d2e16-8c5d-4b3a-b11f-6365a88f25c9</ComponentId>
+          <Name>Disable Adxstudio.Xrm.Plugins.MultiLanguage.WebPageValidationPlugin: Create of adx_webpage</Name>
+          <StepName>Adxstudio.Xrm.Plugins.MultiLanguage.WebPageValidationPlugin: Create of adx_webpage</StepName>
+          <Activate>false</Activate>
+        </BaseAction>
+        <BaseAction xsi:type="SdkProcessingStepStatusAction">
+          <ComponentId>44483ab1-2d7f-4a68-9d8e-92b053074fd6</ComponentId>
+          <Name>Disable Adxstudio.Xrm.Plugins.PublishingStateValidation: Create of adx_webpage</Name>
+          <StepName>Adxstudio.Xrm.Plugins.PublishingStateValidation: Create of adx_webpage</StepName>
+          <Activate>false</Activate>
+        </BaseAction>
+        <BaseAction xsi:type="SdkProcessingStepStatusAction">
+          <ComponentId>263ca48c-f6de-47e5-b261-f9ed339bedfa</ComponentId>
+          <Name>Disable Adxstudio.Xrm.Plugins.MultiLanguage.WebPageUpdatePlugin: Update of adx_webpage</Name>
+          <StepName>Adxstudio.Xrm.Plugins.MultiLanguage.WebPageUpdatePlugin: Update of adx_webpage</StepName>
+          <Activate>false</Activate>
+        </BaseAction>
+        <BaseAction xsi:type="SdkProcessingStepStatusAction">
+          <ComponentId>94b7a6c1-362e-4648-a53a-8eb38fc5f16e</ComponentId>
+          <Name>Disable Adxstudio.Xrm.Plugins.MultiLanguage.WebPageValidationPlugin: Update of adx_webpage</Name>
+          <StepName>Adxstudio.Xrm.Plugins.MultiLanguage.WebPageValidationPlugin: Update of adx_webpage</StepName>
+          <Activate>false</Activate>
+        </BaseAction>
+        <BaseAction xsi:type="SdkProcessingStepStatusAction">
+          <ComponentId>5d2f8a5b-748d-477f-971f-ff1d606f3486</ComponentId>
+          <Name>Disable Adxstudio.Xrm.Plugins.Pages.PageAlertPlugin: Update of adx_webpage</Name>
+          <StepName>Adxstudio.Xrm.Plugins.Pages.PageAlertPlugin: Update of adx_webpage</StepName>
+          <Activate>false</Activate>
+        </BaseAction>
+        <BaseAction xsi:type="SdkProcessingStepStatusAction">
+          <ComponentId>42752e56-5843-4dd6-911b-4442bbdbfc03</ComponentId>
+          <Name>Disable Adxstudio.Xrm.Plugins.PublishingStateValidation: Update of adx_webpage</Name>
+          <StepName>Adxstudio.Xrm.Plugins.PublishingStateValidation: Update of adx_webpage</StepName>
+          <Activate>false</Activate>
+        </BaseAction>
+        <BaseAction xsi:type="SdkProcessingStepStatusAction">
+          <ComponentId>a5433ed4-014f-4406-a03f-3af469a5732d</ComponentId>
+          <Name>Disable Adxstudio.Xrm.Plugins.UrlHistory.WebpageUrlHistoryPlugin: Update of adx_webpage</Name>
+          <StepName>Adxstudio.Xrm.Plugins.UrlHistory.WebpageUrlHistoryPlugin: Update of adx_webpage</StepName>
+          <Activate>false</Activate>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>82b106be-e459-4dbb-9a0a-99b5a147537b</ComponentId>
+          <Name>adx_website</Name>
+          <ExportActionId>f4099c5a-c51d-47e8-9b19-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
         <BaseAction xsi:type="DataAction">
           <ComponentId>f4099c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
           <Name>adx_ad </Name>
@@ -742,9 +850,373 @@
           <CreateOnly>false</CreateOnly>
         </BaseAction>
         <BaseAction xsi:type="DataAction">
-          <ComponentId>f4096c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
-          <Name>adx_portalcomment </Name>
-          <ExportActionId>f4096c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <ComponentId>f4097c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_portallanguage </Name>
+          <ExportActionId>f4097c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4098c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_publishingstate </Name>
+          <ExportActionId>f4098c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4099c5a-c52d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_publishingstatetransitionrule </Name>
+          <ExportActionId>f4099c5a-c52d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4099c5a-c53d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_redirect </Name>
+          <ExportActionId>f4099c5a-c53d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4099c5a-c54d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_setting </Name>
+          <ExportActionId>f4099c5a-c54d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4099c5a-c55d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_shortcut </Name>
+          <ExportActionId>f4099c5a-c55d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4099c5a-c56d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_sitemarker </Name>
+          <ExportActionId>f4099c5a-c56d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4099c5a-c57d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_sitesetting </Name>
+          <ExportActionId>f4099c5a-c57d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4099c5a-c58d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_tag </Name>
+          <ExportActionId>f4099c5a-c58d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4099c5a-c59d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_urlhistory </Name>
+          <ExportActionId>f4099c5a-c59d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4099c5a-c51d-47e8-9b21-a89f66cf5566</ComponentId>
+          <Name>adx_webfile </Name>
+          <ExportActionId>f4099c5a-c51d-47e8-9b21-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4099c5a-c51d-47e8-9b31-a89f66cf5566</ComponentId>
+          <Name>adx_webfilelog </Name>
+          <ExportActionId>f4099c5a-c51d-47e8-9b31-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4099c5a-c51d-47e8-9b41-a89f66cf5566</ComponentId>
+          <Name>adx_webform </Name>
+          <ExportActionId>f4099c5a-c51d-47e8-9b41-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4099c5a-c51d-47e8-9b51-a89f66cf5566</ComponentId>
+          <Name>adx_webformmetadata </Name>
+          <ExportActionId>f4099c5a-c51d-47e8-9b51-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4099c5a-c51d-47e8-9b61-a89f66cf5566</ComponentId>
+          <Name>adx_webformsession </Name>
+          <ExportActionId>f4099c5a-c51d-47e8-9b61-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4099c5a-c51d-47e8-9b71-a89f66cf5566</ComponentId>
+          <Name>adx_webformstep </Name>
+          <ExportActionId>f4099c5a-c51d-47e8-9b71-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4099c5a-c51d-47e8-9b81-a89f66cf5566</ComponentId>
+          <Name>adx_weblink </Name>
+          <ExportActionId>f4099c5a-c51d-47e8-9b81-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4099c5a-c51d-47e8-9b91-a89f66cf5566</ComponentId>
+          <Name>adx_weblinkset </Name>
+          <ExportActionId>f4099c5a-c51d-47e8-9b91-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4099c5a-c51d-47e8-9b12-a89f66cf5566</ComponentId>
+          <Name>adx_webnotificationentity </Name>
+          <ExportActionId>f4099c5a-c51d-47e8-9b12-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4099c5a-c51d-47e8-9b13-a89f66cf5566</ComponentId>
+          <Name>adx_webnotificationurl </Name>
+          <ExportActionId>f4099c5a-c51d-47e8-9b13-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4099c5a-c51d-47e8-9b14-a89f66cf5566</ComponentId>
+          <Name>adx_webpage </Name>
+          <ExportActionId>f4099c5a-c51d-47e8-9b14-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4099c5a-c51d-47e8-9b15-a89f66cf5566</ComponentId>
+          <Name>adx_webpageaccesscontrolrule </Name>
+          <ExportActionId>f4099c5a-c51d-47e8-9b15-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4099c5a-c51d-47e8-9b16-a89f66cf5566</ComponentId>
+          <Name>adx_webpagehistory </Name>
+          <ExportActionId>f4099c5a-c51d-47e8-9b16-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4099c5a-c51d-47e8-9b17-a89f66cf5566</ComponentId>
+          <Name>adx_webpagelog </Name>
+          <ExportActionId>f4099c5a-c51d-47e8-9b17-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4099c5a-c51d-47e8-9b18-a89f66cf5566</ComponentId>
+          <Name>adx_webrole </Name>
+          <ExportActionId>f4099c5a-c51d-47e8-9b18-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4099c5a-c51d-47e8-9b11-a80f66cf5566</ComponentId>
+          <Name>adx_websiteaccess </Name>
+          <ExportActionId>f4099c5a-c51d-47e8-9b11-a80f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4099c5a-c51d-47e8-9b11-a81f66cf5566</ComponentId>
+          <Name>adx_websitebinding </Name>
+          <ExportActionId>f4099c5a-c51d-47e8-9b11-a81f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4099c5a-c51d-47e8-9b11-a82f66cf5566</ComponentId>
+          <Name>adx_websitelanguage </Name>
+          <ExportActionId>f4099c5a-c51d-47e8-9b11-a82f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4099c5a-c51d-47e8-9b11-a83f66cf5566</ComponentId>
+          <Name>adx_webtemplate </Name>
+          <ExportActionId>f4099c5a-c51d-47e8-9b11-a83f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+      </DeployActions>
+      <DisplayName>Portal Data</DisplayName>
+      <GuidShift>1</GuidShift>
+      <ExternalFileName />
+    </BaseSolution>
+    <BaseSolution xsi:type="DynamicsSolution">
+      <ComponentId>71e8b98d-b3ec-48a9-9b87-d527874f81b9</ComponentId>
+      <Name />
+      <BuildActions />
+      <DeployActions>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>82b106be-e459-4dbb-9a0a-99b5a147537b</ComponentId>
+          <Name>adx_website</Name>
+          <ExportActionId>f4099c5a-c51d-47e8-9b19-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4099c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_ad </Name>
+          <ExportActionId>f4099c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f5099c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_adplacement </Name>
+          <ExportActionId>f5099c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f6099c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_alertsubscription </Name>
+          <ExportActionId>f6099c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f7099c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_bingmaplookup </Name>
+          <ExportActionId>f7099c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f8099c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_casedeflection </Name>
+          <ExportActionId>f8099c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f9099c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_communityforum </Name>
+          <ExportActionId>f9099c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4199c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_communityforumaccesspermission </Name>
+          <ExportActionId>f4199c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4299c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_communityforumalert </Name>
+          <ExportActionId>f4299c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4399c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_communityforumannouncement </Name>
+          <ExportActionId>f4399c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4499c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_communityforumpost </Name>
+          <ExportActionId>f4499c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4599c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_communityforumthread </Name>
+          <ExportActionId>f4599c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4699c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_contentaccesslevel </Name>
+          <ExportActionId>f4699c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4799c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_contentsnippet </Name>
+          <ExportActionId>f4799c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4899c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_entityform </Name>
+          <ExportActionId>f4899c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4999c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_entityformmetadata </Name>
+          <ExportActionId>f4999c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4009c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_entitylist </Name>
+          <ExportActionId>f4009c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4019c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_entitypermission </Name>
+          <ExportActionId>f4019c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4029c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_externalidentity </Name>
+          <ExportActionId>f4029c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4039c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_forumnotification </Name>
+          <ExportActionId>f4039c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4049c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_forumthreadtype </Name>
+          <ExportActionId>f4049c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4059c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_invitation </Name>
+          <ExportActionId>f4059c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4069c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_inviteredemption </Name>
+          <ExportActionId>f4069c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4079c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_pagealert </Name>
+          <ExportActionId>f4079c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4089c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_pagenotification </Name>
+          <ExportActionId>f4089c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4090c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_pagetag </Name>
+          <ExportActionId>f4090c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4091c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_pagetemplate </Name>
+          <ExportActionId>f4091c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4092c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_poll </Name>
+          <ExportActionId>f4092c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4093c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_polloption </Name>
+          <ExportActionId>f4093c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4094c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_pollplacement </Name>
+          <ExportActionId>f4094c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
+          <CreateOnly>false</CreateOnly>
+        </BaseAction>
+        <BaseAction xsi:type="DataAction">
+          <ComponentId>f4095c5a-c51d-47e8-9b11-a89f66cf5566</ComponentId>
+          <Name>adx_pollsubmission </Name>
+          <ExportActionId>f4095c5a-c51d-47e8-9b11-a89f66cf5566</ExportActionId>
           <CreateOnly>false</CreateOnly>
         </BaseAction>
         <BaseAction xsi:type="DataAction">
@@ -898,12 +1370,6 @@
           <CreateOnly>false</CreateOnly>
         </BaseAction>
         <BaseAction xsi:type="DataAction">
-          <ComponentId>f4099c5a-c51d-47e8-9b19-a89f66cf5566</ComponentId>
-          <Name>adx_website </Name>
-          <ExportActionId>f4099c5a-c51d-47e8-9b19-a89f66cf5566</ExportActionId>
-          <CreateOnly>false</CreateOnly>
-        </BaseAction>
-        <BaseAction xsi:type="DataAction">
           <ComponentId>f4099c5a-c51d-47e8-9b11-a80f66cf5566</ComponentId>
           <Name>adx_websiteaccess </Name>
           <ExportActionId>f4099c5a-c51d-47e8-9b11-a80f66cf5566</ExportActionId>
@@ -927,9 +1393,57 @@
           <ExportActionId>f4099c5a-c51d-47e8-9b11-a83f66cf5566</ExportActionId>
           <CreateOnly>false</CreateOnly>
         </BaseAction>
+        <BaseAction xsi:type="SdkProcessingStepStatusAction">
+          <ComponentId>8e1b699d-bef8-436a-9fb4-b87bf915b802</ComponentId>
+          <Name>Enable Adxstudio.Xrm.Plugins.MultiLanguage.WebPagePlugin: Create of adx_webpage</Name>
+          <StepName>Adxstudio.Xrm.Plugins.MultiLanguage.WebPagePlugin: Create of adx_webpage</StepName>
+          <Activate>true</Activate>
+        </BaseAction>
+        <BaseAction xsi:type="SdkProcessingStepStatusAction">
+          <ComponentId>028d2e16-8c5d-4b3a-b11f-6365a88f25c9</ComponentId>
+          <Name>Enable Adxstudio.Xrm.Plugins.MultiLanguage.WebPageValidationPlugin: Create of adx_webpage</Name>
+          <StepName>Adxstudio.Xrm.Plugins.MultiLanguage.WebPageValidationPlugin: Create of adx_webpage</StepName>
+          <Activate>true</Activate>
+        </BaseAction>
+        <BaseAction xsi:type="SdkProcessingStepStatusAction">
+          <ComponentId>44483ab1-2d7f-4a68-9d8e-92b053074fd6</ComponentId>
+          <Name>Enable Adxstudio.Xrm.Plugins.PublishingStateValidation: Create of adx_webpage</Name>
+          <StepName>Adxstudio.Xrm.Plugins.PublishingStateValidation: Create of adx_webpage</StepName>
+          <Activate>true</Activate>
+        </BaseAction>
+        <BaseAction xsi:type="SdkProcessingStepStatusAction">
+          <ComponentId>263ca48c-f6de-47e5-b261-f9ed339bedfa</ComponentId>
+          <Name>Enable Adxstudio.Xrm.Plugins.MultiLanguage.WebPageUpdatePlugin: Update of adx_webpage</Name>
+          <StepName>Adxstudio.Xrm.Plugins.MultiLanguage.WebPageUpdatePlugin: Update of adx_webpage</StepName>
+          <Activate>true</Activate>
+        </BaseAction>
+        <BaseAction xsi:type="SdkProcessingStepStatusAction">
+          <ComponentId>94b7a6c1-362e-4648-a53a-8eb38fc5f16e</ComponentId>
+          <Name>Enable Adxstudio.Xrm.Plugins.MultiLanguage.WebPageValidationPlugin: Update of adx_webpage</Name>
+          <StepName>Adxstudio.Xrm.Plugins.MultiLanguage.WebPageValidationPlugin: Update of adx_webpage</StepName>
+          <Activate>true</Activate>
+        </BaseAction>
+        <BaseAction xsi:type="SdkProcessingStepStatusAction">
+          <ComponentId>5d2f8a5b-748d-477f-971f-ff1d606f3486</ComponentId>
+          <Name>Enable Adxstudio.Xrm.Plugins.Pages.PageAlertPlugin: Update of adx_webpage</Name>
+          <StepName>Adxstudio.Xrm.Plugins.Pages.PageAlertPlugin: Update of adx_webpage</StepName>
+          <Activate>true</Activate>
+        </BaseAction>
+        <BaseAction xsi:type="SdkProcessingStepStatusAction">
+          <ComponentId>42752e56-5843-4dd6-911b-4442bbdbfc03</ComponentId>
+          <Name>Enable Adxstudio.Xrm.Plugins.PublishingStateValidation: Update of adx_webpage</Name>
+          <StepName>Adxstudio.Xrm.Plugins.PublishingStateValidation: Update of adx_webpage</StepName>
+          <Activate>true</Activate>
+        </BaseAction>
+        <BaseAction xsi:type="SdkProcessingStepStatusAction">
+          <ComponentId>a5433ed4-014f-4406-a03f-3af469a5732d</ComponentId>
+          <Name>Enable Adxstudio.Xrm.Plugins.UrlHistory.WebpageUrlHistoryPlugin: Update of adx_webpage</Name>
+          <StepName>Adxstudio.Xrm.Plugins.UrlHistory.WebpageUrlHistoryPlugin: Update of adx_webpage</StepName>
+          <Activate>true</Activate>
+        </BaseAction>
       </DeployActions>
-      <DisplayName>Portal Data</DisplayName>
-      <GuidShift>1</GuidShift>
+      <DisplayName>Portal Data Second Pass</DisplayName>
+      <GuidShift>0</GuidShift>
       <ExternalFileName />
     </BaseSolution>
   </Solutions>

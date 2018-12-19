@@ -87,6 +87,7 @@
   <ItemGroup>
     <Compile Include="Actions\DeployAction.cs" />
     <Compile Include="Actions\AddFileAction.cs" />
+    <Compile Include="Actions\SdkProcessingStepStatusAction.cs" />
     <Compile Include="Actions\SecurityRoleAction.cs" />
     <Compile Include="Actions\FieldPermissionAction.cs" />
     <Compile Include="Actions\RunCodeAction.cs" />
@@ -104,6 +105,12 @@
     <Compile Include="Packaging\DynamicsSolution.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Storage\FileStorage.cs" />
+    <Compile Include="UI\StepSelectorEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\StepSelectorEditor.Designer.cs">
+      <DependentUpon>StepSelectorEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\ActionSelectorEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -172,6 +179,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="UI\StepSelectorEditor.resx">
+      <DependentUpon>StepSelectorEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\ActionSelectorEditor.resx">
       <DependentUpon>ActionSelectorEditor.cs</DependentUpon>
     </EmbeddedResource>

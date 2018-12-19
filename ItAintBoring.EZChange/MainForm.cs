@@ -354,7 +354,7 @@ namespace ItAintBoring.EZChange
             if (selector.ShowIfMultiple() == DialogResult.OK && selector.SelectedItem != null)
             {
                 BaseSolution sln = SolutionFactory.CreateSolution((BaseSolution)selector.SelectedItem);
-
+                sln.Package = Package;
                 ComponentControl ac = new ComponentControl();
                 ac.Setup(sln, "Solution Properties");
 

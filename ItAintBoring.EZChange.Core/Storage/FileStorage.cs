@@ -50,6 +50,14 @@ namespace ItAintBoring.EZChange.Core.Storage
                 result.InitializeComponents();
                 reader.Close();
             }
+            if(result != null)
+            {
+                foreach(var s in result.Solutions)
+                {
+                    s.Package = result;
+                }
+            }
+
             return result;
         }
 

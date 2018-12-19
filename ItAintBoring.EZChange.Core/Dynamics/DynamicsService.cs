@@ -18,8 +18,6 @@ namespace ItAintBoring.EZChange.Core.Dynamics
     public class DynamicsService
     {
 
-
-
         public DynamicsService(string connectionString)
         {
             this.connectionString = connectionString;
@@ -199,7 +197,35 @@ namespace ItAintBoring.EZChange.Core.Dynamics
             PublishAll();
         }
 
-        
+        public void SetMessageStepStatus(string stepName, bool activate)
+        {
+            QueryExpression qe = new QueryExpression("sdkmessageprocessingstep");
+            qe.Criteria.AddCondition(new ConditionExpression("name", ConditionOperator.Equal, stepName));
+            var ent = Service.RetrieveMultiple(qe).Entities.FirstOrDefault();
+            if(ent != null)
+            {
+                //TODO - SET STATE
+                int wfStateCode = !activate ? 0 : 1;
+                int wfStatusCode = !activate ? 1 : 2;
+                int pluginStateCode = !activate ? 1 : 0;
+                int pluginStatusCode = !activate ? 2 : 1;
+                Entity updatedStep = new Entity(ent.LogicalName);
+                updatedStep.Id = ent.Id;
+                updatedStep["statuscode"] = new OptionSetValue(pluginStatusCode);
+                updatedStep["statecode"] = new OptionSetValue(pluginStateCode);
+                Service.Update(updatedStep);
+            }
+        }
+
+        public static List<NamedEntity> GetMessageProcessingSteps(IOrganizationService service, string entityName, string attributeName, Guid entityId)
+        {
+            
+            QueryExpression qe = new QueryExpression("sdkmessageprocessingstep");
+            qe.AddOrder("name", OrderType.Ascending);
+            var result = service.RetrieveMultiple(qe).Entities.Select(e => new NamedEntity() { Ent = e }).ToList();
+            return result;
+
+        }
 
         public void ExportSolution(string solutionName, string folder, bool managed)
         {

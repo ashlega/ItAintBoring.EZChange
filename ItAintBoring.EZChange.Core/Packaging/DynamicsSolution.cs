@@ -125,7 +125,8 @@ namespace ItAintBoring.EZChange.Core.Packaging
 
         public override string GetDataFolder()
         {
-            return Name;
+            if (String.IsNullOrEmpty(Name)) return this.DisplayName;
+            else return Name;
         }
 
         private string currentConnectionString = null;

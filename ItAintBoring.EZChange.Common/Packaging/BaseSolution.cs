@@ -65,13 +65,12 @@ namespace ItAintBoring.EZChange.Common.Packaging
 
         public BaseAction FindAction(Guid actionId)
         {
-            BaseAction result = null;
-            result = BuildActions.Find(a => a.ComponentId == actionId);
-            if(result == null)
+          
+            if (Package != null)
             {
-                result = DeployActions.Find(a => a.ComponentId == actionId);
+                return Package.FindAction(actionId);
             }
-            return result;
+            return null;
         }
 
         public virtual void InitializeComponents()
