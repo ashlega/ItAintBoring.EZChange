@@ -149,7 +149,11 @@ namespace ItAintBoring.EZChange.Common.Packaging
                 {
                     result = s.DeployActions.Find(a => a.ComponentId == actionId);
                 }
-                if (result != null) return result;
+                if (result != null)
+                {
+                    result.Solution = s;//just in case
+                    return result;
+                }
             }
 
             return null;

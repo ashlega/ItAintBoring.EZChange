@@ -87,12 +87,22 @@ namespace ItAintBoring.EZChange.Core.Packaging
             GuidShift = ((DynamicsSolutionEditor)uiControl).GuidShift;
         }
 
-        private string solutionFolder = null;
+        public string SolutionFolder
+        {
+            get
+            {
+                if (Package != null)
+                {
+                    return Package.GetDataFolder() + "\\" + GetDataFolder();
+                }
+                else return null;
+            }
+        }
 
         public string GetActionsDataFolder(BaseAction action)
         {
-            if (solutionFolder == null) return null;
-            string path = System.IO.Path.Combine(solutionFolder, "Actions");
+            if (((DynamicsSolution)action.Solution).SolutionFolder == null) return null;
+            string path = System.IO.Path.Combine(((DynamicsSolution)action.Solution).SolutionFolder, "Actions");
             System.IO.Directory.CreateDirectory(path);
             return path;
 
@@ -100,7 +110,7 @@ namespace ItAintBoring.EZChange.Core.Packaging
 
         public string GetActionFileName(BaseAction action, string fileName)
         {
-            if (solutionFolder == null) return null;
+            if (((DynamicsSolution)action.Solution).SolutionFolder == null) return null;
             string path = GetActionsDataFolder(action);
             return System.IO.Path.Combine(path, fileName != null ? fileName : action.Name+ ".txt");
         }
@@ -144,7 +154,7 @@ namespace ItAintBoring.EZChange.Core.Packaging
             currentConnectionString = ((DynamicsChangePackage)package).ConnectionString;
             ReconnectService(true);
 
-            solutionFolder = package.GetDataFolder() + "\\" + GetDataFolder();
+            
 
             foreach (var action in BuildActions)
             {
@@ -152,15 +162,15 @@ namespace ItAintBoring.EZChange.Core.Packaging
             }
             if(!String.IsNullOrEmpty(ExternalFileName))
             {
-                System.IO.Directory.CreateDirectory(solutionFolder);
-                System.IO.File.Copy(ExternalFileName, System.IO.Path.Combine(solutionFolder, System.IO.Path.GetFileName(ExternalFileName)));
+                System.IO.Directory.CreateDirectory(SolutionFolder);
+                System.IO.File.Copy(ExternalFileName, System.IO.Path.Combine(SolutionFolder, System.IO.Path.GetFileName(ExternalFileName)));
             }
-            else if(!String.IsNullOrEmpty(Name)) service.ExportSolution(Name, solutionFolder, false);
+            else if(!String.IsNullOrEmpty(Name)) service.ExportSolution(Name, SolutionFolder, false);
         }
 
         public void ImportSolution()
         {
-            string[] files = System.IO.Directory.GetFiles(solutionFolder, "*zip");
+            string[] files = System.IO.Directory.GetFiles(SolutionFolder, "*zip");
             if (files.Length > 0)
             {
                 service.ImportSolution(files[0]);
@@ -173,8 +183,9 @@ namespace ItAintBoring.EZChange.Core.Packaging
 
             currentConnectionString = ((DynamicsChangePackage)package).ConnectionString;
             ReconnectService(true);
+
             
-            solutionFolder = package.GetDataFolder() + "\\" + GetDataFolder();
+            
 
             foreach (var action in DeployActions)
             {
