@@ -1449,5 +1449,5 @@
       <ExternalFileName />
     </BaseSolution>
   </Solutions>
-  <ConnectionString>AuthType=Office365;Username=info@treecatsoftware.com; Password=Canada234_;Url=https://treecatsoftware.crm3.dynamics.com</ConnectionString>
+  <ConnectionString>#TargetServer#</ConnectionString>
 </BaseChangePackage>
