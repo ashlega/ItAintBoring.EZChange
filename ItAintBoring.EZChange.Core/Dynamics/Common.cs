@@ -26,6 +26,8 @@ namespace ItAintBoring.EZChange.Core.Dynamics
     public class Common
     {
 
+        
+
         public static T GetAttribute<T>(Entity entity, Entity image, string attributeName)
         {
             if (entity.Contains(attributeName)) return (T)entity[attributeName];

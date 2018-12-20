@@ -2,6 +2,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -60,12 +62,35 @@ namespace ItAintBoring.EZChange.Common.Packaging
 
         public virtual void Run(BaseAction selectedAction = null)
         {
+            string zipFileName = GetDataFolder() + ".zip";
+            if (System.IO.File.Exists(zipFileName))
+            {
+                ZipFile.ExtractToDirectory(GetDataFolder() + ".zip", GetDataFolder());
+            }
+            
+            
+
             foreach (var s in Solutions)
             {
                 s.Package = this;
                 s.DeploySolution(this, selectedAction);
             }
+
+            if (System.IO.File.Exists(zipFileName))
+            {
+                try
+                {
+                    System.IO.Directory.Delete(GetDataFolder(), true);
+                }
+                catch(Exception ex)
+                {
+                    //FIles might be locked
+                }
+            }
+            
         }
+
+        
 
         public virtual void Build(IPackageStorage storage)
         {
@@ -80,7 +105,13 @@ namespace ItAintBoring.EZChange.Common.Packaging
                 s.Package = this;
                 s.PrepareSolution(this);
             }
-            
+            string zipFileName = GetDataFolder() + ".zip";
+            if (System.IO.File.Exists(zipFileName))
+            {
+                System.IO.File.Delete(zipFileName);
+            }
+            ZipFile.CreateFromDirectory(GetDataFolder(), zipFileName);
+            System.IO.Directory.Delete(GetDataFolder(), true);
         }
 
         public override void UpdateRuntimeData(Hashtable values)
